@@ -1,0 +1,15 @@
+(cl:defpackage Intelligence-srv
+  (:use )
+  (:export
+   "ENABLECOMS"
+   "<ENABLECOMS-REQUEST>"
+   "ENABLECOMS-REQUEST"
+   "<ENABLECOMS-RESPONSE>"
+   "ENABLECOMS-RESPONSE"
+   "STARTUP"
+   "<STARTUP-REQUEST>"
+   "STARTUP-REQUEST"
+   "<STARTUP-RESPONSE>"
+   "STARTUP-RESPONSE"
+  ))
+
