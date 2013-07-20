@@ -252,6 +252,36 @@ clean: gtest/CMakeFiles/gtest_main.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory BehaviorManager
+
+# Convenience name for "all" pass in the directory.
+BehaviorManager/all:
+.PHONY : BehaviorManager/all
+
+# Convenience name for "clean" pass in the directory.
+BehaviorManager/clean:
+.PHONY : BehaviorManager/clean
+
+# Convenience name for "preinstall" pass in the directory.
+BehaviorManager/preinstall:
+.PHONY : BehaviorManager/preinstall
+
+#=============================================================================
+# Directory level rules for directory Behaviors
+
+# Convenience name for "all" pass in the directory.
+Behaviors/all:
+.PHONY : Behaviors/all
+
+# Convenience name for "clean" pass in the directory.
+Behaviors/clean:
+.PHONY : Behaviors/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Behaviors/preinstall:
+.PHONY : Behaviors/preinstall
+
+#=============================================================================
 # Directory level rules for directory Intelligence
 
 # Convenience name for "all" pass in the directory.

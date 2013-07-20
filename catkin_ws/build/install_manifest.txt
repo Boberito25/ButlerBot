@@ -5,6 +5,14 @@
 /home/vsunder/ButlerBot/catkin_ws/install/setup.sh
 /home/vsunder/ButlerBot/catkin_ws/install/setup.zsh
 /home/vsunder/ButlerBot/catkin_ws/install/.rosinstall
+/home/vsunder/ButlerBot/catkin_ws/install/lib/pkgconfig/BehaviorManager.pc
+/home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/cmake/BehaviorManagerConfig.cmake
+/home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/cmake/BehaviorManagerConfig-version.cmake
+/home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/package.xml
+/home/vsunder/ButlerBot/catkin_ws/install/lib/pkgconfig/Behaviors.pc
+/home/vsunder/ButlerBot/catkin_ws/install/share/Behaviors/cmake/BehaviorsConfig.cmake
+/home/vsunder/ButlerBot/catkin_ws/install/share/Behaviors/cmake/BehaviorsConfig-version.cmake
+/home/vsunder/ButlerBot/catkin_ws/install/share/Behaviors/package.xml
 /home/vsunder/ButlerBot/catkin_ws/install/share/Intelligence/srv/Startup.srv
 /home/vsunder/ButlerBot/catkin_ws/install/share/Intelligence/srv/EnableComs.srv
 /home/vsunder/ButlerBot/catkin_ws/install/share/Intelligence/srv/RequestBehavior.srv

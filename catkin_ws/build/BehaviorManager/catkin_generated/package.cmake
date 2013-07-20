@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "BehaviorManager")
+set(BehaviorManager_MAINTAINER "vsunder <vsunder@andrew.cmu.edu>")
+set(BehaviorManager_DEPRECATED "")
+set(BehaviorManager_VERSION "0.0.0")
+set(BehaviorManager_BUILD_DEPENDS "message_generation" "rospy" "std_msgs" "roscpp")
+set(BehaviorManager_RUN_DEPENDS "message_runtime" "rospy" "std_msgs" "roscpp")
+set(BehaviorManager_BUILDTOOL_DEPENDS "catkin")

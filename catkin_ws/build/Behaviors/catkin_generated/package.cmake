@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "Behaviors")
+set(Behaviors_MAINTAINER "vsunder <vsunder@todo.todo>")
+set(Behaviors_DEPRECATED "")
+set(Behaviors_VERSION "0.0.0")
+set(Behaviors_BUILD_DEPENDS "message_generation" "std_msgs" "rospy" "roscpp")
+set(Behaviors_RUN_DEPENDS "message_runtime" "std_msgs" "rospy" "roscpp")
+set(Behaviors_BUILDTOOL_DEPENDS "catkin")

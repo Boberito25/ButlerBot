@@ -17,6 +17,18 @@
 //Build shared libraries (DLLs).
 BUILD_SHARED_LIBS:BOOL=ON
 
+//Value Computed by CMake
+BehaviorManager_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager
+
+//Value Computed by CMake
+BehaviorManager_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager
+
+//Value Computed by CMake
+Behaviors_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/Behaviors
+
+//Value Computed by CMake
+Behaviors_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/Behaviors
+
 //List of ';' separated packages to exclude
 CATKIN_BLACKLIST_PACKAGES:STRING=
 
@@ -189,6 +201,8 @@ GTEST_MAIN_LIBRARY_DEBUG:FILEPATH=GTEST_MAIN_LIBRARY_DEBUG-NOTFOUND
 
 //Value Computed by CMake
 Intelligence_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/Intelligence
+
+Intelligence_DIR:PATH=
 
 //Value Computed by CMake
 Intelligence_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/Intelligence
@@ -415,7 +429,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=3
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
