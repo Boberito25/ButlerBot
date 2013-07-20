@@ -36,6 +36,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/Intelligence/srv" TYPE FILE FILES
     "/home/vsunder/ButlerBot/catkin_ws/src/Intelligence/srv/Startup.srv"
     "/home/vsunder/ButlerBot/catkin_ws/src/Intelligence/srv/EnableComs.srv"
+    "/home/vsunder/ButlerBot/catkin_ws/src/Intelligence/srv/RequestBehavior.srv"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

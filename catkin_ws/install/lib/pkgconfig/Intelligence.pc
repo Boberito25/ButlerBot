@@ -1,0 +1,6 @@
+Name: Intelligence
+Description: Description of Intelligence
+Version: 0.0.0
+Cflags: -I/home/vsunder/ButlerBot/catkin_ws/install/include
+Libs: -L/home/vsunder/ButlerBot/catkin_ws/install/lib 
+Requires: 

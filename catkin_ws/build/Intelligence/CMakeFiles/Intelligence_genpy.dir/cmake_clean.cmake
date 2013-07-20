@@ -2,6 +2,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/Intelligence_genpy"
   "/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Intelligence/srv/_Startup.py"
   "/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Intelligence/srv/_EnableComs.py"
+  "/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Intelligence/srv/_RequestBehavior.py"
   "/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Intelligence/srv/__init__.py"
 )
 

@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "Intelligence: 0 messages, 2 services")
+message(STATUS "Intelligence: 0 messages, 3 services")
 
 set(MSG_I_FLAGS "-IIntelligence:/home/vsunder/ButlerBot/catkin_ws/src/Intelligence/msg;-Istd_msgs:/opt/ros/groovy/share/std_msgs/msg")
 
@@ -32,6 +32,12 @@ _generate_srv_cpp(Intelligence
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/Intelligence
 )
+_generate_srv_cpp(Intelligence
+  /home/vsunder/ButlerBot/catkin_ws/src/Intelligence/srv/RequestBehavior.srv
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/Intelligence
+)
 
 ### Generating Module File
 _generate_module_cpp(Intelligence
@@ -59,6 +65,12 @@ _generate_srv_lisp(Intelligence
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/Intelligence
 )
+_generate_srv_lisp(Intelligence
+  /home/vsunder/ButlerBot/catkin_ws/src/Intelligence/srv/RequestBehavior.srv
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/Intelligence
+)
 
 ### Generating Module File
 _generate_module_lisp(Intelligence
@@ -82,6 +94,12 @@ _generate_srv_py(Intelligence
 )
 _generate_srv_py(Intelligence
   /home/vsunder/ButlerBot/catkin_ws/src/Intelligence/srv/EnableComs.srv
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/Intelligence
+)
+_generate_srv_py(Intelligence
+  /home/vsunder/ButlerBot/catkin_ws/src/Intelligence/srv/RequestBehavior.srv
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/Intelligence
