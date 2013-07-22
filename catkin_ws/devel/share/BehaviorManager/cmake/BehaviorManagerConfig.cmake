@@ -83,9 +83,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(BehaviorManager_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/include" STREQUAL "")
+if(NOT "/home/vsunder/ButlerBot/catkin_ws/devel/include;/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/include" STREQUAL "")
   set(BehaviorManager_INCLUDE_DIRS "")
-  set(absolute_include_dirs "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/include")
+  set(absolute_include_dirs "/home/vsunder/ButlerBot/catkin_ws/devel/include;/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/include")
   foreach(idir ${absolute_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})
@@ -108,7 +108,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/vsunder/ButlerBot/catkin_ws/devel/lib;/home/vsunder/ButlerBot/catkin_ws/devel/lib;/opt/ros/groovy/lib)
+    foreach(path /home/vsunder/ButlerBot/catkin_ws/devel/lib;/opt/ros/groovy/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

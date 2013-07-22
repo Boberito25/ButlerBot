@@ -1,6 +1,6 @@
 Name: BehaviorManager
 Description: Description of BehaviorManager
 Version: 0.0.0
-Cflags: -I/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/include
+Cflags: -I/home/vsunder/ButlerBot/catkin_ws/devel/include -I/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/include
 Libs: -L/home/vsunder/ButlerBot/catkin_ws/devel/lib 
 Requires: 
