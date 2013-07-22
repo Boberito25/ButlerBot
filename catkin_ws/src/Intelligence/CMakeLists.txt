@@ -80,6 +80,14 @@ include_directories(include
 #   ${catkin_LIBRARIES}
 # )
 
+##################################
+#-Modyify to Select Intelligence-#
+##################################
+
+add_executable(intelligence_barebones src/Barebones/intelligence.cpp)
+target_link_libraries(intelligence_barebones ${catkin_LIBRARIES})
+add_dependencies(intelligence_barebones intelligence_barebones_gencpp)
+
 #############
 ## Install ##
 #############
@@ -127,3 +135,4 @@ include_directories(include
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+

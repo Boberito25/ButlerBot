@@ -178,6 +178,44 @@ Intelligence_genpy/fast:
 	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f Intelligence/CMakeFiles/Intelligence_genpy.dir/build.make Intelligence/CMakeFiles/Intelligence_genpy.dir/build
 .PHONY : Intelligence_genpy/fast
 
+# Convenience name for target.
+Intelligence/CMakeFiles/intelligence_barebones.dir/rule:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 Intelligence/CMakeFiles/intelligence_barebones.dir/rule
+.PHONY : Intelligence/CMakeFiles/intelligence_barebones.dir/rule
+
+# Convenience name for target.
+intelligence_barebones: Intelligence/CMakeFiles/intelligence_barebones.dir/rule
+.PHONY : intelligence_barebones
+
+# fast build rule for target.
+intelligence_barebones/fast:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f Intelligence/CMakeFiles/intelligence_barebones.dir/build.make Intelligence/CMakeFiles/intelligence_barebones.dir/build
+.PHONY : intelligence_barebones/fast
+
+src/Barebones/intelligence.o: src/Barebones/intelligence.cpp.o
+.PHONY : src/Barebones/intelligence.o
+
+# target to build an object file
+src/Barebones/intelligence.cpp.o:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f Intelligence/CMakeFiles/intelligence_barebones.dir/build.make Intelligence/CMakeFiles/intelligence_barebones.dir/src/Barebones/intelligence.cpp.o
+.PHONY : src/Barebones/intelligence.cpp.o
+
+src/Barebones/intelligence.i: src/Barebones/intelligence.cpp.i
+.PHONY : src/Barebones/intelligence.i
+
+# target to preprocess a source file
+src/Barebones/intelligence.cpp.i:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f Intelligence/CMakeFiles/intelligence_barebones.dir/build.make Intelligence/CMakeFiles/intelligence_barebones.dir/src/Barebones/intelligence.cpp.i
+.PHONY : src/Barebones/intelligence.cpp.i
+
+src/Barebones/intelligence.s: src/Barebones/intelligence.cpp.s
+.PHONY : src/Barebones/intelligence.s
+
+# target to generate assembly for a file
+src/Barebones/intelligence.cpp.s:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f Intelligence/CMakeFiles/intelligence_barebones.dir/build.make Intelligence/CMakeFiles/intelligence_barebones.dir/src/Barebones/intelligence.cpp.s
+.PHONY : src/Barebones/intelligence.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -191,8 +229,12 @@ help:
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
+	@echo "... intelligence_barebones"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... src/Barebones/intelligence.o"
+	@echo "... src/Barebones/intelligence.i"
+	@echo "... src/Barebones/intelligence.s"
 .PHONY : help
 
 

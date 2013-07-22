@@ -1,0 +1,15 @@
+(cl:defpackage BehaviorManager-srv
+  (:use )
+  (:export
+   "ACTIVATE"
+   "<ACTIVATE-REQUEST>"
+   "ACTIVATE-REQUEST"
+   "<ACTIVATE-RESPONSE>"
+   "ACTIVATE-RESPONSE"
+   "STARTUP"
+   "<STARTUP-REQUEST>"
+   "STARTUP-REQUEST"
+   "<STARTUP-RESPONSE>"
+   "STARTUP-RESPONSE"
+  ))
+

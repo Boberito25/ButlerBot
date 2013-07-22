@@ -11,5 +11,6 @@
 /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles/doxygen.dir
 /home/vsunder/ButlerBot/catkin_ws/build/gtest/CMakeFiles/gtest.dir
 /home/vsunder/ButlerBot/catkin_ws/build/gtest/CMakeFiles/gtest_main.dir
+/home/vsunder/ButlerBot/catkin_ws/build/Intelligence/CMakeFiles/intelligence_barebones.dir
 /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles/run_tests.dir
 /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles/tests.dir

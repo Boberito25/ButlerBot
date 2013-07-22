@@ -331,6 +331,19 @@ Intelligence_genpy/fast:
 	$(MAKE) -f Intelligence/CMakeFiles/Intelligence_genpy.dir/build.make Intelligence/CMakeFiles/Intelligence_genpy.dir/build
 .PHONY : Intelligence_genpy/fast
 
+#=============================================================================
+# Target rules for targets named intelligence_barebones
+
+# Build rule for target.
+intelligence_barebones: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 intelligence_barebones
+.PHONY : intelligence_barebones
+
+# fast build rule for target.
+intelligence_barebones/fast:
+	$(MAKE) -f Intelligence/CMakeFiles/intelligence_barebones.dir/build.make Intelligence/CMakeFiles/intelligence_barebones.dir/build
+.PHONY : intelligence_barebones/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -358,6 +371,7 @@ help:
 	@echo "... Intelligence_gencpp"
 	@echo "... Intelligence_genlisp"
 	@echo "... Intelligence_genpy"
+	@echo "... intelligence_barebones"
 .PHONY : help
 
 
