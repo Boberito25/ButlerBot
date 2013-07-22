@@ -1,6 +1,6 @@
 Name: Behaviors
 Description: Description of Behaviors
 Version: 0.0.0
-Cflags: -I/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/include
+Cflags: -I/home/vsunder/ButlerBot/catkin_ws/devel/include -I/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/include
 Libs: -L/home/vsunder/ButlerBot/catkin_ws/devel/lib 
 Requires: 

@@ -83,9 +83,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(Behaviors_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/include" STREQUAL "")
+if(NOT "/home/vsunder/ButlerBot/catkin_ws/devel/include;/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/include" STREQUAL "")
   set(Behaviors_INCLUDE_DIRS "")
-  set(absolute_include_dirs "/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/include")
+  set(absolute_include_dirs "/home/vsunder/ButlerBot/catkin_ws/devel/include;/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/include")
   foreach(idir ${absolute_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})

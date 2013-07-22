@@ -20,6 +20,9 @@ BUILD_SHARED_LIBS:BOOL=ON
 //Value Computed by CMake
 BehaviorManager_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager
 
+//The directory containing a CMake configuration file for BehaviorManager.
+BehaviorManager_DIR:PATH=/home/vsunder/ButlerBot/catkin_ws/devel/share/BehaviorManager/cmake
+
 //Value Computed by CMake
 BehaviorManager_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager
 
