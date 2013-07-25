@@ -16,15 +16,19 @@ int main(int argc, char **argv)
   
   /* Check startup */
   Intelligence::Startup s;
-  s.request.has_started = true;
+  s.request.behaviors.push_back("test_behavior");
   if (startup.call(s))
   {
-    /* Further code occurs here */
+    if(!(s.response.ready)){
+      ROS_ERROR("Subprocess startup failed"); 
+      return 1;
+    }
   }
   else
   {
     ROS_ERROR("Failed to check for behavior manager startup");
     return 1;
   }
+  return 0;
 
 }

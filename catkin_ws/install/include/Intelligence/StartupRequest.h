@@ -57,16 +57,16 @@ struct StartupRequest_
   typedef StartupRequest_<ContainerAllocator> Type;
 
   StartupRequest_()
-    : has_started(false)  {
+    : behaviors()  {
     }
   StartupRequest_(const ContainerAllocator& _alloc)
-    : has_started(false)  {
+    : behaviors(_alloc)  {
     }
 
 
 
-   typedef uint8_t _has_started_type;
-  _has_started_type has_started;
+   typedef std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > , typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::other >  _behaviors_type;
+  _behaviors_type behaviors;
 
 
 
@@ -102,7 +102,7 @@ namespace message_traits
 
 
 
-// BOOLTRAITS {'IsFixedSize': True, 'IsMessage': True, 'HasHeader': False}
+// BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': False}
 // {'Intelligence': ['/home/vsunder/ButlerBot/catkin_ws/src/Intelligence/msg'], 'std_msgs': ['/opt/ros/groovy/share/std_msgs/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
@@ -112,12 +112,12 @@ namespace message_traits
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::Intelligence::StartupRequest_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::Intelligence::StartupRequest_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -146,12 +146,12 @@ struct MD5Sum< ::Intelligence::StartupRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "51835a17ad64bf149a20b45fdffa8a09";
+    return "715783c8c6eb28fc2e1c05184add75ec";
   }
 
   static const char* value(const ::Intelligence::StartupRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x51835a17ad64bf14ULL;
-  static const uint64_t static_value2 = 0x9a20b45fdffa8a09ULL;
+  static const uint64_t static_value1 = 0x715783c8c6eb28fcULL;
+  static const uint64_t static_value2 = 0x2e1c05184add75ecULL;
 };
 
 template<class ContainerAllocator>
@@ -170,7 +170,7 @@ struct Definition< ::Intelligence::StartupRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "bool has_started\n\
+    return "string[] behaviors\n\
 \n\
 ";
   }
@@ -190,7 +190,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.has_started);
+      stream.next(m.behaviors);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -209,8 +209,12 @@ struct Printer< ::Intelligence::StartupRequest_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::Intelligence::StartupRequest_<ContainerAllocator>& v)
   {
-    s << indent << "has_started: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.has_started);
+    s << indent << "behaviors[]" << std::endl;
+    for (size_t i = 0; i < v.behaviors.size(); ++i)
+    {
+      s << indent << "  behaviors[" << i << "]: ";
+      Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.behaviors[i]);
+    }
   }
 };
 

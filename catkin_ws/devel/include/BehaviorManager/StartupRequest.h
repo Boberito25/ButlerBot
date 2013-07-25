@@ -57,21 +57,16 @@ struct StartupRequest_
   typedef StartupRequest_<ContainerAllocator> Type;
 
   StartupRequest_()
-    : behavior()
-    , has_started(false)  {
+    : behavior()  {
     }
   StartupRequest_(const ContainerAllocator& _alloc)
-    : behavior(_alloc)
-    , has_started(false)  {
+    : behavior(_alloc)  {
     }
 
 
 
    typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _behavior_type;
   _behavior_type behavior;
-
-   typedef uint8_t _has_started_type;
-  _has_started_type has_started;
 
 
 
@@ -151,12 +146,12 @@ struct MD5Sum< ::BehaviorManager::StartupRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "eae809d9cb72a991e3e5041f0c0f24c4";
+    return "03729983c4b9be7a4f2b56846a7ccbdc";
   }
 
   static const char* value(const ::BehaviorManager::StartupRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xeae809d9cb72a991ULL;
-  static const uint64_t static_value2 = 0xe3e5041f0c0f24c4ULL;
+  static const uint64_t static_value1 = 0x03729983c4b9be7aULL;
+  static const uint64_t static_value2 = 0x4f2b56846a7ccbdcULL;
 };
 
 template<class ContainerAllocator>
@@ -176,7 +171,6 @@ struct Definition< ::BehaviorManager::StartupRequest_<ContainerAllocator> >
   static const char* value()
   {
     return "string behavior\n\
-bool has_started\n\
 \n\
 ";
   }
@@ -197,7 +191,6 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.behavior);
-      stream.next(m.has_started);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -218,8 +211,6 @@ struct Printer< ::BehaviorManager::StartupRequest_<ContainerAllocator> >
   {
     s << indent << "behavior: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.behavior);
-    s << indent << "has_started: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.has_started);
   }
 };
 

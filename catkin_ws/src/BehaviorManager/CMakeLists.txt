@@ -79,6 +79,9 @@ include_directories(include
 # target_link_libraries(BehaviorManager_node
 #   ${catkin_LIBRARIES}
 # )
+add_executable(behavior_manager src/behavior_manager.cpp)
+target_link_libraries(behavior_manager ${catkin_LIBRARIES})
+add_dependencies(behavior_manager behavior_manager_gencpp)
 
 #############
 ## Install ##

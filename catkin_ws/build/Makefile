@@ -254,6 +254,19 @@ BehaviorManager_genpy/fast:
 .PHONY : BehaviorManager_genpy/fast
 
 #=============================================================================
+# Target rules for targets named behavior_manager
+
+# Build rule for target.
+behavior_manager: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 behavior_manager
+.PHONY : behavior_manager
+
+# fast build rule for target.
+behavior_manager/fast:
+	$(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/build
+.PHONY : behavior_manager/fast
+
+#=============================================================================
 # Target rules for targets named Behaviors_gencpp
 
 # Build rule for target.
@@ -365,6 +378,7 @@ help:
 	@echo "... BehaviorManager_gencpp"
 	@echo "... BehaviorManager_genlisp"
 	@echo "... BehaviorManager_genpy"
+	@echo "... behavior_manager"
 	@echo "... Behaviors_gencpp"
 	@echo "... Behaviors_genlisp"
 	@echo "... Behaviors_genpy"

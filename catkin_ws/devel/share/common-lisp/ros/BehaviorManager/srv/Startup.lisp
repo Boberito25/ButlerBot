@@ -11,12 +11,7 @@
     :reader behavior
     :initarg :behavior
     :type cl:string
-    :initform "")
-   (has_started
-    :reader has_started
-    :initarg :has_started
-    :type cl:boolean
-    :initform cl:nil))
+    :initform ""))
 )
 
 (cl:defclass Startup-request (<Startup-request>)
@@ -31,11 +26,6 @@
 (cl:defmethod behavior-val ((m <Startup-request>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader BehaviorManager-srv:behavior-val is deprecated.  Use BehaviorManager-srv:behavior instead.")
   (behavior m))
-
-(cl:ensure-generic-function 'has_started-val :lambda-list '(m))
-(cl:defmethod has_started-val ((m <Startup-request>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader BehaviorManager-srv:has_started-val is deprecated.  Use BehaviorManager-srv:has_started instead.")
-  (has_started m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <Startup-request>) ostream)
   "Serializes a message object of type '<Startup-request>"
   (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'behavior))))
@@ -44,7 +34,6 @@
     (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
   (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'behavior))
-  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'has_started) 1 0)) ostream)
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <Startup-request>) istream)
   "Deserializes a message object of type '<Startup-request>"
@@ -56,7 +45,6 @@
       (cl:setf (cl:slot-value msg 'behavior) (cl:make-string __ros_str_len))
       (cl:dotimes (__ros_str_idx __ros_str_len msg)
         (cl:setf (cl:char (cl:slot-value msg 'behavior) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
-    (cl:setf (cl:slot-value msg 'has_started) (cl:not (cl:zerop (cl:read-byte istream))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<Startup-request>)))
@@ -67,26 +55,24 @@
   "BehaviorManager/StartupRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Startup-request>)))
   "Returns md5sum for a message object of type '<Startup-request>"
-  "bccc1c679fdd2d4249448e7f5e07e9e5")
+  "ec1c18568b0d29b6ab387d7896c51603")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Startup-request)))
   "Returns md5sum for a message object of type 'Startup-request"
-  "bccc1c679fdd2d4249448e7f5e07e9e5")
+  "ec1c18568b0d29b6ab387d7896c51603")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Startup-request>)))
   "Returns full string definition for message of type '<Startup-request>"
-  (cl:format cl:nil "string behavior~%bool has_started~%~%~%"))
+  (cl:format cl:nil "string behavior~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Startup-request)))
   "Returns full string definition for message of type 'Startup-request"
-  (cl:format cl:nil "string behavior~%bool has_started~%~%~%"))
+  (cl:format cl:nil "string behavior~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Startup-request>))
   (cl:+ 0
      4 (cl:length (cl:slot-value msg 'behavior))
-     1
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <Startup-request>))
   "Converts a ROS message object to a list"
   (cl:list 'Startup-request
     (cl:cons ':behavior (behavior msg))
-    (cl:cons ':has_started (has_started msg))
 ))
 ;//! \htmlinclude Startup-response.msg.html
 
@@ -127,10 +113,10 @@
   "BehaviorManager/StartupResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Startup-response>)))
   "Returns md5sum for a message object of type '<Startup-response>"
-  "bccc1c679fdd2d4249448e7f5e07e9e5")
+  "ec1c18568b0d29b6ab387d7896c51603")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Startup-response)))
   "Returns md5sum for a message object of type 'Startup-response"
-  "bccc1c679fdd2d4249448e7f5e07e9e5")
+  "ec1c18568b0d29b6ab387d7896c51603")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Startup-response>)))
   "Returns full string definition for message of type '<Startup-response>"
   (cl:format cl:nil "bool ready~%~%~%~%"))
