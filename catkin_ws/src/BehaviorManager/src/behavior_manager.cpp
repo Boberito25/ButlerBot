@@ -1,6 +1,8 @@
 #include "ros/ros.h"
 #include "Intelligence/Startup.h"
 #include "BehaviorManager/Startup.h"
+#include <boost/thread.hpp>
+#include "behavior_queue.h"
 //Node handle
 ros::NodeHandle n;
 
@@ -9,6 +11,8 @@ ros::ServiceClient startup;
 
 
 /* msg/srv handlers */
+void runBehaviorQueue(){
+}
 bool intelStartup(Intelligence::Startup::Request &req,
 		  Intelligence::Startup::Response &res)
 {

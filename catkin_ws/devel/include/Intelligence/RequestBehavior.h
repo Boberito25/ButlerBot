@@ -73,7 +73,7 @@ template<>
 struct MD5Sum< ::Intelligence::RequestBehavior > {
   static const char* value()
   {
-    return "c19399d975bbe637983f069c16841ba5";
+    return "8c622a6f499ac0556a7e3ed8206e23ac";
   }
 
   static const char* value(const ::Intelligence::RequestBehavior&) { return value(); }

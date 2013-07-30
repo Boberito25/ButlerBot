@@ -7,7 +7,7 @@ project(BehaviorManager)
 find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation Intelligence)
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -61,6 +61,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(include
   ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a cpp library
@@ -79,7 +80,7 @@ include_directories(include
 # target_link_libraries(BehaviorManager_node
 #   ${catkin_LIBRARIES}
 # )
-add_executable(behavior_manager src/behavior_manager.cpp)
+add_executable(behavior_manager src/behavior_manager.cpp src/behavior_queue.cpp)
 target_link_libraries(behavior_manager ${catkin_LIBRARIES})
 add_dependencies(behavior_manager behavior_manager_gencpp)
 

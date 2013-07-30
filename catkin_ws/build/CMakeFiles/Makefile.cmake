@@ -136,6 +136,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-2.8/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-2.8/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-2.8/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-2.8/Modules/FindBoost.cmake"
   "/usr/share/cmake-2.8/Modules/FindGTest.cmake"
   "/usr/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake-2.8/Modules/FindPackageMessage.cmake"

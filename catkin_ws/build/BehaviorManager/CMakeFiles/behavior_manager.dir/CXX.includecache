@@ -86,6 +86,12 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
+/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/include/behavior_queue.h
+string
+-
+vector
+-
+
 /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/src/behavior_manager.cpp
 ros/ros.h
 /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/src/ros/ros.h
@@ -93,6 +99,20 @@ Intelligence/Startup.h
 /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/src/Intelligence/Startup.h
 BehaviorManager/Startup.h
 /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/src/BehaviorManager/Startup.h
+boost/thread.hpp
+-
+behavior_queue.h
+/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/src/behavior_queue.h
+
+/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/src/behavior_queue.cpp
+behavior_queue.h
+/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/src/behavior_queue.h
+string
+-
+vector
+-
+cstdlib
+-
 
 /opt/ros/groovy/include/XmlRpcDecl.h
 ros/macros.h

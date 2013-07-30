@@ -1,4 +1,5 @@
 string behavior
 string params
+uint8 priority
 ---
 bool success

@@ -1,0 +1,27 @@
+#ifndef BEHAVIOR_QUEUE_H
+#define BEHAVIOR_QUEUE_H
+#include <string>
+#include <vector>
+using namespace std;
+typedef  struct Behavior{
+  //Data
+  string behavior;
+  string params;
+  unsigned int priority;
+  vector<string> reserves;
+
+  //Links
+} Behavior;
+class Behavior_Queue
+{
+private:
+  vector<Behavior> heap; 
+public:
+  bool enqueue(string behavior, string params, const std::vector<string>& reserves,
+	unsigned int priority);
+  
+};
+
+
+#endif
+

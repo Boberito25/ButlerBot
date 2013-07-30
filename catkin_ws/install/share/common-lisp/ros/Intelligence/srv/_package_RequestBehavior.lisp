@@ -3,6 +3,8 @@
           BEHAVIOR
           PARAMS-VAL
           PARAMS
+          PRIORITY-VAL
+          PRIORITY
           SUCCESS-VAL
           SUCCESS
 ))

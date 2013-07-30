@@ -1,6 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/Behaviors_gencpp"
   "/home/vsunder/ButlerBot/catkin_ws/devel/include/Behaviors/Recs.h"
+  "/home/vsunder/ButlerBot/catkin_ws/devel/include/Behaviors/Completed.h"
   "/home/vsunder/ButlerBot/catkin_ws/devel/include/Behaviors/ReserveBehavior.h"
 )
 

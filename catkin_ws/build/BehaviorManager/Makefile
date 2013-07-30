@@ -216,6 +216,30 @@ src/behavior_manager.cpp.s:
 	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_manager.cpp.s
 .PHONY : src/behavior_manager.cpp.s
 
+src/behavior_queue.o: src/behavior_queue.cpp.o
+.PHONY : src/behavior_queue.o
+
+# target to build an object file
+src/behavior_queue.cpp.o:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_queue.cpp.o
+.PHONY : src/behavior_queue.cpp.o
+
+src/behavior_queue.i: src/behavior_queue.cpp.i
+.PHONY : src/behavior_queue.i
+
+# target to preprocess a source file
+src/behavior_queue.cpp.i:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_queue.cpp.i
+.PHONY : src/behavior_queue.cpp.i
+
+src/behavior_queue.s: src/behavior_queue.cpp.s
+.PHONY : src/behavior_queue.s
+
+# target to generate assembly for a file
+src/behavior_queue.cpp.s:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_queue.cpp.s
+.PHONY : src/behavior_queue.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -235,6 +259,9 @@ help:
 	@echo "... src/behavior_manager.o"
 	@echo "... src/behavior_manager.i"
 	@echo "... src/behavior_manager.s"
+	@echo "... src/behavior_queue.o"
+	@echo "... src/behavior_queue.i"
+	@echo "... src/behavior_queue.s"
 .PHONY : help
 
 

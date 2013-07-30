@@ -58,11 +58,13 @@ struct RequestBehaviorRequest_
 
   RequestBehaviorRequest_()
     : behavior()
-    , params()  {
+    , params()
+    , priority(0)  {
     }
   RequestBehaviorRequest_(const ContainerAllocator& _alloc)
     : behavior(_alloc)
-    , params(_alloc)  {
+    , params(_alloc)
+    , priority(0)  {
     }
 
 
@@ -72,6 +74,9 @@ struct RequestBehaviorRequest_
 
    typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _params_type;
   _params_type params;
+
+   typedef uint8_t _priority_type;
+  _priority_type priority;
 
 
 
@@ -151,12 +156,12 @@ struct MD5Sum< ::Intelligence::RequestBehaviorRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "21aa9db2d3610b5442ceef9214241d8b";
+    return "43f65bb43dfc169eae75c5e9aa168500";
   }
 
   static const char* value(const ::Intelligence::RequestBehaviorRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x21aa9db2d3610b54ULL;
-  static const uint64_t static_value2 = 0x42ceef9214241d8bULL;
+  static const uint64_t static_value1 = 0x43f65bb43dfc169eULL;
+  static const uint64_t static_value2 = 0xae75c5e9aa168500ULL;
 };
 
 template<class ContainerAllocator>
@@ -177,6 +182,7 @@ struct Definition< ::Intelligence::RequestBehaviorRequest_<ContainerAllocator> >
   {
     return "string behavior\n\
 string params\n\
+uint8 priority\n\
 \n\
 ";
   }
@@ -198,6 +204,7 @@ namespace serialization
     {
       stream.next(m.behavior);
       stream.next(m.params);
+      stream.next(m.priority);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -220,6 +227,8 @@ struct Printer< ::Intelligence::RequestBehaviorRequest_<ContainerAllocator> >
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.behavior);
     s << indent << "params: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.params);
+    s << indent << "priority: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.priority);
   }
 };
 
