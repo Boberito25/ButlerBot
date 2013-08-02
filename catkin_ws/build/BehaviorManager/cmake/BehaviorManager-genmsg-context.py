@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg"
-services_str = "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv;/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv"
+messages_str = "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg;/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg;/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg"
+services_str = ""
 pkg_name = "BehaviorManager"
 dependencies_str = "std_msgs"
 langs = "gencpp;genlisp;genpy"

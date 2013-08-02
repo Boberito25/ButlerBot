@@ -6,8 +6,8 @@
 /home/vsunder/ButlerBot/catkin_ws/install/setup.zsh
 /home/vsunder/ButlerBot/catkin_ws/install/.rosinstall
 /home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/msg/Deactivate.msg
-/home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/srv/Activate.srv
-/home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/srv/Startup.srv
+/home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/msg/Activate.msg
+/home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/msg/Startup.msg
 /home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/cmake/BehaviorManager-msg-paths.cmake
 /home/vsunder/ButlerBot/catkin_ws/install/include/BehaviorManager/Startup.h
 /home/vsunder/ButlerBot/catkin_ws/install/include/BehaviorManager/ActivateResponse.h
@@ -23,8 +23,12 @@
 /home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/srv/_package_Activate.lisp
 /home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/srv/_package_Startup.lisp
 /home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/_package.lisp
+/home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/Startup.lisp
+/home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/Activate.lisp
 /home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/Deactivate.lisp
 /home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/BehaviorManager-msg.asd
+/home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/_package_Activate.lisp
+/home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/_package_Startup.lisp
 /home/vsunder/ButlerBot/catkin_ws/install/share/common-lisp/ros/BehaviorManager/msg/_package_Deactivate.lisp
 /home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py
 /home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/srv/_Startup.pyc
@@ -36,7 +40,11 @@
 /home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py
 /home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/_Deactivate.py
 /home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/_Deactivate.pyc
+/home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.pyc
 /home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.pyc
+/home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.pyc
+/home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.py
+/home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.py
 /home/vsunder/ButlerBot/catkin_ws/install/lib/python2.7/dist-packages/BehaviorManager/__init__.pyc
 /home/vsunder/ButlerBot/catkin_ws/install/lib/pkgconfig/BehaviorManager.pc
 /home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/cmake/BehaviorManagerConfig.cmake
@@ -44,7 +52,6 @@
 /home/vsunder/ButlerBot/catkin_ws/install/share/BehaviorManager/package.xml
 /home/vsunder/ButlerBot/catkin_ws/install/share/Behaviors/msg/Recs.msg
 /home/vsunder/ButlerBot/catkin_ws/install/share/Behaviors/msg/Completed.msg
-/home/vsunder/ButlerBot/catkin_ws/install/share/Behaviors/srv/ReserveBehavior.srv
 /home/vsunder/ButlerBot/catkin_ws/install/share/Behaviors/cmake/Behaviors-msg-paths.cmake
 /home/vsunder/ButlerBot/catkin_ws/install/include/Behaviors/ReserveBehaviorResponse.h
 /home/vsunder/ButlerBot/catkin_ws/install/include/Behaviors/ReserveBehaviorRequest.h

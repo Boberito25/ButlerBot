@@ -1,4 +1,6 @@
 (cl:in-package Behaviors-msg)
-(cl:export '(ERROR-VAL
+(cl:export '(BEHAVIOR-VAL
+          BEHAVIOR
+          ERROR-VAL
           ERROR
 ))

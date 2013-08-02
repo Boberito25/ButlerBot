@@ -57,13 +57,18 @@ struct Completed_
   typedef Completed_<ContainerAllocator> Type;
 
   Completed_()
-    : error(0)  {
+    : behavior()
+    , error(0)  {
     }
   Completed_(const ContainerAllocator& _alloc)
-    : error(0)  {
+    : behavior(_alloc)
+    , error(0)  {
     }
 
 
+
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _behavior_type;
+  _behavior_type behavior;
 
    typedef int8_t _error_type;
   _error_type error;
@@ -102,7 +107,7 @@ namespace message_traits
 
 
 
-// BOOLTRAITS {'IsFixedSize': True, 'IsMessage': True, 'HasHeader': False}
+// BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': False}
 // {'Behaviors': ['/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/msg'], 'std_msgs': ['/opt/ros/groovy/share/std_msgs/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
@@ -112,12 +117,12 @@ namespace message_traits
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::Behaviors::Completed_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::Behaviors::Completed_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -146,12 +151,12 @@ struct MD5Sum< ::Behaviors::Completed_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "99e53bce000fb6e8448591149afae401";
+    return "5360d8dc63ebb508e9d3b0ff75130e31";
   }
 
   static const char* value(const ::Behaviors::Completed_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x99e53bce000fb6e8ULL;
-  static const uint64_t static_value2 = 0x448591149afae401ULL;
+  static const uint64_t static_value1 = 0x5360d8dc63ebb508ULL;
+  static const uint64_t static_value2 = 0xe9d3b0ff75130e31ULL;
 };
 
 template<class ContainerAllocator>
@@ -170,7 +175,8 @@ struct Definition< ::Behaviors::Completed_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int8 error\n\
+    return "string behavior\n\
+int8 error\n\
 \n\
 ";
   }
@@ -190,6 +196,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
+      stream.next(m.behavior);
       stream.next(m.error);
     }
 
@@ -209,6 +216,8 @@ struct Printer< ::Behaviors::Completed_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::Behaviors::Completed_<ContainerAllocator>& v)
   {
+    s << indent << "behavior: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.behavior);
     s << indent << "error: ";
     Printer<int8_t>::stream(s, indent + "  ", v.error);
   }

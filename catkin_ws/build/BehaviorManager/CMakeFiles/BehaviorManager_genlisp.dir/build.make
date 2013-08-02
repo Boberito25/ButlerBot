@@ -43,8 +43,8 @@ CMAKE_BINARY_DIR = /home/vsunder/ButlerBot/catkin_ws/build
 include BehaviorManager/CMakeFiles/BehaviorManager_genlisp.dir/progress.make
 
 BehaviorManager/CMakeFiles/BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Deactivate.lisp
-BehaviorManager/CMakeFiles/BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Activate.lisp
-BehaviorManager/CMakeFiles/BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Startup.lisp
+BehaviorManager/CMakeFiles/BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Activate.lisp
+BehaviorManager/CMakeFiles/BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Startup.lisp
 
 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Deactivate.lisp: /opt/ros/groovy/lib/genlisp/gen_lisp.py
 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Deactivate.lisp: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg
@@ -52,22 +52,22 @@ BehaviorManager/CMakeFiles/BehaviorManager_genlisp: /home/vsunder/ButlerBot/catk
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from BehaviorManager/Deactivate.msg"
 	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genlisp/gen_lisp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg
 
-/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Activate.lisp: /opt/ros/groovy/lib/genlisp/gen_lisp.py
-/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Activate.lisp: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv
+/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Activate.lisp: /opt/ros/groovy/lib/genlisp/gen_lisp.py
+/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Activate.lisp: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from BehaviorManager/Activate.srv"
-	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genlisp/gen_lisp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from BehaviorManager/Activate.msg"
+	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genlisp/gen_lisp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg
 
-/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Startup.lisp: /opt/ros/groovy/lib/genlisp/gen_lisp.py
-/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Startup.lisp: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv
+/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Startup.lisp: /opt/ros/groovy/lib/genlisp/gen_lisp.py
+/home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Startup.lisp: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from BehaviorManager/Startup.srv"
-	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genlisp/gen_lisp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Lisp code from BehaviorManager/Startup.msg"
+	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genlisp/gen_lisp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg
 
 BehaviorManager_genlisp: BehaviorManager/CMakeFiles/BehaviorManager_genlisp
 BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Deactivate.lisp
-BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Activate.lisp
-BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/srv/Startup.lisp
+BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Activate.lisp
+BehaviorManager_genlisp: /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/BehaviorManager/msg/Startup.lisp
 BehaviorManager_genlisp: BehaviorManager/CMakeFiles/BehaviorManager_genlisp.dir/build.make
 .PHONY : BehaviorManager_genlisp
 

@@ -4,7 +4,7 @@ project(BehaviorManager)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation Intelligence)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation Intelligence Behaviors)
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS system)
@@ -23,13 +23,13 @@ find_package(Boost REQUIRED COMPONENTS system)
  add_message_files(
    FILES
    Deactivate.msg
+   Activate.msg
+   Startup.msg
  )
 
 ## Generate services in the 'srv' folder
  add_service_files(
    FILES
-   Activate.srv
-   Startup.srv
  )
 
 ## Generate added messages and services with any dependencies listed here
@@ -80,7 +80,7 @@ include_directories(include
 # target_link_libraries(BehaviorManager_node
 #   ${catkin_LIBRARIES}
 # )
-add_executable(behavior_manager src/behavior_manager.cpp src/behavior_queue.cpp)
+add_executable(behavior_manager src/behavior_manager.cpp src/behavior_queue.cpp src/behavior_reserver.cpp)
 target_link_libraries(behavior_manager ${catkin_LIBRARIES})
 add_dependencies(behavior_manager behavior_manager_gencpp)
 

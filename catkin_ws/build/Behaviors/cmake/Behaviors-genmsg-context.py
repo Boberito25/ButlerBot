@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = "/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/msg/Recs.msg;/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/msg/Completed.msg"
-services_str = "/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/srv/ReserveBehavior.srv"
+services_str = ""
 pkg_name = "Behaviors"
 dependencies_str = "std_msgs"
 langs = "gencpp;genlisp;genpy"

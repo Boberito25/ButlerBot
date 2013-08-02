@@ -53,16 +53,16 @@ BehaviorManager/CMakeFiles/BehaviorManager_gencpp: /home/vsunder/ButlerBot/catki
 	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/gencpp/gen_cpp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager -e /opt/ros/groovy/share/gencpp
 
 /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager/Activate.h: /opt/ros/groovy/lib/gencpp/gen_cpp.py
-/home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager/Activate.h: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv
+/home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager/Activate.h: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from BehaviorManager/Activate.srv"
-	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/gencpp/gen_cpp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager -e /opt/ros/groovy/share/gencpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from BehaviorManager/Activate.msg"
+	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/gencpp/gen_cpp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager -e /opt/ros/groovy/share/gencpp
 
 /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager/Startup.h: /opt/ros/groovy/lib/gencpp/gen_cpp.py
-/home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager/Startup.h: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv
+/home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager/Startup.h: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from BehaviorManager/Startup.srv"
-	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/gencpp/gen_cpp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager -e /opt/ros/groovy/share/gencpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating C++ code from BehaviorManager/Startup.msg"
+	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/gencpp/gen_cpp.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager -e /opt/ros/groovy/share/gencpp
 
 BehaviorManager_gencpp: BehaviorManager/CMakeFiles/BehaviorManager_gencpp
 BehaviorManager_gencpp: /home/vsunder/ButlerBot/catkin_ws/devel/include/BehaviorManager/Deactivate.h

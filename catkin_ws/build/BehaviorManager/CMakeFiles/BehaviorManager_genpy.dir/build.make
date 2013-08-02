@@ -43,8 +43,8 @@ CMAKE_BINARY_DIR = /home/vsunder/ButlerBot/catkin_ws/build
 include BehaviorManager/CMakeFiles/BehaviorManager_genpy.dir/progress.make
 
 BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Deactivate.py
-BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Activate.py
-BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Startup.py
+BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.py
+BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.py
 BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py
 BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py
 
@@ -54,38 +54,38 @@ BehaviorManager/CMakeFiles/BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python from MSG BehaviorManager/Deactivate"
 	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /opt/ros/groovy/lib/genpy/genmsg_py.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg
 
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Activate.py: /opt/ros/groovy/lib/genpy/gensrv_py.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Activate.py: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.py: /opt/ros/groovy/lib/genpy/genmsg_py.py
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.py: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python code from SRV BehaviorManager/Activate"
-	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genpy/gensrv_py.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python from MSG BehaviorManager/Activate"
+	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /opt/ros/groovy/lib/genpy/genmsg_py.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg
 
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Startup.py: /opt/ros/groovy/lib/genpy/gensrv_py.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Startup.py: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.py: /opt/ros/groovy/lib/genpy/genmsg_py.py
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.py: /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python code from SRV BehaviorManager/Startup"
-	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genpy/gensrv_py.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python from MSG BehaviorManager/Startup"
+	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /opt/ros/groovy/lib/genpy/genmsg_py.py /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg -IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p BehaviorManager -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg
 
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py: /opt/ros/groovy/lib/genpy/genmsg_py.py
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Deactivate.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Activate.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Startup.py
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.py
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.py
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python msg __init__.py for BehaviorManager"
 	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genpy/genmsg_py.py -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg --initpy
 
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py: /opt/ros/groovy/lib/genpy/genmsg_py.py
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Deactivate.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Activate.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Startup.py
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.py
+/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.py
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python srv __init__.py for BehaviorManager"
 	cd /home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genpy/genmsg_py.py -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv --initpy
 
 BehaviorManager_genpy: BehaviorManager/CMakeFiles/BehaviorManager_genpy
 BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Deactivate.py
-BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Activate.py
-BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/_Startup.py
+BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Activate.py
+BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/_Startup.py
 BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/msg/__init__.py
 BehaviorManager_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/BehaviorManager/srv/__init__.py
 BehaviorManager_genpy: BehaviorManager/CMakeFiles/BehaviorManager_genpy.dir/build.make

@@ -33,13 +33,10 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/BehaviorManager/msg" TYPE FILE FILES "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg")
-ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-
-IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/BehaviorManager/srv" TYPE FILE FILES
-    "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv"
-    "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv"
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/BehaviorManager/msg" TYPE FILE FILES
+    "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Deactivate.msg"
+    "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg"
+    "/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

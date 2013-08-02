@@ -3,5 +3,9 @@
   (:export
    "<DEACTIVATE>"
    "DEACTIVATE"
+   "<STARTUP>"
+   "STARTUP"
+   "<ACTIVATE>"
+   "ACTIVATE"
   ))
 

@@ -6,14 +6,15 @@ import struct
 
 
 class Completed(genpy.Message):
-  _md5sum = "99e53bce000fb6e8448591149afae401"
+  _md5sum = "5360d8dc63ebb508e9d3b0ff75130e31"
   _type = "Behaviors/Completed"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """int8 error
+  _full_text = """string behavior
+int8 error
 
 """
-  __slots__ = ['error']
-  _slot_types = ['int8']
+  __slots__ = ['behavior','error']
+  _slot_types = ['string','int8']
 
   def __init__(self, *args, **kwds):
     """
@@ -23,7 +24,7 @@ class Completed(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       error
+       behavior,error
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -32,9 +33,12 @@ class Completed(genpy.Message):
     if args or kwds:
       super(Completed, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
+      if self.behavior is None:
+        self.behavior = ''
       if self.error is None:
         self.error = 0
     else:
+      self.behavior = ''
       self.error = 0
 
   def _get_types(self):
@@ -49,6 +53,12 @@ class Completed(genpy.Message):
     :param buff: buffer, ``StringIO``
     """
     try:
+      _x = self.behavior
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       buff.write(_struct_b.pack(self.error))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
@@ -60,6 +70,15 @@ class Completed(genpy.Message):
     """
     try:
       end = 0
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.behavior = str[start:end].decode('utf-8')
+      else:
+        self.behavior = str[start:end]
       start = end
       end += 1
       (self.error,) = _struct_b.unpack(str[start:end])
@@ -75,6 +94,12 @@ class Completed(genpy.Message):
     :param numpy: numpy python module
     """
     try:
+      _x = self.behavior
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       buff.write(_struct_b.pack(self.error))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
@@ -87,6 +112,15 @@ class Completed(genpy.Message):
     """
     try:
       end = 0
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.behavior = str[start:end].decode('utf-8')
+      else:
+        self.behavior = str[start:end]
       start = end
       end += 1
       (self.error,) = _struct_b.unpack(str[start:end])

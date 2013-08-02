@@ -29,7 +29,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation
 ## Generate services in the 'srv' folder
  add_service_files(
    FILES
-   ReserveBehavior.srv
+
  )
 
 ## Generate added messages and services with any dependencies listed here

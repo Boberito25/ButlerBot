@@ -44,7 +44,6 @@ include Behaviors/CMakeFiles/Behaviors_genpy.dir/progress.make
 
 Behaviors/CMakeFiles/Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Recs.py
 Behaviors/CMakeFiles/Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Completed.py
-Behaviors/CMakeFiles/Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/_ReserveBehavior.py
 Behaviors/CMakeFiles/Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/__init__.py
 Behaviors/CMakeFiles/Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/__init__.py
 
@@ -60,32 +59,23 @@ Behaviors/CMakeFiles/Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/li
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python from MSG Behaviors/Completed"
 	cd /home/vsunder/ButlerBot/catkin_ws/build/Behaviors && ../catkin_generated/env_cached.sh /opt/ros/groovy/lib/genpy/genmsg_py.py /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/msg/Completed.msg -IBehaviors:/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p Behaviors -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg
 
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/_ReserveBehavior.py: /opt/ros/groovy/lib/genpy/gensrv_py.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/_ReserveBehavior.py: /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/srv/ReserveBehavior.srv
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python code from SRV Behaviors/ReserveBehavior"
-	cd /home/vsunder/ButlerBot/catkin_ws/build/Behaviors && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genpy/gensrv_py.py /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/srv/ReserveBehavior.srv -IBehaviors:/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/msg -p Behaviors -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv
-
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/__init__.py: /opt/ros/groovy/lib/genpy/genmsg_py.py
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Recs.py
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Completed.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/_ReserveBehavior.py
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python msg __init__.py for Behaviors"
 	cd /home/vsunder/ButlerBot/catkin_ws/build/Behaviors && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genpy/genmsg_py.py -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg --initpy
 
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/__init__.py: /opt/ros/groovy/lib/genpy/genmsg_py.py
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Recs.py
 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Completed.py
-/home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/__init__.py: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/_ReserveBehavior.py
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vsunder/ButlerBot/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python srv __init__.py for Behaviors"
 	cd /home/vsunder/ButlerBot/catkin_ws/build/Behaviors && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/lib/genpy/genmsg_py.py -o /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv --initpy
 
 Behaviors_genpy: Behaviors/CMakeFiles/Behaviors_genpy
 Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Recs.py
 Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/_Completed.py
-Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/_ReserveBehavior.py
 Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/__init__.py
 Behaviors_genpy: /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/__init__.py
 Behaviors_genpy: Behaviors/CMakeFiles/Behaviors_genpy.dir/build.make

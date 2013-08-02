@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "BehaviorManager: 1 messages, 2 services")
+message(STATUS "BehaviorManager: 3 messages, 0 services")
 
 set(MSG_I_FLAGS "-IBehaviorManager:/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg;-Istd_msgs:/opt/ros/groovy/share/std_msgs/msg")
 
@@ -24,20 +24,20 @@ _generate_msg_cpp(BehaviorManager
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/BehaviorManager
 )
+_generate_msg_cpp(BehaviorManager
+  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/BehaviorManager
+)
+_generate_msg_cpp(BehaviorManager
+  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/BehaviorManager
+)
 
 ### Generating Services
-_generate_srv_cpp(BehaviorManager
-  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/BehaviorManager
-)
-_generate_srv_cpp(BehaviorManager
-  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/BehaviorManager
-)
 
 ### Generating Module File
 _generate_module_cpp(BehaviorManager
@@ -57,20 +57,20 @@ _generate_msg_lisp(BehaviorManager
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/BehaviorManager
 )
+_generate_msg_lisp(BehaviorManager
+  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/BehaviorManager
+)
+_generate_msg_lisp(BehaviorManager
+  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/BehaviorManager
+)
 
 ### Generating Services
-_generate_srv_lisp(BehaviorManager
-  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/BehaviorManager
-)
-_generate_srv_lisp(BehaviorManager
-  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/BehaviorManager
-)
 
 ### Generating Module File
 _generate_module_lisp(BehaviorManager
@@ -90,20 +90,20 @@ _generate_msg_py(BehaviorManager
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/BehaviorManager
 )
+_generate_msg_py(BehaviorManager
+  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Activate.msg
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/BehaviorManager
+)
+_generate_msg_py(BehaviorManager
+  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/msg/Startup.msg
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/BehaviorManager
+)
 
 ### Generating Services
-_generate_srv_py(BehaviorManager
-  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Activate.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/BehaviorManager
-)
-_generate_srv_py(BehaviorManager
-  /home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager/srv/Startup.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/BehaviorManager
-)
 
 ### Generating Module File
 _generate_module_py(BehaviorManager

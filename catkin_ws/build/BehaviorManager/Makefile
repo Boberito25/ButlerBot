@@ -240,6 +240,30 @@ src/behavior_queue.cpp.s:
 	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_queue.cpp.s
 .PHONY : src/behavior_queue.cpp.s
 
+src/behavior_reserver.o: src/behavior_reserver.cpp.o
+.PHONY : src/behavior_reserver.o
+
+# target to build an object file
+src/behavior_reserver.cpp.o:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_reserver.cpp.o
+.PHONY : src/behavior_reserver.cpp.o
+
+src/behavior_reserver.i: src/behavior_reserver.cpp.i
+.PHONY : src/behavior_reserver.i
+
+# target to preprocess a source file
+src/behavior_reserver.cpp.i:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_reserver.cpp.i
+.PHONY : src/behavior_reserver.cpp.i
+
+src/behavior_reserver.s: src/behavior_reserver.cpp.s
+.PHONY : src/behavior_reserver.s
+
+# target to generate assembly for a file
+src/behavior_reserver.cpp.s:
+	cd /home/vsunder/ButlerBot/catkin_ws/build && $(MAKE) -f BehaviorManager/CMakeFiles/behavior_manager.dir/build.make BehaviorManager/CMakeFiles/behavior_manager.dir/src/behavior_reserver.cpp.s
+.PHONY : src/behavior_reserver.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -262,6 +286,9 @@ help:
 	@echo "... src/behavior_queue.o"
 	@echo "... src/behavior_queue.i"
 	@echo "... src/behavior_queue.s"
+	@echo "... src/behavior_reserver.o"
+	@echo "... src/behavior_reserver.i"
+	@echo "... src/behavior_reserver.s"
 .PHONY : help
 
 

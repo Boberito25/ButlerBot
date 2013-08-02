@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "Behaviors: 2 messages, 1 services")
+message(STATUS "Behaviors: 2 messages, 0 services")
 
 set(MSG_I_FLAGS "-IBehaviors:/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/msg;-Istd_msgs:/opt/ros/groovy/share/std_msgs/msg")
 
@@ -32,12 +32,6 @@ _generate_msg_cpp(Behaviors
 )
 
 ### Generating Services
-_generate_srv_cpp(Behaviors
-  /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/srv/ReserveBehavior.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/Behaviors
-)
 
 ### Generating Module File
 _generate_module_cpp(Behaviors
@@ -65,12 +59,6 @@ _generate_msg_lisp(Behaviors
 )
 
 ### Generating Services
-_generate_srv_lisp(Behaviors
-  /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/srv/ReserveBehavior.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/Behaviors
-)
 
 ### Generating Module File
 _generate_module_lisp(Behaviors
@@ -98,12 +86,6 @@ _generate_msg_py(Behaviors
 )
 
 ### Generating Services
-_generate_srv_py(Behaviors
-  /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/srv/ReserveBehavior.srv
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/Behaviors
-)
 
 ### Generating Module File
 _generate_module_py(Behaviors
