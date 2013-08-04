@@ -1,0 +1,6 @@
+Name: ControllerManager
+Description: Description of ControllerManager
+Version: 0.0.0
+Cflags: -I/home/vsunder/ButlerBot/catkin_ws/install/include
+Libs: -L/home/vsunder/ButlerBot/catkin_ws/install/lib 
+Requires: 

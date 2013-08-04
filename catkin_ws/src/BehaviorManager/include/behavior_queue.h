@@ -3,6 +3,9 @@
 #include <string>
 #include <vector>
 using namespace std;
+class Behavior_Queue
+{
+
 typedef  struct Behavior{
   //Data
   string behavior;
@@ -13,8 +16,7 @@ typedef  struct Behavior{
   //Links
   Behavior *next;
 } Behavior;
-class Behavior_Queue
-{
+
 public:
   Behavior_Queue();
   bool enqueue(string behavior, string params, const std::vector<string>& reserves,

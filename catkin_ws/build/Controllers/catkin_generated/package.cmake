@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "Controllers")
+set(Controllers_MAINTAINER "vsunder <vsunder@todo.todo>")
+set(Controllers_DEPRECATED "")
+set(Controllers_VERSION "0.0.0")
+set(Controllers_BUILD_DEPENDS "std_msgs" "rospy" "roscpp")
+set(Controllers_RUN_DEPENDS "std_msgs" "rospy" "roscpp")
+set(Controllers_BUILDTOOL_DEPENDS "catkin")
