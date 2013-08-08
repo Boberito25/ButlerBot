@@ -92,7 +92,7 @@ if(NOT "/home/vsunder/ButlerBot/catkin_ws/devel/include;/home/vsunder/ButlerBot/
     elseif(IS_DIRECTORY /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/${idir})
       set(include /home/vsunder/ButlerBot/catkin_ws/src/Behaviors/${idir})
     else()
-      message(FATAL_ERROR "Project 'Behaviors' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/${idir}'.  Ask the maintainer 'vsunder <vsunder@todo.todo>' to fix it.")
+      message(FATAL_ERROR "Project 'Behaviors' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/${idir}'.  Ask the maintainer 'vsunder <vsunder@andrew.cmu.edu>' to fix it.")
     endif()
     _list_append_unique(Behaviors_INCLUDE_DIRS ${include})
   endforeach()

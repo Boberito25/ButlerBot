@@ -1,0 +1,18 @@
+<package>
+  <description brief="intelligence">
+
+     intelligence
+
+  </description>
+  <author>vsunder</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/intelligence</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="behavior_manager"/>
+
+</package>
+
+

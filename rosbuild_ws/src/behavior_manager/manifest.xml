@@ -1,0 +1,18 @@
+<package>
+  <description brief="behavior_manager">
+
+     behavior_manager
+
+  </description>
+  <author>vsunder</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/behavior_manager</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="behaviors"/>
+
+</package>
+
+

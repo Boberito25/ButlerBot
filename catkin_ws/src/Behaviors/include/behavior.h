@@ -26,6 +26,6 @@ protected:
   virtual void deactivator_callback(const BehaviorManager::Deactivate& msg);
   virtual void run(); 
 private:
-}
+};
 
 #endif

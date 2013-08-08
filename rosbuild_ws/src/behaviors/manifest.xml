@@ -1,0 +1,17 @@
+<package>
+  <description brief="behaviors">
+
+     behaviors
+
+  </description>
+  <author>vsunder</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/behaviors</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+
+</package>
+
+

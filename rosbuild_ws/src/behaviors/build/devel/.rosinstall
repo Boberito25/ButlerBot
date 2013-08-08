@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/vsunder/ButlerBot/rosbuild_ws/src/behaviors/build/devel/setup.sh

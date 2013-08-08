@@ -5,6 +5,8 @@ da88f097e136f136dc881523fc096ada /home/vsunder/ButlerBot/catkin_ws/devel/include
 f95452c4a573e7f58d8e3155774a0cae /home/vsunder/ButlerBot/catkin_ws/devel/include/Behaviors/Completed.h
 bc62e57d0449118a1c263d8066402008 /home/vsunder/ButlerBot/catkin_ws/devel/include/Behaviors/Recs.h
 a532e97c54980cf55a623bdc0079ede4 /home/vsunder/ButlerBot/catkin_ws/devel/include/Behaviors/ReserveBehavior.h
+b85b5a9a08ad845e32f4a737d5bf31f0 /home/vsunder/ButlerBot/catkin_ws/devel/include/ControllerManager/ReleaseController.h
+a94d8276fe2a5392688efe58aa7c5e17 /home/vsunder/ButlerBot/catkin_ws/devel/include/ControllerManager/RequestController.h
 c0c77487d6091180f20b74dc60dd6fc7 /home/vsunder/ButlerBot/catkin_ws/devel/include/Intelligence/EnableComs.h
 5a030f666af3ec20cf81a82a7f800881 /home/vsunder/ButlerBot/catkin_ws/devel/include/Intelligence/RequestBehavior.h
 7e98f153371f1a6cb07568a88546b5c8 /home/vsunder/ButlerBot/catkin_ws/devel/include/Intelligence/Startup.h
@@ -20,6 +22,10 @@ c46afdf875c282533403eb10fb4c5da6 /home/vsunder/ButlerBot/catkin_ws/devel/lib/pyt
 565514db18d65cc500cd36e4892df3b9 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/msg/__init__.py
 9f3048c601c757e669bb612bf039fa8f /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/_ReserveBehavior.py
 bd3aabd0cbcbbe226e5490f52888071c /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Behaviors/srv/__init__.py
+ece25670cd54c00d90d254135740f63a /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/ControllerManager/msg/_ReleaseController.py
+8bbfea0baf8dafc4c6aebeb0441fde76 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/ControllerManager/msg/__init__.py
+d5dc644c56816ae16749f8780e26a7fb /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/ControllerManager/srv/_RequestController.py
+f48c94c7200c09be99c542a8988be907 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/ControllerManager/srv/__init__.py
 a21991121cadd3c0f7b708ac6d2ee0ea /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Intelligence/srv/_EnableComs.py
 646ad2cfddcf594d4c29ca5fac300d04 /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Intelligence/srv/_RequestBehavior.py
 85fda8ded8de7d0eb4b84ec0916b61ce /home/vsunder/ButlerBot/catkin_ws/devel/lib/python2.7/dist-packages/Intelligence/srv/_Startup.py
@@ -32,6 +38,8 @@ aa0eca495bd4c18aef2d9fc86ed5116f /home/vsunder/ButlerBot/catkin_ws/devel/share/c
 8d360a2dc219068ed483f7ace6bf6045 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/Behaviors/msg/Completed.lisp
 c89eea6b0fc32abf29b89910622ed613 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/Behaviors/msg/Recs.lisp
 5ae16f680ebf3d7cef7eeeeed8143729 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/Behaviors/srv/ReserveBehavior.lisp
+caaab49f5be4a17cae0b7bb90d17308d /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/ControllerManager/msg/ReleaseController.lisp
+869d0ced7f7408a1ee8c4da697d2cb29 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/ControllerManager/srv/RequestController.lisp
 d33894914a5924838c7402a8f740e58a /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/Intelligence/srv/EnableComs.lisp
 1f17d84b7e4ee56595debadf22df0dc3 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/Intelligence/srv/RequestBehavior.lisp
 696980a10ea8a2ec784eb908412e24f8 /home/vsunder/ButlerBot/catkin_ws/devel/share/common-lisp/ros/Intelligence/srv/Startup.lisp
@@ -45,6 +53,9 @@ bfbf1a78bf6e2082c94de1093e628ccc CMakeFiles/clean_test_results
 ba0bbd38a292f8e8486acc8338056c9e CMakeFiles/doxygen
 ba0bbd38a292f8e8486acc8338056c9e CMakeFiles/run_tests
 ba0bbd38a292f8e8486acc8338056c9e CMakeFiles/tests
+bb70055e7efd859601ec5f1088d90857 ControllerManager/CMakeFiles/ControllerManager_gencpp
+bb70055e7efd859601ec5f1088d90857 ControllerManager/CMakeFiles/ControllerManager_genlisp
+bb70055e7efd859601ec5f1088d90857 ControllerManager/CMakeFiles/ControllerManager_genpy
 5f9cb45f4f02053d3dcc7e84559dd651 Intelligence/CMakeFiles/Intelligence_gencpp
 5f9cb45f4f02053d3dcc7e84559dd651 Intelligence/CMakeFiles/Intelligence_genlisp
 5f9cb45f4f02053d3dcc7e84559dd651 Intelligence/CMakeFiles/Intelligence_genpy

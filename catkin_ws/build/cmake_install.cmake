@@ -77,8 +77,8 @@ ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unsp
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   INCLUDE("/home/vsunder/ButlerBot/catkin_ws/build/gtest/cmake_install.cmake")
-  INCLUDE("/home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager/cmake_install.cmake")
   INCLUDE("/home/vsunder/ButlerBot/catkin_ws/build/Behaviors/cmake_install.cmake")
+  INCLUDE("/home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager/cmake_install.cmake")
   INCLUDE("/home/vsunder/ButlerBot/catkin_ws/build/ControllerManager/cmake_install.cmake")
   INCLUDE("/home/vsunder/ButlerBot/catkin_ws/build/Controllers/cmake_install.cmake")
   INCLUDE("/home/vsunder/ButlerBot/catkin_ws/build/Intelligence/cmake_install.cmake")

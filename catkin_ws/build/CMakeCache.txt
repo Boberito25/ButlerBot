@@ -20,8 +20,7 @@ BUILD_SHARED_LIBS:BOOL=ON
 //Value Computed by CMake
 BehaviorManager_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/BehaviorManager
 
-//The directory containing a CMake configuration file for BehaviorManager.
-BehaviorManager_DIR:PATH=/home/vsunder/ButlerBot/catkin_ws/devel/share/BehaviorManager/cmake
+BehaviorManager_DIR:PATH=
 
 //Value Computed by CMake
 BehaviorManager_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/BehaviorManager
@@ -29,7 +28,8 @@ BehaviorManager_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/Behavior
 //Value Computed by CMake
 Behaviors_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/Behaviors
 
-Behaviors_DIR:PATH=
+//The directory containing a CMake configuration file for Behaviors.
+Behaviors_DIR:PATH=/home/vsunder/ButlerBot/catkin_ws/devel/share/Behaviors/cmake
 
 //Value Computed by CMake
 Behaviors_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/Behaviors
@@ -201,11 +201,16 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 //Value Computed by CMake
 ControllerManager_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/ControllerManager
 
+//The directory containing a CMake configuration file for ControllerManager.
+ControllerManager_DIR:PATH=/home/vsunder/ButlerBot/catkin_ws/devel/share/ControllerManager/cmake
+
 //Value Computed by CMake
 ControllerManager_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/ControllerManager
 
 //Value Computed by CMake
 Controllers_BINARY_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/build/Controllers
+
+Controllers_DIR:PATH=
 
 //Value Computed by CMake
 Controllers_SOURCE_DIR:STATIC=/home/vsunder/ButlerBot/catkin_ws/src/Controllers
@@ -332,6 +337,9 @@ message_generation_DIR:PATH=/opt/ros/groovy/share/message_generation/cmake
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/groovy/share/message_runtime/cmake
+
+//The directory containing a CMake configuration file for navigation.
+navigation_DIR:PATH=navigation_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/groovy/share/rosconsole/cmake

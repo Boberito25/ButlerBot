@@ -1,0 +1,2 @@
+set(ControllerManager_MSG_INCLUDE_DIRS /home/vsunder/ButlerBot/catkin_ws/install/share/ControllerManager/msg)
+set(ControllerManager_MSG_DEPENDENCIES std_msgs)

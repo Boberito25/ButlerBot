@@ -1,0 +1,17 @@
+<package>
+  <description brief="controller_manager">
+
+     controller_manager
+
+  </description>
+  <author>vsunder</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/controller_manager</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+
+</package>
+
+

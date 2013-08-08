@@ -10,7 +10,9 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 
 # The C and CXX include file search paths:
 SET(CMAKE_C_INCLUDE_PATH
+  "/home/vsunder/ButlerBot/catkin_ws/devel/include"
   "/home/vsunder/ButlerBot/catkin_ws/src/ControllerManager/include"
+  "/home/vsunder/ButlerBot/catkin_ws/src/Behaviors/include"
   "/opt/ros/groovy/include"
   )
 SET(CMAKE_CXX_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})
