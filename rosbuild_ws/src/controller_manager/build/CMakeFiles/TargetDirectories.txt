@@ -3,6 +3,7 @@
 /home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
 /home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/build/CMakeFiles/ROSBUILD_gensrv_py.dir
 /home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/build/CMakeFiles/clean_test_results.dir
+/home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/build/CMakeFiles/controller_manager.dir
 /home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/build/CMakeFiles/doxygen.dir
 /home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/build/gtest/CMakeFiles/gtest.dir
 /home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/build/gtest/CMakeFiles/gtest_main.dir

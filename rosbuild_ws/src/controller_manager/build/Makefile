@@ -202,6 +202,19 @@ clean_test_results/fast:
 .PHONY : clean_test_results/fast
 
 #=============================================================================
+# Target rules for targets named controller_manager
+
+# Build rule for target.
+controller_manager: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 controller_manager
+.PHONY : controller_manager
+
+# fast build rule for target.
+controller_manager/fast:
+	$(MAKE) -f CMakeFiles/controller_manager.dir/build.make CMakeFiles/controller_manager.dir/build
+.PHONY : controller_manager/fast
+
+#=============================================================================
 # Target rules for targets named doxygen
 
 # Build rule for target.
@@ -422,6 +435,30 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/controller_manager.o: src/controller_manager.cpp.o
+.PHONY : src/controller_manager.o
+
+# target to build an object file
+src/controller_manager.cpp.o:
+	$(MAKE) -f CMakeFiles/controller_manager.dir/build.make CMakeFiles/controller_manager.dir/src/controller_manager.cpp.o
+.PHONY : src/controller_manager.cpp.o
+
+src/controller_manager.i: src/controller_manager.cpp.i
+.PHONY : src/controller_manager.i
+
+# target to preprocess a source file
+src/controller_manager.cpp.i:
+	$(MAKE) -f CMakeFiles/controller_manager.dir/build.make CMakeFiles/controller_manager.dir/src/controller_manager.cpp.i
+.PHONY : src/controller_manager.cpp.i
+
+src/controller_manager.s: src/controller_manager.cpp.s
+.PHONY : src/controller_manager.s
+
+# target to generate assembly for a file
+src/controller_manager.cpp.s:
+	$(MAKE) -f CMakeFiles/controller_manager.dir/build.make CMakeFiles/controller_manager.dir/src/controller_manager.cpp.s
+.PHONY : src/controller_manager.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -433,6 +470,7 @@ help:
 	@echo "... ROSBUILD_gensrv_cpp"
 	@echo "... ROSBUILD_gensrv_py"
 	@echo "... clean_test_results"
+	@echo "... controller_manager"
 	@echo "... doxygen"
 	@echo "... edit_cache"
 	@echo "... install"
@@ -456,6 +494,9 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/controller_manager.o"
+	@echo "... src/controller_manager.i"
+	@echo "... src/controller_manager.s"
 .PHONY : help
 
 

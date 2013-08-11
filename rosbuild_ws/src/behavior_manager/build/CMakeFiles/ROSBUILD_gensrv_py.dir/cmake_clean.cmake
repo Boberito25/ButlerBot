@@ -3,6 +3,7 @@ FILE(REMOVE_RECURSE
   "../src/behavior_manager/srv"
   "CMakeFiles/ROSBUILD_gensrv_py"
   "../src/behavior_manager/srv/__init__.py"
+  "../src/behavior_manager/srv/_DeactivateBehavior.py"
   "../src/behavior_manager/srv/_RequestBehavior.py"
   "../src/behavior_manager/srv/_Initialize.py"
 )

@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "behavior_manager/Initialize.h"
 #include "behavior_manager/RequestBehavior.h"
+#include "behavior_manager/DeactivateBehavior.h"
 #include "behaviors/Startup.h"
 #include "behaviors/Activate.h"
 #include "behaviors/Deactivate.h"
@@ -31,7 +32,15 @@ Behavior_Reserver reserver;
 boost::mutex m;
 ros::Rate loop_rate(10);
 
-
+bool deactivate_behavior(behavior_manager::DeactivateBehavior::Request &req,
+                                  behavior_manager::DeactivateBehavior::Response &res)
+{
+   behaviors::Deactivate msg;
+   msg.behavior = req.behavior;
+   deactivator.publish(msg);
+   res.error = 0;
+   return true;
+}
 //Behavior runner thing of science
 void run_behavior_queue(){
   while(!ready){}

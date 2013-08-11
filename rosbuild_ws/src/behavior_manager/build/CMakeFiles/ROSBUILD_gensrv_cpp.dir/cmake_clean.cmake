@@ -2,6 +2,7 @@ FILE(REMOVE_RECURSE
   "../srv_gen"
   "../src/behavior_manager/srv"
   "CMakeFiles/ROSBUILD_gensrv_cpp"
+  "../srv_gen/cpp/include/behavior_manager/DeactivateBehavior.h"
   "../srv_gen/cpp/include/behavior_manager/RequestBehavior.h"
   "../srv_gen/cpp/include/behavior_manager/Initialize.h"
 )
