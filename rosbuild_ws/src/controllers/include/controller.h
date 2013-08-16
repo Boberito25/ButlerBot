@@ -6,10 +6,12 @@ using namespace std;
 class Controller
 {
 public:
+  virtual const char *name() const = 0;
+  ros::NodeHandle n; 
   Controller();
+  virtual void init();
   virtual void run();
-  virtual const char *name() const=0;
-protected:
+  protected:
   bool is_activated;
 };
  

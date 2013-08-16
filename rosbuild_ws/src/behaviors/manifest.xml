@@ -11,6 +11,8 @@
   <depend package="std_msgs"/>
   <depend package="rospy"/>
   <depend package="roscpp"/>
+  <depend package="controller_manager"/>
+  <depend package="controllers"/>
 
 </package>
 

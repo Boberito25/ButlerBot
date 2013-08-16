@@ -4,6 +4,7 @@
 CMakeFiles/behavior_manager.dir/src/behavior_manager.cpp.o
  ../include/behavior_queue.h
  ../include/behavior_reserver.h
+ ../srv_gen/cpp/include/behavior_manager/DeactivateBehavior.h
  ../srv_gen/cpp/include/behavior_manager/Initialize.h
  ../srv_gen/cpp/include/behavior_manager/RequestBehavior.h
  /home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/src/behavior_manager.cpp

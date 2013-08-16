@@ -11,6 +11,9 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 # The C and CXX include file search paths:
 SET(CMAKE_C_INCLUDE_PATH
   "../include"
+  "/home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/msg_gen/cpp/include"
+  "/home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/srv_gen/cpp/include"
+  "/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/srv_gen/cpp/include"
   "/opt/ros/groovy/include"
   "../msg_gen/cpp/include"
   )

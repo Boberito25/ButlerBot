@@ -7,6 +7,7 @@ FILE(REMOVE_RECURSE
   "../src/behaviors/msg/_Completed.py"
   "../src/behaviors/msg/_Startup.py"
   "../src/behaviors/msg/_Activate.py"
+  "../src/behaviors/msg/_Shutdown.py"
   "../src/behaviors/msg/_Recs.py"
 )
 

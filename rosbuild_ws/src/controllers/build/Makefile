@@ -163,6 +163,19 @@ ROSBUILD_gensrv_cpp/fast:
 .PHONY : ROSBUILD_gensrv_cpp/fast
 
 #=============================================================================
+# Target rules for targets named ROSBUILD_gensrv_py
+
+# Build rule for target.
+ROSBUILD_gensrv_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ROSBUILD_gensrv_py
+.PHONY : ROSBUILD_gensrv_py
+
+# fast build rule for target.
+ROSBUILD_gensrv_py/fast:
+	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_py.dir/build.make CMakeFiles/ROSBUILD_gensrv_py.dir/build
+.PHONY : ROSBUILD_gensrv_py/fast
+
+#=============================================================================
 # Target rules for targets named clean_test_results
 
 # Build rule for target.
@@ -267,6 +280,19 @@ rospack_gensrv/fast:
 .PHONY : rospack_gensrv/fast
 
 #=============================================================================
+# Target rules for targets named rospack_gensrv_all
+
+# Build rule for target.
+rospack_gensrv_all: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rospack_gensrv_all
+.PHONY : rospack_gensrv_all
+
+# fast build rule for target.
+rospack_gensrv_all/fast:
+	$(MAKE) -f CMakeFiles/rospack_gensrv_all.dir/build.make CMakeFiles/rospack_gensrv_all.dir/build
+.PHONY : rospack_gensrv_all/fast
+
+#=============================================================================
 # Target rules for targets named run_tests
 
 # Build rule for target.
@@ -332,6 +358,19 @@ test-results-run/fast:
 .PHONY : test-results-run/fast
 
 #=============================================================================
+# Target rules for targets named test_controller
+
+# Build rule for target.
+test_controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_controller
+.PHONY : test_controller
+
+# fast build rule for target.
+test_controller/fast:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/build
+.PHONY : test_controller/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -370,6 +409,54 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/controller.o: src/controller.cpp.o
+.PHONY : src/controller.o
+
+# target to build an object file
+src/controller.cpp.o:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.o
+.PHONY : src/controller.cpp.o
+
+src/controller.i: src/controller.cpp.i
+.PHONY : src/controller.i
+
+# target to preprocess a source file
+src/controller.cpp.i:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.i
+.PHONY : src/controller.cpp.i
+
+src/controller.s: src/controller.cpp.s
+.PHONY : src/controller.s
+
+# target to generate assembly for a file
+src/controller.cpp.s:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.s
+.PHONY : src/controller.cpp.s
+
+src/test_controller/test_controller.o: src/test_controller/test_controller.cpp.o
+.PHONY : src/test_controller/test_controller.o
+
+# target to build an object file
+src/test_controller/test_controller.cpp.o:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.o
+.PHONY : src/test_controller/test_controller.cpp.o
+
+src/test_controller/test_controller.i: src/test_controller/test_controller.cpp.i
+.PHONY : src/test_controller/test_controller.i
+
+# target to preprocess a source file
+src/test_controller/test_controller.cpp.i:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.i
+.PHONY : src/test_controller/test_controller.cpp.i
+
+src/test_controller/test_controller.s: src/test_controller/test_controller.cpp.s
+.PHONY : src/test_controller/test_controller.s
+
+# target to generate assembly for a file
+src/test_controller/test_controller.cpp.s:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.s
+.PHONY : src/test_controller/test_controller.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -378,6 +465,7 @@ help:
 	@echo "... depend"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_gensrv_cpp"
+	@echo "... ROSBUILD_gensrv_py"
 	@echo "... clean_test_results"
 	@echo "... doxygen"
 	@echo "... edit_cache"
@@ -392,14 +480,22 @@ help:
 	@echo "... rospack_genmsg"
 	@echo "... rospack_genmsg_libexe"
 	@echo "... rospack_gensrv"
+	@echo "... rospack_gensrv_all"
 	@echo "... run_tests"
 	@echo "... test"
 	@echo "... test-future"
 	@echo "... test-results"
 	@echo "... test-results-run"
+	@echo "... test_controller"
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/controller.o"
+	@echo "... src/controller.i"
+	@echo "... src/controller.s"
+	@echo "... src/test_controller/test_controller.o"
+	@echo "... src/test_controller/test_controller.i"
+	@echo "... src/test_controller/test_controller.s"
 .PHONY : help
 
 

@@ -6,6 +6,7 @@ FILE(REMOVE_RECURSE
   "../msg_gen/cpp/include/behaviors/Completed.h"
   "../msg_gen/cpp/include/behaviors/Startup.h"
   "../msg_gen/cpp/include/behaviors/Activate.h"
+  "../msg_gen/cpp/include/behaviors/Shutdown.h"
   "../msg_gen/cpp/include/behaviors/Recs.h"
 )
 

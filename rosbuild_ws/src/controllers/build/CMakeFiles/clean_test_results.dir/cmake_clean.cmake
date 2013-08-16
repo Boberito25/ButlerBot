@@ -1,4 +1,6 @@
 FILE(REMOVE_RECURSE
+  "../srv_gen"
+  "../src/controllers/srv"
   "CMakeFiles/clean_test_results"
 )
 

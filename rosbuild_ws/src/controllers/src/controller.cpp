@@ -1,7 +1,9 @@
 #include "controller.h"
 #include "ros/ros.h"
-#include <boost/thread.hpp>
-Controller(){
+Controller::Controller(){
   is_activated = false;
-  boost::thread runner(run); 
+}
+void Controller::init(){
+}
+void Controller::run(){
 }
