@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/srv_gen/cpp/include/behavior_manager/RequestBehavior.h
+/home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/srv_gen/cpp/include/behavior_manager/Initialize.h
 string
 -
 vector
@@ -30,7 +30,7 @@ ros/assert.h
 ros/service_traits.h
 /home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/srv_gen/cpp/include/behavior_manager/ros/service_traits.h
 
-/home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/srv_gen/cpp/include/behavior_manager/Startup.h
+/home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/srv_gen/cpp/include/behavior_manager/RequestBehavior.h
 string
 -
 vector
@@ -59,8 +59,12 @@ ros/ros.h
 /home/vsunder/ButlerBot/rosbuild_ws/src/intelligence/src/Barebones/ros/ros.h
 cstdlib
 -
-behavior_manager/Startup.h
-/home/vsunder/ButlerBot/rosbuild_ws/src/intelligence/src/Barebones/behavior_manager/Startup.h
+string
+-
+vector
+-
+behavior_manager/Initialize.h
+/home/vsunder/ButlerBot/rosbuild_ws/src/intelligence/src/Barebones/behavior_manager/Initialize.h
 behavior_manager/RequestBehavior.h
 /home/vsunder/ButlerBot/rosbuild_ws/src/intelligence/src/Barebones/behavior_manager/RequestBehavior.h
 

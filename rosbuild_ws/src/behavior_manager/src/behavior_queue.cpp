@@ -13,7 +13,7 @@ bool Behavior_Queue::enqueue(string behavior, string params,
                         unsigned int priority)
 {
   /* Construct Behavior */
-  Behavior* b = (Behavior*)malloc(sizeof(struct Behavior));
+  Behavior_N* b = (Behavior_N*)malloc(sizeof(struct Behavior_N));
   b->behavior = behavior;
   b->params = params;
   b->priority = priority;
@@ -26,7 +26,7 @@ bool Behavior_Queue::enqueue(string behavior, string params,
   if(queue == 0){
     queue = b;
   }  else {
-    Behavior* temp = queue;
+    Behavior_N* temp = queue;
     while(queue->next != 0){
       temp = temp->next;
     }
@@ -41,7 +41,7 @@ bool Behavior_Queue::next_behavior(string *behavior, string *params){
   *behavior = queue -> behavior;
   *params = queue -> params;
   active.push_back(queue->behavior);
-  Behavior *tmp = queue;
+  Behavior_N *tmp = queue;
   queue = queue -> next;
   free(tmp);
   return true;

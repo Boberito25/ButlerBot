@@ -13,6 +13,9 @@ SET(CMAKE_C_INCLUDE_PATH
   "../include"
   "/home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/srv_gen/cpp/include"
   "/home/vsunder/ButlerBot/rosbuild_ws/src/behaviors/msg_gen/cpp/include"
+  "/home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/msg_gen/cpp/include"
+  "/home/vsunder/ButlerBot/rosbuild_ws/src/controller_manager/srv_gen/cpp/include"
+  "/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/srv_gen/cpp/include"
   "/opt/ros/groovy/include"
   )
 SET(CMAKE_CXX_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})

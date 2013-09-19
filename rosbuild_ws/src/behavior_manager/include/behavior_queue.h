@@ -6,7 +6,7 @@ using namespace std;
 class Behavior_Queue
 {
 
-typedef  struct Behavior{
+typedef  struct Behavior_N{
   //Data
   string behavior;
   string params;
@@ -14,8 +14,8 @@ typedef  struct Behavior{
   vector<string> reserves;
 
   //Links
-  Behavior *next;
-} Behavior;
+  Behavior_N *next;
+} Behavior_N;
 
 public:
   Behavior_Queue();
@@ -26,7 +26,7 @@ public:
 private:
   bool reserves_in_use(const vector<string>& reserves);
 
-  Behavior* queue;
+  Behavior_N* queue;
   vector<string> active; 
  
 };

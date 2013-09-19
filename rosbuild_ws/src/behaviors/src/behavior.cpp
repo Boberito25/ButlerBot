@@ -1,5 +1,6 @@
 #include "behavior.h"
 #include "ros/ros.h"
+#include "behavior.h"
 #include "behaviors/Activate.h"
 #include "behaviors/Deactivate.h"
 #include "behaviors/Shutdown.h"
@@ -7,34 +8,28 @@
 #include "controller_manager/ReleaseController.h"
 #include "controller_manager/RequestController.h"
 #include <boost/thread.hpp>
-
+#include <string>
 Behavior::Behavior(){
-  ignition =
-     n.subscribe("behavior starter, 100", startup_callback);
-  activator = 
-     n.subscribe("behavior activator", 100, activator_callback);
-  deactivator = 
-     n.subscribe("behavior deactivator", 100, deactivator_callback);
-  shutdown_seq =
-  	 n.subscribe("behavior shutdown", 100, terminator_callback);
-  notify_completion = 
-     n.advertise<behaviors::Completed>("behavior_completecd",100);
-  creq = 
-     n.serviceClient<controller_manager::RequestController>("request controller");
-  crel = 
-     n.advertise<controller_manager::ReleaseController>("controller release",100);
 
   shutdown = true;
   is_active = false;
 
 }
 
+void Behavior::run(){}
+void Behavior::init(){}
+
 void Behavior::startup_callback(const behaviors::Startup& msg)
 {
   if(!shutdown)
     return;
+  if(!(msg.behavior.compare(name)))
+    return;
+
   shutdown = false;
-  boost::thread runner(run); 
+  runner = new boost::thread(boost::bind(&Behavior::run, this));
+
+
 }
 void Behavior::activator_callback(const behaviors::Activate& msg)
 {
@@ -78,3 +73,4 @@ void Behavior::release_controller(string controller)
   msg.controller = name;
   crel.publish(msg);
 }
+  

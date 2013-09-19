@@ -3,7 +3,6 @@
 #include <vector>
 #include "controller_manager/RequestController.h"
 #include "controller_manager/ReleaseController.h"
-ros::NodeHandle n;
 std::vector<std::string> active_list;
 bool request_controller(controller_manager::RequestController::Request &req,
                         controller_manager::RequestController::Response &res)
@@ -40,11 +39,11 @@ void controller_release_callback(const controller_manager::ReleaseController& ms
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "controller_manager");
-
-  ros::Subscriber completed  = n.subscribe("controller release", 100, 
+  ros::NodeHandle n;
+  ros::Subscriber completed  = n.subscribe("controller_release", 100, 
                                           controller_release_callback);
   ros::ServiceServer requested = 
-          n.advertiseService("request controller", request_controller);
+          n.advertiseService("request_controller", request_controller);
                                 
 
   ROS_INFO("Controller will be managed hopefully");

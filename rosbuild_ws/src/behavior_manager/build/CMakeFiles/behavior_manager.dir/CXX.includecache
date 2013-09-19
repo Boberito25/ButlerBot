@@ -124,14 +124,6 @@ vector
 cstdlib
 -
 
-/home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/src/behavior_reserver.cpp
-behavior_reserver.h
-/home/vsunder/ButlerBot/rosbuild_ws/src/behavior_manager/src/behavior_reserver.h
-string
--
-vector
--
-
 /home/vsunder/ButlerBot/rosbuild_ws/src/behaviors/msg_gen/cpp/include/behaviors/Activate.h
 string
 -

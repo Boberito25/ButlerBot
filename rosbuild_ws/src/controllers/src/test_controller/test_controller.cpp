@@ -5,11 +5,9 @@ Test_Controller::Test_Controller()
 {}
 void Test_Controller::run()
 {
-  ros::spin();
 }
 void Test_Controller::init()
 {
-   ros::ServiceServer tester = n.advertiseService("test", &Test_Controller::test, this); 
 
 }
 
@@ -24,9 +22,10 @@ bool Test_Controller::test(controllers::TestService::Request &req,
 int main(int argc, char **argv)
 {
  ros::init(argc, argv, "test_controller");
+ Test_Controller c;
+ ros::ServiceServer tester 
+ = c.n.advertiseService("test", &Test_Controller::test, &c); 
+ ros::spin();
 
-  Test_Controller c;
-  c.init();
-  c.run();
   return 0;
 }

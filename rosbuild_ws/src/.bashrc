@@ -1,0 +1,1 @@
+export ROS_HOSTNAME=192.168.36.24

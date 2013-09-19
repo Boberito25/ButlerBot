@@ -3,20 +3,19 @@
 
 #include "ros/ros.h"
 #include "behavior.h"
-#include "controllers/test_controller/TestService.h"
+#include "controllers/TestService.h"
 
-class Test_Behavior:public Behavior
+class Test_Behavior : public Behavior
 {
 public:
-	const char *name() const {return "test_behavior";};
 
   Test_Behavior();
-  void init();
+  inline void init();
   void run();
-private:
+private: 	
   int counter;
   ros::ServiceClient tester;
-	ros::Rate loop_rate(10);
 
   
 };
+#endif

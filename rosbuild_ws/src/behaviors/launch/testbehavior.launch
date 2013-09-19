@@ -1,0 +1,5 @@
+<launch>
+	<group ns="test_behavior">
+		<node pkg="behaviors" name="test_behavior" type="test_behavior"/>
+	</group>
+</launch>

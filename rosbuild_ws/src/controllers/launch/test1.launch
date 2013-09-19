@@ -1,0 +1,5 @@
+<launch>
+	<group ns="test_controller">
+		<node pkg="controllers" name="test" type="test_controller"/>
+	</group>
+</launch>

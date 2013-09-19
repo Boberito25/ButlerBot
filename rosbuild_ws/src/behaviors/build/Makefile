@@ -358,6 +358,19 @@ test-results-run/fast:
 .PHONY : test-results-run/fast
 
 #=============================================================================
+# Target rules for targets named test_behavior
+
+# Build rule for target.
+test_behavior: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_behavior
+.PHONY : test_behavior
+
+# fast build rule for target.
+test_behavior/fast:
+	$(MAKE) -f CMakeFiles/test_behavior.dir/build.make CMakeFiles/test_behavior.dir/build
+.PHONY : test_behavior/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -396,6 +409,54 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/behavior.o: src/behavior.cpp.o
+.PHONY : src/behavior.o
+
+# target to build an object file
+src/behavior.cpp.o:
+	$(MAKE) -f CMakeFiles/test_behavior.dir/build.make CMakeFiles/test_behavior.dir/src/behavior.cpp.o
+.PHONY : src/behavior.cpp.o
+
+src/behavior.i: src/behavior.cpp.i
+.PHONY : src/behavior.i
+
+# target to preprocess a source file
+src/behavior.cpp.i:
+	$(MAKE) -f CMakeFiles/test_behavior.dir/build.make CMakeFiles/test_behavior.dir/src/behavior.cpp.i
+.PHONY : src/behavior.cpp.i
+
+src/behavior.s: src/behavior.cpp.s
+.PHONY : src/behavior.s
+
+# target to generate assembly for a file
+src/behavior.cpp.s:
+	$(MAKE) -f CMakeFiles/test_behavior.dir/build.make CMakeFiles/test_behavior.dir/src/behavior.cpp.s
+.PHONY : src/behavior.cpp.s
+
+src/test_behavior/test_behavior.o: src/test_behavior/test_behavior.cpp.o
+.PHONY : src/test_behavior/test_behavior.o
+
+# target to build an object file
+src/test_behavior/test_behavior.cpp.o:
+	$(MAKE) -f CMakeFiles/test_behavior.dir/build.make CMakeFiles/test_behavior.dir/src/test_behavior/test_behavior.cpp.o
+.PHONY : src/test_behavior/test_behavior.cpp.o
+
+src/test_behavior/test_behavior.i: src/test_behavior/test_behavior.cpp.i
+.PHONY : src/test_behavior/test_behavior.i
+
+# target to preprocess a source file
+src/test_behavior/test_behavior.cpp.i:
+	$(MAKE) -f CMakeFiles/test_behavior.dir/build.make CMakeFiles/test_behavior.dir/src/test_behavior/test_behavior.cpp.i
+.PHONY : src/test_behavior/test_behavior.cpp.i
+
+src/test_behavior/test_behavior.s: src/test_behavior/test_behavior.cpp.s
+.PHONY : src/test_behavior/test_behavior.s
+
+# target to generate assembly for a file
+src/test_behavior/test_behavior.cpp.s:
+	$(MAKE) -f CMakeFiles/test_behavior.dir/build.make CMakeFiles/test_behavior.dir/src/test_behavior/test_behavior.cpp.s
+.PHONY : src/test_behavior/test_behavior.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -425,9 +486,16 @@ help:
 	@echo "... test-future"
 	@echo "... test-results"
 	@echo "... test-results-run"
+	@echo "... test_behavior"
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/behavior.o"
+	@echo "... src/behavior.i"
+	@echo "... src/behavior.s"
+	@echo "... src/test_behavior/test_behavior.o"
+	@echo "... src/test_behavior/test_behavior.i"
+	@echo "... src/test_behavior/test_behavior.s"
 .PHONY : help
 
 

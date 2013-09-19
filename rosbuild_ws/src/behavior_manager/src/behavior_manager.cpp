@@ -13,8 +13,7 @@
 bool ready;
 bool terminated;
 
-//Node handle
-ros::NodeHandle n;
+
 
 
 //Publishers
@@ -118,16 +117,20 @@ int main(int argc, char **argv)
   ready = false;
   ros::init(argc, argv, "behavior_manager");
   
+  //Node handle
+  ros::NodeHandle n;
+
   /* Activate Publishers */
-  deactivator = n.advertise<behaviors::Deactivate>("behavior deactivator", 100);
-  activator = n.advertise<behaviors::Activate>("behavior activator", 100);
-  starter = n.advertise<behaviors::Startup>("behavior starter", 100);
+  deactivator = n.advertise<behaviors::Deactivate>("behavior_deactivator", 100);
+  activator = n.advertise<behaviors::Activate>("behavior_activator", 100);
+  starter = n.advertise<behaviors::Startup>("behavior_starter", 100);
   
   /* Setup Service Handlers */
-  //ros::ServiceServer startup_handler = n.advertiseService("startup behavior manager", intel_startup);
+  ros::ServiceServer startup_handler = n.advertiseService("startup_behavior manager", intel_startup);
+  ros::ServiceServer request_handler = n.advertiseService("request_behavior", behavior_request);
 
   /* Setup Subscribers */
-  ros::Subscriber completed = n.subscribe("behavior deactivated", 100, completed_callback); 
+  ros::Subscriber completed = n.subscribe("behavior_completed", 100, completed_callback); 
   /* Start the queue */ 
   boost::thread queuer(run_behavior_queue);
 
