@@ -5,6 +5,9 @@
 using namespace std;
 class Navigation_Controller : public Controller
 {
-	
+  const char *name() const {return "navigation_controller";};
+
+  void run();
+  void init();
 }
 #endif

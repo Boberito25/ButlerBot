@@ -5,6 +5,9 @@
 using namespace std;
 class Arm_Controller : public Controller
 {
+  const char *name() const {return "arm_controller";};
 
+  void run();
+  void init();
 }
 #endif
