@@ -5,7 +5,17 @@
 Behavior_Reserver::Behavior_Reserver()
    : list(0)
 {
-  /* Add to the list here */  
+  /* Allocate Behavior_Res blocks */
+
+  //test behavior
+  Behavior_Res test;
+  test.behavior = "test_behavior"
+  vector<string> test_reserves;
+  test.reserves = test_reserves;
+  
+  /* Add to the list here */ 
+  list.push_back(test);
+   
 }
 
 vector<string> Behavior_Reserver::get(string behavior)
