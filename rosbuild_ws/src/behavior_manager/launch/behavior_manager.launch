@@ -1,0 +1,5 @@
+<launch>
+	<group ns="behavior_manage">
+		<node pkg="behavior_manager" name="behavior_manager" type="behavior_manager"/>
+	</group>
+</launch>
