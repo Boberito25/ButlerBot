@@ -2,6 +2,24 @@
 #include <BioloidController.h>
 #include "poses.h"
 
+#define BASE_MIN    0
+#define BASE_MAX    1023
+
+#define SHOULDER_MIN  205 
+#define SHOULDER_MAX  810
+
+#define ELBOW_MIN    210
+#define ELBOW_MAX    900
+
+#define WRIST_MIN    200
+#define WRIST_MAX    830
+
+#define WROT_MIN     0
+#define WROT_MAX     1023
+
+#define GRIP_MIN     0
+#define GRIP_MAX     512
+
 BioloidController bioloid = BioloidController(1000000);
 
 const int SERVOCOUNT = 8;
@@ -63,15 +81,17 @@ void loop(){
         break;
       }
       GetAngle(no);
-      MoveCenter();
+      Move();
       break;
-      
-     case '4':    
+    case '3':
+      doPose(512, 512, 512, 512, 512, 512);
+      break;
+    case '4':    
       RelaxServos();
       break;     
 
     case '5':
-      MoveCenter();
+      Move();
       MoveTest();
       break;
     } 
@@ -101,9 +121,65 @@ int GetAngle(int no) {
 
       Serial.println(bioloid.getId(i));
   }
-  bioloid.setNextPose(no, 300);
+  setNextPose(no, 300);
 }
 
+void doPose(int Base, int Shoulder, int Elbow, int Wrist, int Wrot, int grip) {
+  setNextPose(1, Base);
+  setNextPose(2, Shoulder);
+  setNextPose(4, Elbow);
+  setNextPose(6, Wrist);
+  setNextPose(7, Wrot);
+  setNextPose(8, grip);
+  Move();
+}
+
+int SetAngle(int no, int angle) {
+  for (int i = 1; i <= SERVOCOUNT; i++) {
+      currPose[i] = ax12GetRegister(i, 36, 2);
+      bioloid.setNextPose(i, currPose[i]);
+
+      Serial.println(bioloid.getId(i));
+  }
+  setNextPose(no, angle);
+}
+
+void setNextPose(int no, int angle) {
+  int thatsTheRightNumber = 300;
+  switch (no) {
+    case 1:
+      thatsTheRightNumber = max(min(angle, BASE_MAX), BASE_MIN);
+      bioloid.setNextPose(1, thatsTheRightNumber);
+      break;
+    case 2:
+    case 3:
+      thatsTheRightNumber = max(min(angle, SHOULDER_MAX), SHOULDER_MIN);
+      bioloid.setNextPose(2, thatsTheRightNumber);
+      bioloid.setNextPose(3, 1024-thatsTheRightNumber);
+      break;
+    case 4:
+    case 5:
+      thatsTheRightNumber = max(min(angle, ELBOW_MAX), ELBOW_MIN);
+      bioloid.setNextPose(4, thatsTheRightNumber);
+      bioloid.setNextPose(5, 1024-thatsTheRightNumber);
+      break;
+    case 6:
+      thatsTheRightNumber = max(min(angle, WRIST_MAX), WRIST_MIN);
+      bioloid.setNextPose(6, thatsTheRightNumber);
+      break;
+    case 7:
+      thatsTheRightNumber = max(min(angle, WROT_MAX), WROT_MIN);
+      bioloid.setNextPose(7, thatsTheRightNumber);
+      break;
+    case 8:
+      thatsTheRightNumber = max(min(angle, GRIP_MAX), GRIP_MIN);
+      bioloid.setNextPose(8, thatsTheRightNumber);
+      break;
+    default:
+      break;
+  }
+}
+      
 void ScanServo(){
   id = 1;  
   Serial.println("###########################");
@@ -139,7 +215,7 @@ void ScanServo(){
   }
 }
 
-void MoveCenter(){
+void Move(){
     delay(100);                    // recommended pause
 
     //bioloid.loadPose(Center);   // load the pose from FLASH, into the nextPose buffer
