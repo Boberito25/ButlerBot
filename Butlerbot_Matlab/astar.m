@@ -26,7 +26,7 @@ function [WS, path] = astar(start, startconfig, target,costf, heuristic, jacobia
 	currentstate = priority(Frontier, cost, heuristic, WS)
 	% loop %
 	while(~targetreached(currentstate,It))
-		Idxs = expandfrontier(Frontier,WS, currentstate);
+		Idxs = expandfrontier(Frontier,WS, currentstate,constraints);
 		Frontier = [Frontier, Idxs];
 		% Expand frontier around prioritys
 		[~,n] = size(idxs);
@@ -57,33 +57,47 @@ function [WS, path] = astar(start, startconfig, target,costf, heuristic, jacobia
 		%Update priority
 		currentstate = priority()
 	end
-
+b
 	%back trace path
 	path = tracePath(WS, It);
 end
 
 function [newconfig] = NewConfig(curremt, next, Jacobian, timestep)
+	v = (next-current)/timestep;
+	av = Jacobian(v);
+	%RK4 ????
+	newconfig = av*timestep;
 end
 
 function [path] = tracepath(WS, It)
+	%TODO
 end
 
 function [hasreached] = targetreached(state, Its)
+	[~,n] = size(Its);
+	hasreached = false;
+	for i = 1:n
+		if(state == Its(:,i))
+			hasreached = true;
+		end
+	end
 end
 
 %Expand the frontier at a given state
-function [NewFrontier] expandfrontier(Frontier,WS, state)
+function [NewFrontier] = expandfrontier(Frontier,WS, state, constraint)
+	
 end
 
 % Returns the index of the cell required
 function [I] = priority(frontier, costf, heuristic, WS) 
+	%TODO
 end
 
 %Translates cell positions in to positions 
 %in real coordinates
 
-function [p] translateCell(I,h)
-
+function [p] = translateCell(I,h)
+	%TODO
 end
 
 
