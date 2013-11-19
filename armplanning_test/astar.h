@@ -36,7 +36,7 @@ public:
 	wsState* target;
 	Astar(int x, int y, int z, int alpha, int theta, int phi);
 	wsState forward_kinematics(configState* c);
-	double heuristic(configState* c);
+	double heuristic(configState* c1, configState* c2);
 	double cost(configState* c);
 
 private:
