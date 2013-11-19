@@ -1,5 +1,6 @@
 #ifndef ASTAR_H 
 #define ASTAR_H
+#include <map>			  // maps
 #include <iostream>       // std::cout
 #include <queue>          // std::priority_queue
 #include <vector>         // std::vector
