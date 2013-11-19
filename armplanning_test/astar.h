@@ -1,5 +1,9 @@
 #ifndef ASTAR_H 
 #define ASTAR_H
+#include <iostream>       // std::cout
+#include <queue>          // std::priority_queue
+#include <vector>         // std::vector
+#include <functional>     // std::greater
 
 class Astar 
 {
@@ -22,6 +26,7 @@ typedef struct wsState{
 } wsState;
 
 typedef struct visData{
+	configState* current
 	double cost;
 	configState* prev;
 } visDate;
@@ -34,6 +39,23 @@ public:
 	double cost(configState* c);
 
 private:
+
+	//Frontier set as a priority queue
+	typedef std::priority_queue
+		<visData*,std::vector<visData*>,statecompare> statepq;
+
+	statepq frontier;   //This keeps track of the frontier state
+
+	//Visited set as a map
+	std::std::map<configState, visData*,statecompare> visited_set;
+
+
+	/* Visited set helper functions */
+	bool has_visited(configState* c);
+	void add_visited(configState* c, visData* v);
+	void get_visdata(configState* c, visData* v);
+
+	/* Allocators */
 	void create_wsstate(wsState* w);
 	void create_configstate(configState* c);
 	void create_visdata(visData* v);
