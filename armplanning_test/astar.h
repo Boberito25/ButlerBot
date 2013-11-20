@@ -9,30 +9,33 @@
 class Astar
 {
 
-typedef struct configState{
-	double theta1;
-	double theta2;
-	double theta3;
-	double theta4;
-	double theta5;
-} configState;
-
-typedef struct wsState{
-	double x;
-	double y;
-	double z;
-	double alpha;
-	double theta;
-	double phi;
-} wsState;
-
-typedef struct visData{
-	configState* current
-	double cost;
-	configState* prev;
-} visData;
 
 public:
+
+  typedef struct configState{
+    double theta1;
+    double theta2;
+    double theta3;
+    double theta4;
+    double theta5;
+  } configState;
+
+  typedef struct wsState{
+    double x;
+    double y;
+    double z;
+    double alpha;
+    double theta;
+    double phi;
+  } wsState;
+
+  typedef struct visData{
+    configState* current;
+    double cost;
+    configState* prev;
+  } visData;
+
+
 	wsState* target;
 	Astar(int x, int y, int z, int alpha, int theta, int phi);
 	wsState* forward_kinematics(configState* c);
@@ -43,12 +46,12 @@ private:
 
 	//Frontier set as a priority queue
 	typedef std::priority_queue
-		<visData*,std::vector<visData*>,statecompare> statepq;
+	  <visData*,std::vector<visData*>/*,statecompare*/> statepq;
 
 	statepq frontier;   //This keeps track of the frontier state
 
 	//Visited set as a map
-	std::std::map<configState, visData*,statecompare> visited_set;
+	std::map<configState, visData*/*,statecompare*/> visited_set;
 
 
 	/* Visited set helper functions */
