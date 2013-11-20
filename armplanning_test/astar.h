@@ -1,4 +1,4 @@
-#ifndef ASTAR_H 
+#ifndef ASTAR_H
 #define ASTAR_H
 #include <map>			  // maps
 #include <iostream>       // std::cout
@@ -6,7 +6,7 @@
 #include <vector>         // std::vector
 #include <functional>     // std::greater
 
-class Astar 
+class Astar
 {
 
 typedef struct configState{
@@ -30,12 +30,12 @@ typedef struct visData{
 	configState* current
 	double cost;
 	configState* prev;
-} visDate;
+} visData;
 
 public:
 	wsState* target;
 	Astar(int x, int y, int z, int alpha, int theta, int phi);
-	wsState forward_kinematics(configState* c);
+	wsState* forward_kinematics(configState* c);
 	double heuristic(configState* c);
 	double cost(configState* c);
 
@@ -60,6 +60,7 @@ private:
 	void create_wsstate(wsState* w);
 	void create_configstate(configState* c);
 	void create_visdata(visData* v);
+
 };
 
 #endif
