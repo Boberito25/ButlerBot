@@ -1,5 +1,7 @@
 #include "astar.h"
 #include <Eigen/Dense>
+#include <math.h>
+
 
 using namespace Eigen;
 
@@ -13,20 +15,16 @@ Astar::Astar (int x, int y, int z, int alpha, int theta, int phi)
   target->alpha = alpha;
   target->theta = theta;
   target->phi = phi;
-  std::cout << "In Astar Constructor with parameters:";
-  std::cout << x <<","<< y<<","<<z<<","<<alpha<<","<<theta<<","<<phi<<"\n";
 }
 
 
 Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
 {
-  std::cout << "In DH with params: "<<alpha<<","<<a<<","<<d<<","<<theta<<"\n";
   Eigen::Matrix4d T;
   T << cos(theta),sin(theta)*cos(alpha),-sin(theta)*sin(alpha),a*cos(theta),
     sin(theta), cos(theta)*cos(alpha), -cos(theta)*sin(alpha),a*sin(theta),
     0,sin(alpha),cos(alpha),d,
     0,0,0,1;
-  //  std::cout << "Made Matrix : \n"<<T<<"\n";
   return T;
 }
 
@@ -40,7 +38,7 @@ Astar::wsState* Astar::forward_kinematics (configState* c)
   Eigen::Matrix4d T_45 = DH(0,0,116.525, c->theta5);
 
   Eigen::Matrix4d T_05 = T_01*T_12*T_23*T_34*T_45;
-  //  std::cout << "Transform Matrix is :\n"<<T_05<<"\n";
+
   wsState* outstate = new wsState;
   outstate->x = T_05(0,3);
   outstate->y = T_05(1,3);
@@ -49,3 +47,31 @@ Astar::wsState* Astar::forward_kinematics (configState* c)
 
   return outstate;
 }//end forward_kinematics
+
+//calculate Euclidean ndistance between two states
+double distance(Astar::wsState* s1,Astar::wsState* s2)
+{
+  return sqrt(pow(s1->x - s2->x,2)+pow(s1->y-s2->y,2)+pow(s1->z-s2->z,2));
+}
+
+//Determines how close a configuration is to the target by measuring Euclidean
+//  distance in the workspace
+double Astar::heuristic(configState* c)
+{
+  wsState* state = forward_kinematics(c);
+  double d = distance(state,target);
+  return d;
+}//end heurisitic
+
+double Astar::cost(configState* c1,configState* c2)
+{
+  wsState* state1 = forward_kinematics(c1);
+  wsState* state2 = forward_kinematics(c2);
+  double workdist = distance(state1,state2);
+
+  //TODO experiment with various angle penalties to determine the optimum path
+  double anglepenalty = 0;
+
+  return workdist+anglepenalty;
+}
+
