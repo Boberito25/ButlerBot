@@ -1,4 +1,4 @@
-#ifndef ASTAR_H 
+#ifndef ASTAR_H
 #define ASTAR_H
 #include <map>			  // maps
 #include <iostream>       // std::cout
@@ -6,31 +6,31 @@
 #include <vector>         // std::vector
 #include <functional>     // std::greater
 
-class Astar 
+class Astar
 {
 
-typedef struct configState{
-	double theta1;
-	double theta2;
-	double theta3;
-	double theta4;
-	double theta5;
-} configState;
+  typedef struct configState{
+    double theta1;
+    double theta2;
+    double theta3;
+    double theta4;
+    double theta5;
+  } configState;
 
-typedef struct wsState{
-	double x;
-	double y;
-	double z;
-	double alpha;
-	double theta;
-	double phi;
-} wsState;
+  typedef struct wsState{
+    double x;
+    double y;
+    double z;
+    double alpha;
+    double theta;
+    double phi;
+  } wsState;
 
-typedef struct visData{
-	configState* current
-	double cost;
-	configState* prev;
-} visDate;
+  typedef struct visData{
+    configState* current;
+    double cost;
+    configState* prev;
+  } visData;
 
 public:
 	Astar();
@@ -44,14 +44,23 @@ private:
 	void expand_frontier(configState* c);
 
 
+
+	wsState* target;
+	Astar(int x, int y, int z, int alpha, int theta, int phi);
+	wsState* forward_kinematics(configState* c);
+	double heuristic(configState* c);
+	double cost(configState* c1,configState* c2);
+
+
 	/* Frontier set as a priority queue */
 	typedef std::priority_queue
-		<visData*,std::vector<visData*>,statecompare> statepq;
+	  <visData*,std::vector<visData*>,statecompare> statepq;
 
 	statepq frontier;   //This keeps track of the frontier state
 
 	/* Visited set as a map*/
-	std::std::map<configState, visData*,stdatecompare> visited_set;
+	std::map<configState, visData*,stdatecompare> visited_set;
+	//Visited set as a map
 
 
 	/* params */
