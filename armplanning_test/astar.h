@@ -33,23 +33,30 @@ typedef struct visData{
 } visDate;
 
 public:
-	wsState* target;
-	Astar(int x, int y, int z, int alpha, int theta, int phi);
+	Astar();
+	void run(configState* start, wsState* target)
+
+private:
+	/* computation */
 	wsState forward_kinematics(configState* c);
 	double heuristic(configState* c1, configState* c2);
 	double cost(configState* c);
+	void expand_frontier(configState* c);
 
-private:
 
-	//Frontier set as a priority queue
+	/* Frontier set as a priority queue */
 	typedef std::priority_queue
 		<visData*,std::vector<visData*>,statecompare> statepq;
 
 	statepq frontier;   //This keeps track of the frontier state
 
-	//Visited set as a map
-	std::std::map<configState, visData*,statecompare> visited_set;
+	/* Visited set as a map*/
+	std::std::map<configState, visData*,stdatecompare> visited_set;
 
+
+	/* params */
+	configState* start;
+	wsState* target;
 
 	/* Visited set helper functions */
 	bool has_visited(configState* c);
@@ -60,6 +67,13 @@ private:
 	void create_wsstate(wsState* w);
 	void create_configstate(configState* c);
 	void create_visdata(visData* v);
+
+	/* Deallocators */
+	void deallocate_wsstate(wsState* w);
+	void deallocate_configstate(configState* c);
+	void deallocate_visdata(visData* v);
+
+
 };
 
 #endif
