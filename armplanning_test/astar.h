@@ -9,28 +9,7 @@
 class Astar
 {
 
-  typedef struct configState{
-    double theta1;
-    double theta2;
-    double theta3;
-    double theta4;
-    double theta5;
-  } configState;
 
-  typedef struct wsState{
-    double x;
-    double y;
-    double z;
-    double alpha;
-    double theta;
-    double phi;
-  } wsState;
-
-  typedef struct visData{
-    configState* current;
-    double cost;
-    configState* prev;
-  } visData;
 
 public:
 	Astar();
@@ -38,7 +17,6 @@ public:
 
 private:
 	/* computation */
-	wsState forward_kinematics(configState* c);
 	double heuristic(configState* c1, configState* c2);
 	double cost(configState* c);
 	void expand_frontier(configState* c);
@@ -72,15 +50,6 @@ private:
 	void add_visited(configState* c, visData* v);
 	void get_visdata(configState* c, visData* v);
 
-	/* Allocators */
-	void create_wsstate(wsState* w);
-	void create_configstate(configState* c);
-	void create_visdata(visData* v);
-
-	/* Deallocators */
-	void deallocate_wsstate(wsState* w);
-	void deallocate_configstate(configState* c);
-	void deallocate_visdata(visData* v);
 
 
 };
