@@ -3,11 +3,11 @@
 //perform the forward kinematics of the robot to figure out where you are
 wsState* forward_kinematics (configState* c)
 {
-  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, c->theta1);
-  Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+c->theta2);
-  Eigen::Matrix4d T_23 = DH(0, 150, 0, c->theta3);
-  Eigen::Matrix4d T_34 = DH(-M_PI/2, 0, 0, M_PI/2+c->theta4);
-  Eigen::Matrix4d T_45 = DH(0,0,116.525, c->theta5);
+  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, c->theta[1]);
+  Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+c->theta[2]);
+  Eigen::Matrix4d T_23 = DH(0, 150, 0, c->theta[3]);
+  Eigen::Matrix4d T_34 = DH(-M_PI/2, 0, 0, M_PI/2+c->theta[4]);
+  Eigen::Matrix4d T_45 = DH(0,0,116.525, c->theta[5]);
 
   Eigen::Matrix4d T_05 = T_01*T_12*T_23*T_34*T_45;
 
@@ -42,11 +42,11 @@ void clone_configstate(configState* c, configState* clone){
   if(clone == 0 || c == 0)
     return;
   clone = (configState*)malloc(sizeof(struct configState));
-  clone->theta1 = c->theta1;
-  clone->theta2 = c->theta2;
-  clone->theta3 = c->theta3;
-  clone->theta4 = c->theta4;
-  clone->theta5 = c->theta5;
+  clone->theta[1] = c->theta[1];
+  clone->theta[2] = c->theta[2];
+  clone->theta[3] = c->theta[3];
+  clone->theta[4] = c->theta[4];
+  clone->theta[5] = c->theta[5];
 }
 
 void create_wssate(wsState* w){

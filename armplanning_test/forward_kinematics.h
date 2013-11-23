@@ -2,29 +2,31 @@
 #define FORWARDKINEMATICS_H
 #include <Eigen/Dense>
 
+using namespace Eigen;
 
-  typedef struct configState{
-    double theta1;
-    double theta2;
-    double theta3;
-    double theta4;
-    double theta5;
-  } configState;
+typedef struct configState{
+	double theta[5];
+} configState;
 
-  typedef struct wsState{
-    double x;
-    double y;
-    double z;
-    double alpha;
-    double theta;
-    double phi;
-  } wsState;
+typedef struct wsState{
+	double x;
+	double y;
+	double z;
+	double alpha;
+	double theta;
+	double phi;
+} wsState;
 
-  typedef struct visData{
-    configStatbe* current;
-    double value;
-    configState* prev;
-  } visData;
+typedef struct visData{
+	configStatbe* current;
+	double value;
+	configState* prev;
+} visData;
+
+struct visDatacomp {
+  bool operator() (const visData& lhs, const visData& rhs) const
+  {return lhs->value<rhs->value;}
+};
 
 wsState forward_kinematics(configState* c);
 double distance(wsState* s1, wsSate* s2);

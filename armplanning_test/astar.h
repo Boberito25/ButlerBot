@@ -5,6 +5,7 @@
 #include <queue>          // std::priority_queue
 #include <vector>         // std::vector
 #include <functional>     // std::greater
+#include <vector>
 
 class Astar
 {
@@ -13,7 +14,7 @@ class Astar
 
 public:
 	Astar();
-	void run(configState* start, wsState* target)
+	std::vector<configState*> run(configState* start, wsState* target)
 
 private:
 	/* computation */
