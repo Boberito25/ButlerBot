@@ -17,6 +17,7 @@ public:
 	std::vector<configState*> run(configState* start, wsState* target)
 
 private:
+	const double targetthreshold = .1;
 	/* computation */
 	double heuristic(configState* c1, configState* c2);
 	double cost(configState* c);
@@ -33,12 +34,12 @@ private:
 
 	/* Frontier set as a priority queue */
 	typedef std::priority_queue
-	  <visData*,std::vector<visData*>,statecompare> statepq;
+	  <visData*,std::vector<visData*>,visdatacomp> statepq;
 
 	statepq frontier;   //This keeps track of the frontier state
 
 	/* Visited set as a map*/
-	std::map<configState, visData*,stdatecompare> visited_set;
+	std::map<configState, visData*,configcomp> visited_set;
 	//Visited set as a map
 
 
@@ -47,8 +48,8 @@ private:
 	wsState* target;
 
 	/* Visited set helper functions */
-	bool has_visited(configState* c);
-	void add_visited(configState* c, visData* v);
+	bool has_visited(configState c);
+	void add_visited(configState c, visData* v);
 	void get_visdata(configState* c, visData* v);
 
 

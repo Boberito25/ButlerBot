@@ -2,9 +2,8 @@
 #include <Eigen/Dense>
 #include <math.h>
 #include <vector>
-void Astar::Astar(){
 
-}
+void Astar::Astar(){}
 
 std::vector<configState*> Astar::run(configState* start, wsSate* target){
   this.target = target;
@@ -18,19 +17,23 @@ std::vector<configState*> Astar::run(configState* start, wsSate* target){
   startv->value = heuristic(start);
   frontier.push(startv);
 
-  configState* next = 0;
-  while(/* Some condition regarding the target */){
-    next = frontier.pop();
+  configState* next = frontier.pop();
+  while(distance(target, next) > taret_threshold){
     if(next != 0){
       expand_frontier(next->current);
       add_visited(next->current, next);
+    } else {
+      std::vector<configState> path;
+      return path;
     }
+    next = frontier.pop();
   }
   configState* current = next;
   std::vector<configState*> path;
   while(path != 0){
     path.push_back(current);
-    current = current->prev;
+    visData* vn;
+    current = get_visdata(current,vn)->prev;
   }
   return path; 
 }
@@ -52,7 +55,6 @@ double Astar::cost(configState* c1,configState* c2)
 
   //TODO experiment with various angle penalties to determine the optimum path
   double anglepenalty = 0;
-
   return workdist+anglepenalty;
 }
 
@@ -89,20 +91,23 @@ void Astar::expand_frontier(configState* c){
 }
 
 bool Astar::has_visited(configState* c){
-	return true;
+	it = visited_set.find(c)
+  if(it == map::end)
+    return false;
+  else 
+    true;
 }
 
-void Astar::add_visited(configState* c){
-
+void Astar::add_visited(configState* c, visData* v){
+  visited_set.insert(std::pair<configState*, visData*>(c,v));
 }
 
 void  Astar::get_visdata(configState* c, visData* v){
-
+  v = visited_set[c];
 }
 
 //Initialzie target point
-Astar::Astar (int x, int y, int z, int alpha, int theta, int phi)
-{
+Astar::Astar (int x, int y, int z, int alpha, int theta, int phi){
   target = new wsState;
   target->x = x;
   target->y = y;
@@ -111,6 +116,3 @@ Astar::Astar (int x, int y, int z, int alpha, int theta, int phi)
   target->theta = theta;
   target->phi = phi;
 }
-
-
-

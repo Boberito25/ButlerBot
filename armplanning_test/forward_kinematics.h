@@ -1,7 +1,6 @@
 #ifndef FORWARDKINEMATICS_H
 #define FORWARDKINEMATICS_H
 #include <Eigen/Dense>
-
 using namespace Eigen;
 
 typedef struct configState{
@@ -23,10 +22,29 @@ typedef struct visData{
 	configState* prev;
 } visData;
 
-struct visDatacomp {
+struct visdatacomp {
   bool operator() (const visData& lhs, const visData& rhs) const
   {return lhs->value<rhs->value;}
 };
+
+struct configcomp {
+	bool operator()(const configState& lhs, const configState& rhs) const
+	{
+		if(lhs->theta[1] != rhs->theta[1]){
+			return lhs->theta[1] < rhs->theta[1];
+		}
+		if(lhs->theta[2] != rhs->theta[2]){
+			return lhs->theta[2] < rhs->theta[2];
+		}
+		if(lhs->theta[3] != rhs->theta[3]){
+			return lhs->theta[3] < rhs->theta[3];
+		}
+		if(lhs->theta[4] != rhs->theta[4]){
+			return lhs->theta[4] < rhs->theta[4];
+		}
+		return lhs->theta[5] < rhs->theta[5];
+	}
+}
 
 wsState forward_kinematics(configState* c);
 double distance(wsState* s1, wsSate* s2);
