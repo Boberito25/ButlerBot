@@ -2,12 +2,16 @@
 #include <Eigen/Dense>
 #include <math.h>
 #include <vector>
+#include <map>
+#include <iostream>
+#include <queue>
+#include <functional>
+#include "forward_kinematics.h"
+Astar::Astar(){target_threshold = .01;}
 
-void Astar::Astar(){}
-
-std::vector<configState*> Astar::run(configState* start, wsSate* target){
-  this.target = target;
-  this.start = start;
+std::vector<configState*> Astar::run(configState* s, wsState* t){
+  target = t;
+  start = s;
 
   /* Init */
   visData* startv;
@@ -17,23 +21,27 @@ std::vector<configState*> Astar::run(configState* start, wsSate* target){
   startv->value = heuristic(start);
   frontier.push(startv);
 
-  configState* next = frontier.pop();
-  while(distance(target, next) > taret_threshold){
+  visData* next = frontier.top();
+  frontier.pop();
+  wsState* wscurrent = fk(next->current);
+  while(distance(target, wscurrent) > target_threshold){
     if(next != 0){
       expand_frontier(next->current);
       add_visited(next->current, next);
     } else {
-      std::vector<configState> path;
+      std::vector<configState*> path;
       return path;
     }
-    next = frontier.pop();
+    next = frontier.top();
+    frontier.pop();
+    wscurrent = fk(next->current);
+
   }
-  configState* current = next;
+  visData* current = next;
   std::vector<configState*> path;
-  while(path != 0){
-    path.push_back(current);
-    visData* vn;
-    current = get_visdata(current,vn)->prev;
+  while(current != 0){
+    path.push_back(current->current);
+    get_visdata(current->prev,current);
   }
   return path; 
 }
@@ -42,15 +50,15 @@ std::vector<configState*> Astar::run(configState* start, wsSate* target){
 //  distance in the workspace
 double Astar::heuristic(configState* c)
 {
-  wsState* state = forward_kinematics(c);
+  wsState* state = fk(c);
   double d = distance(state,target);
   return d;
 }//end heurisitic
 
 double Astar::cost(configState* c1,configState* c2)
 {
-  wsState* state1 = forward_kinematics(c1);
-  wsState* state2 = forward_kinematics(c2);
+  wsState* state1 = fk(c1);
+  wsState* state2 = fk(c2);
   double workdist = distance(state1,state2);
 
   //TODO experiment with various angle penalties to determine the optimum path
@@ -71,7 +79,7 @@ void Astar::expand_frontier(configState* c){
       create_visdata(posv);
       posv->current = pos;
       posv->prev = c;
-      posv->value = heurisitic(pos)+cost(c, pos);
+      posv->value = heuristic(pos)+cost(c, pos);
       frontier.push(posv);
     } else {
       deallocate_configstate(pos);
@@ -80,9 +88,9 @@ void Astar::expand_frontier(configState* c){
     if(!has_visited(neg)){
       visData* negv;
       create_visdata(negv);
-      posv->current = neg;
-      posv->prev = c;
-      posv->value = heurisitic(neg)+cost(c, neg);
+      negv->current = neg;
+      negv->prev = c;
+      negv->value = heuristic(neg)+cost(c, neg);
       frontier.push(negv);
     } else {
       deallocate_configstate(neg);
@@ -91,28 +99,15 @@ void Astar::expand_frontier(configState* c){
 }
 
 bool Astar::has_visited(configState* c){
-	it = visited_set.find(c)
-  if(it == map::end)
-    return false;
-  else 
-    true;
+  std::map<configState,visData*,configcomp>::const_iterator it;
+	it = visited_set.find(*c);
+  return it != visited_set.end(); 
 }
 
 void Astar::add_visited(configState* c, visData* v){
-  visited_set.insert(std::pair<configState*, visData*>(c,v));
+  visited_set.insert(std::pair<configState, visData*>(*c,v));
 }
 
 void  Astar::get_visdata(configState* c, visData* v){
-  v = visited_set[c];
-}
-
-//Initialzie target point
-Astar::Astar (int x, int y, int z, int alpha, int theta, int phi){
-  target = new wsState;
-  target->x = x;
-  target->y = y;
-  target->z = z;
-  target->alpha = alpha;
-  target->theta = theta;
-  target->phi = phi;
+  v = visited_set.at(*c);
 }

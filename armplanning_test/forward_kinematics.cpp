@@ -1,7 +1,7 @@
 #include "forward_kinematics.h"
 #include <Eigen/Dense>
 //perform the forward kinematics of the robot to figure out where you are
-wsState* forward_kinematics (configState* c)
+wsState* fk (configState* c)
 {
   Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, c->theta[1]);
   Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+c->theta[2]);

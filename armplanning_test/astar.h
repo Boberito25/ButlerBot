@@ -5,32 +5,26 @@
 #include <queue>          // std::priority_queue
 #include <vector>         // std::vector
 #include <functional>     // std::greater
-#include <vector>
+#include "forward_kinematics.h"
 
 class Astar
 {
 
-
-
 public:
 	Astar();
-	std::vector<configState*> run(configState* start, wsState* target)
+	std::vector<configState*> run(configState* start, wsState* target);
 
 private:
-	const double targetthreshold = .1;
+	wsState* target;
+
+	double target_threshold;
 	/* computation */
 	double heuristic(configState* c1, configState* c2);
 	double cost(configState* c);
 	void expand_frontier(configState* c);
 
-
-
-	wsState* target;
-	Astar(int x, int y, int z, int alpha, int theta, int phi);
-	wsState* forward_kinematics(configState* c);
 	double heuristic(configState* c);
 	double cost(configState* c1,configState* c2);
-
 
 	/* Frontier set as a priority queue */
 	typedef std::priority_queue
@@ -45,11 +39,10 @@ private:
 
 	/* params */
 	configState* start;
-	wsState* target;
 
 	/* Visited set helper functions */
-	bool has_visited(configState c);
-	void add_visited(configState c, visData* v);
+	bool has_visited(configState* c);
+	void add_visited(configState* c, visData* v);
 	void get_visdata(configState* c, visData* v);
 
 

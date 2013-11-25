@@ -17,38 +17,38 @@ typedef struct wsState{
 } wsState;
 
 typedef struct visData{
-	configStatbe* current;
+	configState* current;
 	double value;
 	configState* prev;
 } visData;
 
 struct visdatacomp {
-  bool operator() (const visData& lhs, const visData& rhs) const
+  bool operator() (const visData* lhs, const visData* rhs) const
   {return lhs->value<rhs->value;}
 };
 
 struct configcomp {
 	bool operator()(const configState& lhs, const configState& rhs) const
 	{
-		if(lhs->theta[1] != rhs->theta[1]){
-			return lhs->theta[1] < rhs->theta[1];
+		if(lhs.theta[1] != rhs.theta[1]){
+			return lhs.theta[1] < rhs.theta[1];
 		}
-		if(lhs->theta[2] != rhs->theta[2]){
-			return lhs->theta[2] < rhs->theta[2];
+		if(lhs.theta[2] != rhs.theta[2]){
+			return lhs.theta[2] < rhs.theta[2];
 		}
-		if(lhs->theta[3] != rhs->theta[3]){
-			return lhs->theta[3] < rhs->theta[3];
+		if(lhs.theta[3] != rhs.theta[3]){
+			return lhs.theta[3] < rhs.theta[3];
 		}
-		if(lhs->theta[4] != rhs->theta[4]){
-			return lhs->theta[4] < rhs->theta[4];
+		if(lhs.theta[4] != rhs.theta[4]){
+			return lhs.theta[4] < rhs.theta[4];
 		}
-		return lhs->theta[5] < rhs->theta[5];
+		return lhs.theta[5] < rhs.theta[5];
 	}
-}
+};
 
-wsState forward_kinematics(configState* c);
-double distance(wsState* s1, wsSate* s2);
-
+wsState* fk(configState* c);
+double distance(wsState* s1, wsState* s2);
+Eigen::Matrix4d DH(double alpha, double a, double d, double theta);
 
 
 /* Allocators */
