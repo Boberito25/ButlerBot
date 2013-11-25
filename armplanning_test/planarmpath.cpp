@@ -23,7 +23,7 @@ int main(int argc, char** argv )
   target.alpha = 0;
   target.theta = 0;
   target.phi = 0;
-  planner.run(&start, &target);
+  std::vector<configState*> path = planner.run(&start, &target);
 
   return 0;
 }
