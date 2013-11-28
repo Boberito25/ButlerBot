@@ -31,8 +31,7 @@ std::vector<configState*> Astar::run(configState* s, wsState* t){
   add_visited(start,next);
   while(distance(target, wscurrent) > target_threshold){
     if(next != 0){
-      wsstate_tostring(wscurrent);
-      // queue_size = frontier.size(); printf("Queue Size: %i",queue_size);
+      // wsstate_tostring(wscurrent);
 
       expand_frontier(next->current);
       add_visited(next->current, next);
