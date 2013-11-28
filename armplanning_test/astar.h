@@ -43,7 +43,7 @@ private:
 	/* Visited set helper functions */
 	bool has_visited(configState* c);
 	void add_visited(configState* c, visData* v);
-	void get_visdata(configState* c, visData* v);
+	visData* get_visdata(configState* c);
 
 
 

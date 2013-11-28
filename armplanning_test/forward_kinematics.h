@@ -1,6 +1,7 @@
 #ifndef FORWARDKINEMATICS_H
 #define FORWARDKINEMATICS_H
 #include <Eigen/Dense>
+#include <vector>
 using namespace Eigen;
 
 typedef struct configState{
@@ -30,6 +31,9 @@ struct visdatacomp {
 struct configcomp {
 	bool operator()(const configState& lhs, const configState& rhs) const
 	{
+		if(lhs.theta[0] != rhs.theta[0]){
+			return lhs.theta[0] < rhs.theta[0];
+		}
 		if(lhs.theta[1] != rhs.theta[1]){
 			return lhs.theta[1] < rhs.theta[1];
 		}
@@ -39,10 +43,7 @@ struct configcomp {
 		if(lhs.theta[3] != rhs.theta[3]){
 			return lhs.theta[3] < rhs.theta[3];
 		}
-		if(lhs.theta[4] != rhs.theta[4]){
-			return lhs.theta[4] < rhs.theta[4];
-		}
-		return lhs.theta[5] < rhs.theta[5];
+		return lhs.theta[4] < rhs.theta[4];
 	}
 };
 
@@ -52,14 +53,18 @@ Eigen::Matrix4d DH(double alpha, double a, double d, double theta);
 
 
 /* Allocators */
-void clone_configstate(configState* c, configState* clone);
+configState* clone_configstate(configState* c)	;
 
-void create_wsstate(wsState* w);
-void create_configstate(configState* c);
-void create_visdata(visData* v);
+wsState* create_wsstate();
+configState* create_configstate();
+visData* create_visdata();
 
 /* Deallocators */
 void deallocate_wsstate(wsState* w);
 void deallocate_configstate(configState* c);
 void deallocate_visdata(visData* v);
+
+/* IO Conversions */
+void wsstate_tostring(wsState* w);
+void configstate_tostring(configState* c);
 #endif

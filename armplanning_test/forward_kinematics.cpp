@@ -1,4 +1,6 @@
 #include "forward_kinematics.h"
+#include <iostream>
+#include <stdio.h>
 #include <Eigen/Dense>
 //perform the forward kinematics of the robot to figure out where you are
 wsState* fk (configState* c)
@@ -38,27 +40,27 @@ double distance(wsState* s1,wsState* s2)
   return sqrt(pow(s1->x - s2->x,2)+pow(s1->y-s2->y,2)+pow(s1->z-s2->z,2));
 }
 
-void clone_configstate(configState* c, configState* clone){
-  if(clone == 0 || c == 0)
-    return;
-  clone = (configState*)malloc(sizeof(struct configState));
+configState* clone_configstate(configState* c){
+ 
+  configState* clone = (configState*)malloc(sizeof(struct configState));
+  clone->theta[0] = c->theta[0];
   clone->theta[1] = c->theta[1];
   clone->theta[2] = c->theta[2];
   clone->theta[3] = c->theta[3];
   clone->theta[4] = c->theta[4];
-  clone->theta[5] = c->theta[5];
+  return clone;
+} 
+
+wsState* create_wssate(){
+   return (wsState*)malloc(sizeof(struct wsState));
 }
 
-void create_wssate(wsState* w){
-  w = (wsState*)malloc(sizeof(struct wsState));
+configState* create_configstate(){
+  return (configState*)malloc(sizeof(struct configState));
 }
 
-void create_configstate(configState* c){
-  c = (configState*)malloc(sizeof(struct configState));
-}
-
-void create_visdata(visData* v){
-  v = (visData*)malloc(sizeof(struct visData));
+visData* create_visdata(){
+  return (visData*)malloc(sizeof(struct visData));
 }
 
 void deallocate_wsstate(wsState* w){
@@ -74,4 +76,14 @@ void deallocate_configstate(configState* c){
 void deallocate_visdata(visData* v){
   if(v != 0)
     free(v);
+}
+
+void wsstate_tostring(wsState* w){
+  printf("Work Space State: x:%f, y:%f, z:%f, alpha:%f, theta:%f, phi:%f\n", 
+      w->x, w->y, w->z, w->alpha, w->theta, w->phi);
+}
+
+void configstate_tostring(configState* c){
+  printf("Theta1: %f, Theta2: %f, Theta3: %f, Theta4: %f, Theta5: %f\n"
+      , c->theta[0], c->theta[1],c->theta[2], c->theta[3], c->theta[4]);
 }
