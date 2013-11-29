@@ -5,11 +5,11 @@
 //perform the forward kinematics of the robot to figure out where you are
 wsState* fk (configState* c)
 {
-  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, c->theta[1]);
-  Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+c->theta[2]);
-  Eigen::Matrix4d T_23 = DH(0, 150, 0, c->theta[3]);
-  Eigen::Matrix4d T_34 = DH(-M_PI/2, 0, 0, M_PI/2+c->theta[4]);
-  Eigen::Matrix4d T_45 = DH(0,0,116.525, c->theta[5]);
+  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, c->theta[0]);
+  Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+c->theta[1]);
+  Eigen::Matrix4d T_23 = DH(0, 150, 0, c->theta[2]);
+  Eigen::Matrix4d T_34 = DH(-M_PI/2, 0, 0, M_PI/2+c->theta[3]);
+  Eigen::Matrix4d T_45 = DH(0,0,116.525, c->theta[4]);
 
   Eigen::Matrix4d T_05 = T_01*T_12*T_23*T_34*T_45;
 
@@ -79,7 +79,7 @@ void deallocate_visdata(visData* v){
 }
 
 void wsstate_tostring(wsState* w){
-  printf("Work Space State: x:%f, y:%f, z:%f, alpha:%f, theta:%f, phi:%f\n", 
+    printf("Work Space State: x:%f, y:%f, z:%f, alpha:%f, theta:%f, phi:%f\n", 
       w->x, w->y, w->z, w->alpha, w->theta, w->phi);
 }
 

@@ -8,7 +8,7 @@
 #include <queue>
 #include <functional>
 #include "forward_kinematics.h"
-Astar::Astar(){target_threshold = 1;}
+Astar::Astar(){target_threshold = .025;}
 
 std::vector<configState*> Astar::run(configState* s, wsState* t){
   
@@ -16,6 +16,8 @@ std::vector<configState*> Astar::run(configState* s, wsState* t){
   
   target = t;
   start = s;
+  std::cout << "Target: ";
+  wsstate_tostring(target);
 
   std::cout << "Initialize start data structures\n";
 
@@ -31,7 +33,7 @@ std::vector<configState*> Astar::run(configState* s, wsState* t){
   add_visited(start,next);
   while(distance(target, wscurrent) > target_threshold){
     if(next != 0){
-      // wsstate_tostring(wscurrent);
+      wsstate_tostring(wscurrent);
 
       expand_frontier(next->current);
       add_visited(next->current, next);

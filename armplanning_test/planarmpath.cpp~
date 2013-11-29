@@ -25,11 +25,11 @@ int main(int argc, char** argv )
   target.theta[3] = 0;
   target.theta[4] = 0;
 
-  wsState* actarget = fk(&target);
+  wsState* actarget = fk(target);
   
 
   std::cout << "Start Running\n";
-  std::vector<configState*> path = planner.run(&start, actarget);
+  std::vector<configState*> path = planner.run(&start, &target);
   for(int i = 0; i < path.size(); i++){
     configstate_tostring(path.at(i));
   }
