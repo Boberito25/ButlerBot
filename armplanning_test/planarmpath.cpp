@@ -27,7 +27,6 @@ int main(int argc, char** argv )
 
   wsState* actarget = fk(&target);
   
-
   std::cout << "Start Running\n";
   std::vector<configState*> path = planner.run(&start, actarget);
   for(int i = 0; i < path.size(); i++){

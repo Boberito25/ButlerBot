@@ -8,6 +8,7 @@
 #include <queue>
 #include <functional>
 #include "forward_kinematics.h"
+#include <iomanip>
 Astar::Astar(){target_threshold = .025;}
 
 std::vector<configState*> Astar::run(configState* s, wsState* t){
@@ -32,8 +33,14 @@ std::vector<configState*> Astar::run(configState* s, wsState* t){
   wsState* wscurrent = fk(next->current);
   add_visited(start,next);
   while(distance(target, wscurrent) > target_threshold){
+    std::cout << "\n";
+    configstate_tostring(next->current);
+    std::cout << "Queue: "<< frontier.size() << '\n';
+    std::cout << "Visited Set: "<< visited_set.size() << '\n';
+
+    printf("Value: %f \n", next->value);
+    std::cout << "\n";
     if(next != 0){
-      wsstate_tostring(wscurrent);
 
       expand_frontier(next->current);
       add_visited(next->current, next);
@@ -93,9 +100,13 @@ void Astar::expand_frontier(configState* c){
     configState* pos = 0;
     configState* neg = 0;
     pos = clone_configstate(c);
-    pos->theta[i] = c->theta[i]+1; //TODO change this to the actual increment
+    pos->theta[i] = c->theta[i]+1; 
+
+    printf("State %i: ",i);
+    configstate_tostring(pos);
+
     neg = clone_configstate(c);
-    neg->theta[i] = c->theta[i]-1; //TODO see above
+    neg->theta[i] = c->theta[i]-1; 
 
     if(!has_visited(pos)){
       visData* posv;
@@ -103,6 +114,7 @@ void Astar::expand_frontier(configState* c){
       posv->current = pos;
       posv->prev = c;      
       posv->value = heuristic(pos)+cost(c, pos);
+      std::cout << "Value: " <<std::setprecision(30) << posv->value << '\n';
       frontier.push(posv);
 
     } else {
@@ -120,6 +132,7 @@ void Astar::expand_frontier(configState* c){
       deallocate_configstate(neg);
     }
   }	
+  std::cout << '\n';
 }
 
 bool Astar::has_visited(configState* c){

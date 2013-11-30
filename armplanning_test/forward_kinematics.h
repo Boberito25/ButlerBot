@@ -25,7 +25,7 @@ typedef struct visData{
 
 struct visdatacomp {
   bool operator() (const visData* lhs, const visData* rhs) const
-  {return lhs->value<rhs->value;}
+  {return lhs->value > rhs->value;}
 };
 
 struct configcomp {

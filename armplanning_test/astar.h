@@ -13,7 +13,10 @@ class Astar
 public:
 	Astar();
 	std::vector<configState*> run(configState* start, wsState* target);
-
+	/* Visited set helper functions */
+	bool has_visited(configState* c);
+	void add_visited(configState* c, visData* v);
+	visData* get_visdata(configState* c);
 private:
 	wsState* target;
 
@@ -40,10 +43,7 @@ private:
 	/* params */
 	configState* start;
 
-	/* Visited set helper functions */
-	bool has_visited(configState* c);
-	void add_visited(configState* c, visData* v);
-	visData* get_visdata(configState* c);
+
 
 
 

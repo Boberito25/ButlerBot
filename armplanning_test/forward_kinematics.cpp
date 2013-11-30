@@ -42,7 +42,7 @@ double distance(wsState* s1,wsState* s2)
 
 configState* clone_configstate(configState* c){
  
-  configState* clone = (configState*)malloc(sizeof(struct configState));
+  configState* clone = new configState;
   clone->theta[0] = c->theta[0];
   clone->theta[1] = c->theta[1];
   clone->theta[2] = c->theta[2];
@@ -79,8 +79,8 @@ void deallocate_visdata(visData* v){
 }
 
 void wsstate_tostring(wsState* w){
-    printf("Work Space State: x:%f, y:%f, z:%f, alpha:%f, theta:%f, phi:%f\n", 
-      w->x, w->y, w->z, w->alpha, w->theta, w->phi);
+    printf("Work Space State: x:%f, y:%f, z:%f\n", 
+      w->x, w->y, w->z);
 }
 
 void configstate_tostring(configState* c){
