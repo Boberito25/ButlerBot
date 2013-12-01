@@ -5,7 +5,7 @@
 using namespace Eigen;
 
 typedef struct configState{
-	double theta[5];
+	int theta[5];
 } configState;
 
 typedef struct wsState{
@@ -29,27 +29,28 @@ struct visdatacomp {
 };
 
 struct configcomp {
-	bool operator()(const configState& lhs, const configState& rhs) const
+	bool operator()(const configState* lhs, const configState* rhs) const
 	{
-		if(lhs.theta[0] != rhs.theta[0]){
-			return lhs.theta[0] < rhs.theta[0];
+		if(lhs->theta[0] != rhs->theta[0]){
+			return lhs->theta[0] < rhs->theta[0];
 		}
-		if(lhs.theta[1] != rhs.theta[1]){
-			return lhs.theta[1] < rhs.theta[1];
+		if(lhs->theta[1] != rhs->theta[1]){
+			return lhs->theta[1] < rhs->theta[1];
 		}
-		if(lhs.theta[2] != rhs.theta[2]){
-			return lhs.theta[2] < rhs.theta[2];
+		if(lhs->theta[2] != rhs->theta[2]){
+			return lhs->theta[2] < rhs->theta[2];
 		}
-		if(lhs.theta[3] != rhs.theta[3]){
-			return lhs.theta[3] < rhs.theta[3];
+		if(lhs->theta[3] != rhs->theta[3]){
+			return lhs->theta[3] < rhs->theta[3];
 		}
-		return lhs.theta[4] < rhs.theta[4];
+		return lhs->theta[4] < rhs->theta[4];
 	}
 };
 
 wsState* fk(configState* c);
 double distance(wsState* s1, wsState* s2);
 Eigen::Matrix4d DH(double alpha, double a, double d, double theta);
+double tick_to_radians(int i);
 
 
 /* Allocators */

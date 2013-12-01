@@ -36,7 +36,7 @@ private:
 	statepq frontier;   //This keeps track of the frontier state
 
 	/* Visited set as a map*/
-	std::map<configState, visData*,configcomp> visited_set;
+	std::map<configState*, visData*,configcomp> visited_set;
 	//Visited set as a map
 
 
