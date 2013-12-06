@@ -20,8 +20,8 @@ int main(int argc, char** argv )
   configState target;
 
   target.theta[0] = 0;
-  target.theta[1] = 4;
-  target.theta[2] = 4;
+  target.theta[1] = 6;
+  target.theta[2] = 6;
   target.theta[3] = 0;
   target.theta[4] = 0;
 

@@ -94,7 +94,10 @@ double Astar::cost(configState* c1,configState* c2)
   delete(state2);
   //TODO experiment with various angle penalties to determine the optimum path
   double anglepenalty = 1000*abs(c1->theta[4]-c2->theta[4]);
-
+  anglepenalty += 1000*abs(c1->theta[0] - c2->theta[0]);
+  anglepenalty += 8*abs(c1->theta[1]-c2->theta[1]);
+  anglepenalty += 4*abs(c1->theta[2]-c2->theta[2]);
+  anglepenalty += 2*abs(c1->theta[3]-c2->theta[3]);
   return workdist+anglepenalty;
 }
 

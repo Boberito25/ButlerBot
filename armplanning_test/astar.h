@@ -3,7 +3,7 @@
 #include <map>			  // maps
 #include <iostream>       // std::cout
 #include <queue>          // std::priority_queue
-#include <vector>         // std::vector
+#include <deque>         // std::vector
 #include <functional>     // std::greater
 #include "forward_kinematics.h"
 
@@ -31,8 +31,7 @@ private:
 
 	/* Frontier set as a priority queue */
 	typedef std::priority_queue
-	  <visData*,std::vector<visData*>,visdatacomp> statepq;
-
+	  <visData*,std::deque<visData*>,visdatacomp> statepq;
 	statepq frontier;   //This keeps track of the frontier state
 
 	/* Visited set as a map*/
