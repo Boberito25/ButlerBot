@@ -2,6 +2,10 @@
 #include <iostream>
 #include <stdio.h>
 #include <Eigen/Dense>
+#include <unordered_map>
+#include <bitset>
+#include <string>
+#include <utility>
 //perform the forward kinematics of the robot to figure out where you are
 wsState* fk (configState* c)
 {
@@ -42,7 +46,7 @@ Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
 //calculate Euclidean ndistance between two states
 double distance(wsState* s1,wsState* s2)
 {
-  return sqrt(pow(s1->x - s2->x,2)+pow(s1->y-s2->y,2)+pow(s1->z-s2->z,2));
+  return (pow(s1->x - s2->x,2)+pow(s1->y-s2->y,2)+pow(s1->z-s2->z,2));
 }
 
 configState* clone_configstate(configState* c){

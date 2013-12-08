@@ -6,10 +6,20 @@
 #include <stdio.h>
 #include <iostream>
 #include <queue>
-#include <functional>
 #include "forward_kinematics.h"
 #include <iomanip>
-Astar::Astar(){target_threshold = .025;}
+#include <unordered_map>
+#include <bitset>
+#include <string>
+#include <utility>
+
+Astar::Astar(){
+  target_threshold = .025;
+  value_comp_time = 0;
+  get_visdata_time = 0;
+  frontier_insert_time = 0;
+  mem_time = 0;
+}
 
 std::vector<configState*> Astar::run(configState* s, wsState* t){
   
@@ -22,6 +32,18 @@ std::vector<configState*> Astar::run(configState* s, wsState* t){
 
   std::cout << "Initialize start data structures\n";
 
+
+  /* Runtime checks */
+  float avg_frontier_pop = 0;
+  int pop_count = 0;
+
+
+  float avg_vis_add = 0;
+  int vis_add_count = 0;
+
+  float avg_expansion = 0;
+  int expansion_count = 0;
+
   /* Init */
   visData* startv = create_visdata();
   startv->current = start;
@@ -31,22 +53,28 @@ std::vector<configState*> Astar::run(configState* s, wsState* t){
   visData* next = 0;
   wsState* wscurrent = fk(start);
   while(distance(target, wscurrent) > target_threshold){
-   
+    clock_t pqstart = clock();
     next = frontier.top();
     frontier.pop();
+    float secsElapsed = (float)(clock() - pqstart)/CLOCKS_PER_SEC;
+    avg_frontier_pop += secsElapsed;
+    pop_count++;
     delete(wscurrent);
     wscurrent = fk(next->current);
 
-    // std::cout << "\n";
-    // configstate_tostring(next->current);
-    // std::cout << "Queue: "<< frontier.size() << '\n';
-    // std::cout << "Visited Set: "<< visited_set.size() << '\n';
-
-    // printf("Value: %f \n", next->value);
-    // std::cout << "\n";
+   
     if(next != 0){
+      clock_t visaddstart = clock();
       add_visited(next->current, next);
+      secsElapsed= (float)(clock() - visaddstart)/CLOCKS_PER_SEC;
+      avg_vis_add += secsElapsed;
+      vis_add_count ++;
+
+      clock_t expstart = clock();
       expand_frontier(next->current);
+      secsElapsed = (float)(clock() - expstart)/CLOCKS_PER_SEC;
+      avg_expansion += secsElapsed;
+      expansion_count++;
     } else {
       std::vector<configState*> path;
       return path;
@@ -54,10 +82,26 @@ std::vector<configState*> Astar::run(configState* s, wsState* t){
 
 
   }
+
+  
+
+
   std::cout << "Visited Set: "<< visited_set.size() << '\n';
   std::cout << "Queue: "<< frontier.size() << '\n';
 
   std::cout << "Completed Search\n";
+
+  std::cout << "Runtimes: \n\n\n\n";
+  std::cout << "Frontier Popping :" << avg_frontier_pop << '\n';
+  std::cout << "Expansion: " << avg_expansion << '\n';
+  std::cout << "  Vis Gets: " << get_visdata_time << '\n';
+  std::cout << "  Value Comp Time: " << value_comp_time << '\n';
+  std::cout << "  Frontier Push Time: " << frontier_insert_time << '\n';
+  std::cout << "  Mem_Time: " << mem_time << '\n';
+  std::cout << "  VisAdd :" << avg_vis_add*3 << '\n';
+  std::cout << "Counts: " << pop_count << '\n';
+
+
   visData* current = next;
 
   std::vector<configState*> path;
@@ -105,49 +149,88 @@ void Astar::expand_frontier(configState* c){
   if(c == 0){
     printf("not configed\n");
   }
-  for(int i = 0; i < 4; i++){
+  for(int i = 1; i < 4; i++){
     configState* pos = 0;
     configState* neg = 0;
+
+    // clock_t memstart = clock();
+
     pos = clone_configstate(c);
+
     pos->theta[i] = c->theta[i]+1; 
 
-    // printf("State %i: ",i);
-    // configstate_tostring(pos);
+
 
     neg = clone_configstate(c);
-    neg->theta[i] = c->theta[i]-1; 
+    neg->theta[i] = c->theta[i]-1;
+
+    // mem_time += (float)(clock() - memstart)/CLOCKS_PER_SEC;
+
+    // clock_t getvisstart = clock(); 
     visData* cv = get_visdata(c);
+    // get_visdata_time += (float)(clock() - getvisstart)/CLOCKS_PER_SEC;   
     if(!has_visited(pos)){
       visData* posv;
+      // memstart = clock();
+
       posv = create_visdata();
+
       posv->current = pos;
-      posv->prev = c;      
+      posv->prev = c;
+      // mem_time += (float)(clock() - memstart)/CLOCKS_PER_SEC;
+ 
+      clock_t getvaluestart = clock();     
       posv->value = heuristic(pos)+cost(c, pos)+cv->value;
       // std::cout << "Value: " <<std::setprecision(30) << posv->value << '\n';
+      value_comp_time += (float)(clock() - getvaluestart)/CLOCKS_PER_SEC;
+      // clock_t fpstart = clock();
       frontier.push(posv);
+      // frontier_insert_time +=(float)(clock() - fpstart)/CLOCKS_PER_SEC;
 
     } else {
+      // memstart = clock();
       deallocate_configstate(pos);
+      // mem_time += (float)(clock() - memstart)/CLOCKS_PER_SEC;
+
+
     }
 
     if(!has_visited(neg)){
       visData* negv;
+      // memstart = clock();
+
       negv = create_visdata();
       negv->current = neg;
       negv->prev = c;
+      // mem_time += (float)(clock() - memstart)/CLOCKS_PER_SEC;
+       clock_t getvaluestart = clock();     
+
       negv->value = heuristic(neg)+cost(c, neg)+cv->value;
+       value_comp_time += (float)(clock() - getvaluestart)/CLOCKS_PER_SEC;
+      // clock_t fpstart = clock();
+
       frontier.push(negv);
+      // frontier_insert_time +=(float)(clock() - fpstart)/CLOCKS_PER_SEC;
+
     } else {
+      // memstart = clock();
       deallocate_configstate(neg);
-    }
+      // mem_time += (float)(clock() - memstart)/CLOCKS_PER_SEC;
+      }    
+    
   }	
   // std::cout << '\n';
 }
 
 bool Astar::has_visited(configState* c){
-  std::map<configState*,visData*,configcomp>::const_iterator it;
-	it = visited_set.find(c);
-  return it != visited_set.end(); 
+  bool found = true;
+  try {
+    visited_set.at(c);
+  }
+  catch(...) {
+    found = false;
+  }
+  return found;
 }
 
 void Astar::add_visited(configState* c, visData* v){

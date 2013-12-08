@@ -1,12 +1,15 @@
 #ifndef ASTAR_H
 #define ASTAR_H
-#include <map>			  // maps
+#include <unordered_map>			  // maps
 #include <iostream>       // std::cout
 #include <queue>          // std::priority_queue
 #include <deque>         // std::vector
 #include <functional>     // std::greater
 #include "forward_kinematics.h"
-
+#include <unordered_map>
+#include <bitset>
+#include <string>
+#include <utility>
 class Astar
 {
 
@@ -35,12 +38,18 @@ private:
 	statepq frontier;   //This keeps track of the frontier state
 
 	/* Visited set as a map*/
-	std::map<configState*, visData*,configcomp> visited_set;
+	std::unordered_map<configState*,visData*, configHash, configEquals> visited_set;
 	//Visited set as a map
 
 
 	/* params */
 	configState* start;
+
+	/* Runtime Debug */
+	float get_visdata_time;
+	float value_comp_time;
+	float frontier_insert_time;
+	float mem_time;
 
 
 
