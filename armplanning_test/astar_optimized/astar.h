@@ -7,11 +7,11 @@
 #include <queue>          // std::priority_queue
 #include <deque>         // std::vector
 #include <functional>     // std::greater
-
+#include "forward_kinematics.h"
 class Astar {
 public:
-	Atar();
-	std::vector<configState*> run(double* start, double* target);
+	Astar();
+	std::vector<State*> run(int* start, double* target);
 private:
 	/* Space Matrix */
 	State*** space; 
@@ -19,7 +19,7 @@ private:
 	typedef std::priority_queue
 	  <PState*,std::deque<PState*>,pstate_comp> statepq;
 
-	void expand_frontier(int is,int js int ks);
+	void expand_frontier(int is,int js, int ks);
 
 	double cost(State* s1, State* s2);
 
@@ -32,6 +32,5 @@ private:
 	double numticks;
 	double* target;
 	void compute_fk(int i, int j, int k);
-}
-
+};
 #endif

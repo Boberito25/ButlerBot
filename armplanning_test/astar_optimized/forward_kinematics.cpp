@@ -7,7 +7,7 @@
 #include <string>
 #include <utility>
 //perform the forward kinematics of the robot to figure out where you are
-void* fk (double* x, double* z, double* alpha, int i, int j, int k)
+void fk (double* x, double* z, double* alpha, int i, int j, int k)
 {
   double theta0 = tick_to_radians(0);
   double theta1 = tick_to_radians(i);

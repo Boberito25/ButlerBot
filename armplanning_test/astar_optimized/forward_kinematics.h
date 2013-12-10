@@ -20,7 +20,7 @@ typedef struct State {
 } State;
 typedef struct PState {
 	double value;
-	double state[3];
+	int state[3];
 } PState;
 
 /* Comparators */
