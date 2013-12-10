@@ -19,8 +19,6 @@ typedef struct wsState{
 	double y;
 	double z;
 	double alpha;
-	double theta;
-	double phi;
 } wsState;
 
 typedef struct visData{
