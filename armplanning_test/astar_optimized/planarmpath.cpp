@@ -14,7 +14,7 @@ int main(int argc, char** argv )
   double z;
   double alpha;
 
-  fk(&x, &z, &alpha, 5,5,0);
+  fk(&x, &z, &alpha, 99,99,0);
   double target[3] = {x,z,alpha};
   printf("Target: %f, %f, %f\n", x, z, alpha);
   std::vector<State*> path = planner.run(start, target);
