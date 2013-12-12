@@ -4,6 +4,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include <math.h>
+#include <stdio.h>
 #include "forward_kinematics.h"
 Astar::Astar(){
 	space = new State**[100];
@@ -19,13 +20,17 @@ Astar::Astar(){
 		}
 	}
 
-	dist_threshold = .5;
+	dist_threshold = .025;
 	numticks = 100;
 }
 
 std::vector<State*> Astar::run(int* start, double* target){
+	std::cout << "Running A*\n";
+
+	std::cout << "Initializing target\n";
     this->target = target;
 
+    std::cout << "Initialize Start\n";
 	compute_fk(start[0], start[1], start[2]);
 	State* starts = &space[start[0]][start[1]][start[2]];
 	starts->heuristic 
@@ -35,7 +40,7 @@ std::vector<State*> Astar::run(int* start, double* target){
 	starts->prev[2] = -1;
 
 	starts->value = starts->heuristic;
-
+	std::cout << "Initialzing Priority Queue\n";
 	PState* pstart = new PState;
 	pstart->value = starts->value;
 	pstart->state[0] = start[0];
@@ -45,9 +50,10 @@ std::vector<State*> Astar::run(int* start, double* target){
 	frontier.push(pstart);
 
 	State* current = starts;
+
+	std::cout << "Searching For Target\n";
 	while(current->heuristic > dist_threshold){
 		/* Get the next priority */
-		
 		PState* pcur = frontier.top();
 		frontier.pop();
 		current = 
@@ -56,8 +62,11 @@ std::vector<State*> Astar::run(int* start, double* target){
 		expand_frontier(pcur->state[0],pcur->state[1],pcur->state[2]);
 		delete(pcur);
 	}	
+	std::cout << "Search Completed\n";
 	std::vector<State*> path;
 	State* back_tracker = current;;
+
+	std::cout <<"Compiling Path\n";
 	while(back_tracker != starts){
 		path.push_back(back_tracker);
 		int i0 = back_tracker->prev[0];
@@ -82,22 +91,20 @@ void Astar::expand_frontier(int is, int js, int ks){
 				if(inbounds(is+i, js+j, ks+k)){
 					/* Check if visited */
 
-					if(!space[is+i][js+j][ks+k].visited)
+					if(space[is+i][js+j][ks+k].visited)
 						continue;
 					/* Has the heuristic been calculated */	
-
 
 					if(space[is+i][js+j][ks+k].heuristic < 0){
 						compute_fk(is+i, js+j, ks+k);
 						space[is+i][js+j][ks+k].heuristic
 							= heuristic(&space[is+i][js+j][ks+k]);
 					}
-					double curcost =  space[i][j][k].value - 
-						space[i][j][k].heuristic + 
-						cost(&space[i][j][k], &space[is+i][js+j][ks+k]);
+					double curcost =  space[is][js][ks].value - 
+						space[is][js][ks].heuristic + 
+						cost(&space[is][js][ks], &space[is+i][js+j][ks+k]);
 
 				    /* Check if new value is less than min value */
-
 					if(space[is+i][js+j][ks+k].value < 0){
 						space[is+i][js+j][ks+k].value = 
 							space[is+i][js+j][ks+k].heuristic+curcost;
@@ -114,7 +121,6 @@ void Astar::expand_frontier(int is, int js, int ks){
 					} else {
 						if(curcost + space[is+i][js+j][ks+k].heuristic 
 							< space[is+i][js+j][ks+k].value){
-
 							space[is+i][js+j][ks+k].value = 
 								curcost+space[is+i][js+j][ks+k].heuristic;
 							space[is+i][js+j][ks+k].prev[0] = i;
