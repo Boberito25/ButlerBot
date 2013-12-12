@@ -14,7 +14,7 @@ wsState* fk (configState* c)
   double theta2 = tick_to_radians(c->theta[2]);
   double theta3 = tick_to_radians(c->theta[3]);
   double theta4 = tick_to_radians(c->theta[4]);
-  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, theta0);
+  /*  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, theta0);
   Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+theta1);
   Eigen::Matrix4d T_23 = DH(0, 150, 0, theta2);
   Eigen::Matrix4d T_34 = DH(-M_PI/2, 0, 0, M_PI/2+theta3);
@@ -29,6 +29,23 @@ wsState* fk (configState* c)
   outstate->alpha = tick_to_radians(c->theta[0]+c->theta[1]+
       c->theta[2]+c->theta[3]+c->theta[4]);
   //TODO calculate angles based on rotation matrix
+  */
+  double c0 = cos(theta0);
+  double s0 = sin(theta0);
+  double c1 = cos(theta1);
+  double s1 = sin(theta1);
+  double c3 = cos(theta3);
+  double s3 = sin(theta3);
+  double c12 = cos(theta1-theta2);//minus on purpose
+  double s12 = sin(theta1+theta2);//plus on purpose
+
+  wsState* outstate = new wsState;
+
+
+  outstate->x = 150*(c0*c12+c0*c1) + 116.525*(c0*c12*s3 + c0*s12*c3);
+  outstate->y = 150*(s0*c12+s0*c1) + 116.525*(s0*c12*s3 + s0*s12*c3);
+  outstate->z = 150*(s12+s1) + 116.525*(s12*s3+c12*c3) + 26.5;
+  outstate->alpha = theta1+ theta2+ theta3;
 
   return outstate;
 
@@ -52,7 +69,7 @@ double distance(wsState* s1,wsState* s2)
 }
 
 configState* clone_configstate(configState* c){
- 
+
   configState* clone = new configState;
   clone->theta[0] = c->theta[0];
   clone->theta[1] = c->theta[1];
@@ -60,7 +77,7 @@ configState* clone_configstate(configState* c){
   clone->theta[3] = c->theta[3];
   clone->theta[4] = c->theta[4];
   return clone;
-} 
+}
 
 double tick_to_radians(int i){
   return (M_PI/100)*i;
@@ -94,7 +111,7 @@ void deallocate_visdata(visData* v){
 }
 
 void wsstate_tostring(wsState* w){
-    printf("Work Space State: x:%f, y:%f, z:%f\n", 
+    printf("Work Space State: x:%f, y:%f, z:%f\n",
       w->x, w->y, w->z);
 }
 

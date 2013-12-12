@@ -6,7 +6,7 @@
 int main(int argc, char** argv )
 {
   std::cout << "Start Program\n";
-    
+
   Astar planner;
 
   configState start;
@@ -20,13 +20,13 @@ int main(int argc, char** argv )
   configState target;
 
   target.theta[0] = 0;
-  target.theta[1] = 10;
-  target.theta[2] = 10;
+  target.theta[1] = 12;
+  target.theta[2] = 12;
   target.theta[3] = 0;
   target.theta[4] = 0;
 
   wsState* actarget = fk(&target);
-  
+
   std::cout << "Start Running\n";
   clock_t startTime = clock();
   std::vector<configState*> path = planner.run(&start, actarget);

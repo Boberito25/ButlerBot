@@ -30,7 +30,7 @@ struct pstate_comp {
 };
 /* Utils */
 
-void fk(double* x, double* z, double* alpha, 
+void fk(double* x, double* z, double* alpha,
 		int t0, int t1, int t2);
 Eigen::Matrix4d DH(double alpha, double a, double d, double theta);
 double tick_to_radians(int i);

@@ -14,7 +14,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k)
   double theta2 = tick_to_radians(j);
   double theta3 = tick_to_radians(k);
   double theta4 = tick_to_radians(0);
-  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, theta0);
+  /*  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, theta0);
   Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+theta1);
   Eigen::Matrix4d T_23 = DH(0, 150, 0, theta2);
   Eigen::Matrix4d T_34 = DH(-M_PI/2, 0, 0, M_PI/2+theta3);
@@ -24,9 +24,19 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k)
 
   *x = T_05(0,3);
   *z = T_05(2,3);
-  *alpha = tick_to_radians(0+i+j+k+0);
-  //TODO calculate angles based on rotation matrix
+  *alpha = tick_to_radians(0+i+j+k+0);*/
+  double c0 = cos(theta0);
+  double s0 = sin(theta0);
+  double c1 = cos(theta1);
+  double s1 = sin(theta1);
+  double c3 = cos(theta3);
+  double s3 = sin(theta3);
+  double c12 = cos(theta1-theta2);//minus on purpose
+  double s12 = sin(theta1+theta2);//plus on purpose
 
+  *x = 150*(c0*c12+c0*c1) + 116.525*(c0*c12*s3 + c0*s12*c3);
+  *z = 150*(s12+s1) + 116.525*(s12*s3+c12*c3) + 26.5;
+  *alpha = theta1+theta2+theta3;
 
 }//end forward_kinematics
 
