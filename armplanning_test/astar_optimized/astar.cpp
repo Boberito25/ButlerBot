@@ -108,9 +108,9 @@ void Astar::expand_frontier(int is, int js, int ks){
 					if(space[is+i][js+j][ks+k].value < 0){
 						space[is+i][js+j][ks+k].value = 
 							space[is+i][js+j][ks+k].heuristic+curcost;
-						space[is+i][js+j][ks+k].prev[0] = i;
-		                space[is+i][js+j][ks+k].prev[1] = j;
-		                space[is+i][js+j][ks+k].prev[2] = k;	
+						space[is+i][js+j][ks+k].prev[0] = is;
+		                space[is+i][js+j][ks+k].prev[1] = js;
+		                space[is+i][js+j][ks+k].prev[2] = ks;	
 	
 						PState* p = new PState;
 						p->state[0] = is+i;
@@ -123,9 +123,9 @@ void Astar::expand_frontier(int is, int js, int ks){
 							< space[is+i][js+j][ks+k].value){
 							space[is+i][js+j][ks+k].value = 
 								curcost+space[is+i][js+j][ks+k].heuristic;
-							space[is+i][js+j][ks+k].prev[0] = i;
-		                	space[is+i][js+j][ks+k].prev[1] = j;
-		                	space[is+i][js+j][ks+k].prev[2] = k;	
+							space[is+i][js+j][ks+k].prev[0] = is;
+		                	space[is+i][js+j][ks+k].prev[1] = js;
+		                	space[is+i][js+j][ks+k].prev[2] = ks;	
 							PState* p = new PState;
 							p->state[0] = is+i;
 							p->state[1] = js+j;
