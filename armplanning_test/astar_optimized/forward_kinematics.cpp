@@ -6,13 +6,13 @@
 #include <string>
 #include <utility>
 //perform the forward kinematics of the robot to figure out where you are
-void fk (double* x, double* z, double* alpha, int i, int j, int k)
+void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 {
-  double theta0 = tick_to_radians(0);
-  double theta1 = tick_to_radians(i);
-  double theta2 = tick_to_radians(j);
-  double theta3 = tick_to_radians(k);
-  double theta4 = tick_to_radians(0);
+  double theta0 = tick_to_radians(0,numticks);
+  double theta1 = tick_to_radians(i,numticks);
+  double theta2 = tick_to_radians(j,numticks);
+  double theta3 = tick_to_radians(k,numticks);
+  double theta4 = tick_to_radians(0,numticks);
 
   double c0 = cos(theta0);
   double c1 = cos(theta1);
@@ -39,7 +39,7 @@ Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
   return T;
 }
 
-double tick_to_radians(int i){
-  return (M_PI/100)*(i-49);
+double tick_to_radians(int i, int numticks){
+  return (M_PI/numticks)*(i-49);
 }
 

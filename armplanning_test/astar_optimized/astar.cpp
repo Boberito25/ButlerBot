@@ -7,12 +7,16 @@
 #include <stdio.h>
 #include "forward_kinematics.h"
 Astar::Astar(){
-	space = new State**[100];
-	for(int i = 0; i < 100; i++){
-		space[i] = new State*[100];
-		for(int j = 0; j < 100; j++){
-			space[i][j] = new State[100];
-			for(int k = 0; k < 100; k++){
+	dist_threshold = .025;
+	int n_ticks = 100;
+	numticks = n_ticks;
+	n_ticks = numticks;
+	space = new State**[n_ticks];
+	for(int i = 0; i < n_ticks; i++){
+		space[i] = new State*[n_ticks];
+		for(int j = 0; j < n_ticks; j++){
+			space[i][j] = new State[n_ticks];
+			for(int k = 0; k < n_ticks; k++){
 				space[i][j][k].visited = false;
 				space[i][j][k].heuristic = -1;
 				space[i][j][k].value = -1;
@@ -20,8 +24,7 @@ Astar::Astar(){
 		}
 	}
 
-	dist_threshold = .025;
-	numticks = 100;
+	
 }
 
 std::vector<PState*> Astar::run(int* start, double* target){
@@ -109,8 +112,8 @@ void Astar::expand_frontier(int is, int js, int ks){
 						space[is+i][js+j][ks+k].heuristic
 							= heuristic(&space[is+i][js+j][ks+k]);
 					}
-					double curcost =  space[is][js][ks].value - 
-						space[is][js][ks].heuristic + 
+					double curcost =  (space[is][js][ks].value - 
+						space[is][js][ks].heuristic) + 
 						cost(&space[is][js][ks], &space[is+i][js+j][ks+k]);
 
 				    /* Check if new value is less than min value */
@@ -163,7 +166,7 @@ void Astar::compute_fk(int i, int j, int k){
 	double x;
 	double z;
 	double alpha;
-	fk(&x, &z, &alpha, i, j, k);
+	fk(&x, &z, &alpha, i, j, k,numticks);
 	space[i][j][k].x  = x;
 	space[i][j][k].z = z;
 	space[i][j][k].alpha = alpha;

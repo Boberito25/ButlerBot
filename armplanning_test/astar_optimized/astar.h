@@ -12,6 +12,8 @@ class Astar {
 public:
 	Astar();
 	std::vector<PState*> run(int* start, double* target);
+    double numticks;
+
 private:
 	/* Space Matrix */
 	State*** space; 
@@ -29,7 +31,6 @@ private:
 
 	/* Constants */
 	double dist_threshold;
-	double numticks;
 	double* target;
 	void compute_fk(int i, int j, int k);
 };
