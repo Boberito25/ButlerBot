@@ -24,13 +24,13 @@ Astar::Astar(){
 	numticks = 100;
 }
 
-std::vector<State*> Astar::run(int* start, double* target){
-	std::cout << "Running A*\n";
+std::vector<PState*> Astar::run(int* start, double* target){
+	// std::cout << "Running A*\n";
 
-	std::cout << "Initializing target\n";
+	// std::cout << "Initializing target\n";
     this->target = target;
 
-    std::cout << "Initialize Start\n";
+    // std::cout << "Initialize Start\n";
 	compute_fk(start[0], start[1], start[2]);
 	State* starts = &space[start[0]][start[1]][start[2]];
 	starts->heuristic 
@@ -40,7 +40,7 @@ std::vector<State*> Astar::run(int* start, double* target){
 	starts->prev[2] = -1;
 
 	starts->value = starts->heuristic;
-	std::cout << "Initialzing Priority Queue\n";
+	// std::cout << "Initialzing Priority Queue\n";
 	PState* pstart = new PState;
 	pstart->value = starts->value;
 	pstart->state[0] = start[0];
@@ -50,32 +50,41 @@ std::vector<State*> Astar::run(int* start, double* target){
 	frontier.push(pstart);
 
 	State* current = starts;
+	PState* tracker = new PState;
 
-	std::cout << "Searching For Target\n";
+	// std::cout << "Searching For Target\n";
 	while(current->heuristic > dist_threshold){
 		/* Get the next priority */
 		PState* pcur = frontier.top();
 		frontier.pop();
+		tracker->value = pcur->value;
+		tracker->state[0] = pcur->state[0];
+		tracker->state[1] = pcur->state[1];
+		tracker->state[2] = pcur->state[2];
 		current = 
 			&space[pcur->state[0]][pcur->state[1]][pcur->state[2]];
 		current->visited = true;
 		expand_frontier(pcur->state[0],pcur->state[1],pcur->state[2]);
 		delete(pcur);
 	}	
-	std::cout << "Search Completed\n";
-	std::vector<State*> path;
+	// std::cout << "Search Completed\n";
+	std::vector<PState*> path;
 	State* back_tracker = current;;
-
-	std::cout <<"Compiling Path\n";
+	path.push_back(tracker);
+	// std::cout <<"Compiling Path\n";
 	while(back_tracker != starts){
-		path.push_back(back_tracker);
 		int i0 = back_tracker->prev[0];
 		int i1 = back_tracker->prev[1];
 		int i2 = back_tracker->prev[2];
+		PState* next = new PState;
+		next->value = back_tracker->value;
+		next->state[0] = i0;
+		next->state[1] = i1;
+		next->state[2] = i2;
 		back_tracker = &space[i0][i1][i2];
+		path.push_back(next);
 	}
 
-	path.push_back(starts);
 	return path;
 
 }

@@ -11,7 +11,7 @@
 class Astar {
 public:
 	Astar();
-	std::vector<State*> run(int* start, double* target);
+	std::vector<PState*> run(int* start, double* target);
 private:
 	/* Space Matrix */
 	State*** space; 

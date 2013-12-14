@@ -5,7 +5,7 @@
 #include <stdio.h>
 int main(int argc, char** argv )
 {
-  std::cout << "Start Program\n";
+  // std::cout << "Start Program\n";
     
   Astar planner;
 
@@ -16,16 +16,18 @@ int main(int argc, char** argv )
 
   fk(&x, &z, &alpha, 99,99,0);
   double target[3] = {x,z,alpha};
-  printf("Target: %f, %f, %f\n", x, z, alpha);
-  std::vector<State*> path = planner.run(start, target);
+  // printf("Target: %f, %f, %f\n", x, z, alpha);
+  std::vector<PState*> path = planner.run(start, target);
   int n = path.size();
   for(int i = 0; i < n; i++){
-    State* s = path.at(i);
-    x = s->x;
-    z = s->z;
-    alpha = s->alpha;
+    PState* s = path.at(i);
+    double t0 = 0;
+    double t1 = tick_to_radians(s->state[0]);
+    double t2 = tick_to_radians(s->state[1]);
+    double t3 = tick_to_radians(s->state[2]);
+    double t4 = 0;
 
-    printf("X: %f, Z: %f, Alpha: %f\n",x,z,alpha);
+    printf("%f %f %f %f %f\n", t0, t1,t2,t3,t4);
   }
 
 

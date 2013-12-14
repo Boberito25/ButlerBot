@@ -14,17 +14,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k)
   double theta2 = tick_to_radians(j);
   double theta3 = tick_to_radians(k);
   double theta4 = tick_to_radians(0);
-  /*  Eigen::Matrix4d T_01 = DH(M_PI/2 , 0, 26.5, theta0);
-  Eigen::Matrix4d T_12 = DH(0, 150, 0 , M_PI/2+theta1);
-  Eigen::Matrix4d T_23 = DH(0, 150, 0, theta2);
-  Eigen::Matrix4d T_34 = DH(-M_PI/2, 0, 0, M_PI/2+theta3);
-  Eigen::Matrix4d T_45 = DH(0,0,116.525, theta4);
 
-  Eigen::Matrix4d T_05 = T_01*T_12*T_23*T_34*T_45;
-
-  *x = T_05(0,3);
-  *z = T_05(2,3);
-  *alpha = tick_to_radians(0+i+j+k+0);*/
   double c0 = cos(theta0);
   double s0 = sin(theta0);
   double c1 = cos(theta1);
