@@ -9,7 +9,7 @@ int main(int argc, char** argv )
     
   Astar planner;
 
-  int start[3] = {0,0,0};
+  int start[3] = {49,49,49};
   double x;
   double z;
   double alpha;

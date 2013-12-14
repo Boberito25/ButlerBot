@@ -1,7 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "ControllerManager")
-set(ControllerManager_MAINTAINER "vsunder <vsunder@todo.todo>")
-set(ControllerManager_DEPRECATED "")
-set(ControllerManager_VERSION "0.0.0")
-set(ControllerManager_BUILD_DEPENDS "message_generation" "rospy" "std_msgs" "roscpp")
-set(ControllerManager_RUN_DEPENDS "message_runtime" "rospy" "std_msgs" "roscpp")
-set(ControllerManager_BUILDTOOL_DEPENDS "catkin")

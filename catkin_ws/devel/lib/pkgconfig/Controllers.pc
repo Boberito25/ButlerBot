@@ -1,6 +1,0 @@
-Name: Controllers
-Description: Description of Controllers
-Version: 0.0.1
-Cflags: -I/home/vsunder/ButlerBot/catkin_ws/src/Controllers/include
-Libs: -L/home/vsunder/ButlerBot/catkin_ws/devel/lib 
-Requires: 

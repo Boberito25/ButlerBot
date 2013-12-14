@@ -41,6 +41,6 @@ Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
 }
 
 double tick_to_radians(int i){
-  return (M_PI/100)*i;
+  return (M_PI/100)*(i-49);
 }
 
