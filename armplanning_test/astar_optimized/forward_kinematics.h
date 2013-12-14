@@ -2,7 +2,6 @@
 #define FORWARDKINEMATICS_H
 #include <Eigen/Dense>
 #include <vector>
-#include <unordered_map>
 #include <bitset>
 #include <string>
 #include <utility>

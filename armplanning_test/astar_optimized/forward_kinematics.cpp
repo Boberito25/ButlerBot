@@ -2,7 +2,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <Eigen/Dense>
-#include <unordered_map>
 #include <bitset>
 #include <string>
 #include <utility>
@@ -16,16 +15,16 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k)
   double theta4 = tick_to_radians(0);
 
   double c0 = cos(theta0);
-  double s0 = sin(theta0);
   double c1 = cos(theta1);
   double s1 = sin(theta1);
-  double c3 = cos(theta3);
-  double s3 = sin(theta3);
-  double c12 = cos(theta1-theta2);//minus on purpose
-  double s12 = sin(theta1+theta2);//plus on purpose
+  double c12 = cos(theta1+theta2);
+  double s12 = sin(theta1+theta2);
+  double c123 = cos(theta1+theta2+theta3);
+  double s123 = sin(theta1+theta2+theta3);
 
-  *x = 150*(c0*c12+c0*c1) + 116.525*(c0*c12*s3 + c0*s12*c3);
-  *z = 150*(s12+s1) + 116.525*(s12*s3+c12*c3) + 26.5;
+
+  *x = c0*(150*(c1+c12) - 116.525*s123);
+  *z = 150*(s12+s1) + 116.525*c123 + 26.5;
   *alpha = theta1+theta2+theta3;
 
 }//end forward_kinematics
