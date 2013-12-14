@@ -15,8 +15,9 @@ int main(int argc, char** argv )
   double alpha;
 
   fk(&x, &z, &alpha, 99,99,0,planner.numticks);
+  std::cout <<"Target Alpha: " << alpha<<'\n';
   double target[3] = {x,z,alpha};
-  // printf("Target: %f, %f, %f\n", x, z, alpha);
+   printf("Target: %f, %f, %f\n", x, z, alpha);
   std::vector<PState*> path = planner.run(start, target);
   int n = path.size();
   for(int i = 0; i < n; i++){
