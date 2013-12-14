@@ -9,7 +9,7 @@
 #define COSTFUNCTION 0
 
 Astar::Astar(){
-	dist_threshold = .025;
+	dist_threshold = .00025;
 	int n_ticks = 100;
 	numticks = n_ticks;
 	n_ticks = numticks;
