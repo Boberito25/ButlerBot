@@ -1,6 +1,7 @@
-function [ points,dists ] = displayArm( t1,t2,t3,t4,t5 )
+function [ points ] = displayArm( t1,t2,t3,t4,t5,is3d )
 %displayArm(t1,t2,t3,t4,t5) plots the robot arm with the input arm angles
 %   Detailed explanation goes here
+
 
 [T_05,TS] = ButlerBotFK(t1,t2,t3,t4,t5);
 origin = [0;0;0;1];
@@ -17,13 +18,15 @@ endofectorBF = T_05*endofector;
 
 washolding = ishold();
 
-
-% plot3(points(1,:),points(2,:),points(3,:),'b*-','LineWidth',4,'MarkerSize',10,'MarkerEdgeColor','m');
-% hold on;
-% plot3(endofectorBF(1,:),endofectorBF(2,:),endofectorBF(3,:),'b*-','LineWidth',4);
-plot(points(1,:),points(3,:),'b*-','LineWidth',4,'MarkerSize',10,'MarkerEdgeColor','m');
-hold on;
-plot(endofectorBF(1,:),endofectorBF(3,:),'b*-','LineWidth',4);
+if is3d
+    plot3(points(1,:),points(2,:),points(3,:),'b*-','LineWidth',4,'MarkerSize',10,'MarkerEdgeColor','m');
+    hold on;
+    plot3(endofectorBF(1,:),endofectorBF(2,:),endofectorBF(3,:),'b*-','LineWidth',4);
+else
+    plot(points(1,:),points(3,:),'b*-','LineWidth',4,'MarkerSize',10,'MarkerEdgeColor','m');
+    hold on;
+    plot(endofectorBF(1,:),endofectorBF(3,:),'b*-','LineWidth',4);
+end
 if ~washolding
     hold off
 end
