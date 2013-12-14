@@ -14,7 +14,7 @@ int main(int argc, char** argv )
   double z;
   double alpha;
 
-  fk(&x, &z, &alpha, 99,99,0);
+  fk(&x, &z, &alpha, 99,99,0,planner.numticks);
   double target[3] = {x,z,alpha};
   // printf("Target: %f, %f, %f\n", x, z, alpha);
   std::vector<PState*> path = planner.run(start, target);
@@ -22,9 +22,9 @@ int main(int argc, char** argv )
   for(int i = 0; i < n; i++){
     PState* s = path.at(i);
     double t0 = 0;
-    double t1 = tick_to_radians(s->state[0]);
-    double t2 = tick_to_radians(s->state[1]);
-    double t3 = tick_to_radians(s->state[2]);
+    double t1 = tick_to_radians(s->state[0],planner.numticks);
+    double t2 = tick_to_radians(s->state[1],planner.numticks);
+    double t3 = tick_to_radians(s->state[2],planner.numticks);
     double t4 = 0;
 
     printf("%f %f %f %f %f\n", t0, t1,t2,t3,t4);
