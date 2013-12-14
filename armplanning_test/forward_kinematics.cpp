@@ -40,9 +40,9 @@ wsState* fk (configState* c)
   double s123 = sin(theta1+theta2+theta3);
 
   wsState* outstate = new wsState;
-  outstate->x = c0*(150*(c1+c12) - 116.525*s123);
-  outstate->y = s0*(150*(c1+c12) - 116.525*s123);
-  outstate->z = 150*(s12+s1) + 116.525*c123 + 26.5;
+  outstate->x = c0*(150*(c1+c12) + 116.525*s123);
+  outstate->y = s0*(150*(c1+c12) + 116.525*s123);
+  outstate->z = 150*(s12+s1) - 116.525*c123 + 26.5;
   outstate->alpha = theta1+ theta2+ theta3;
 
   return outstate;

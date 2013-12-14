@@ -23,8 +23,8 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k)
   double s123 = sin(theta1+theta2+theta3);
 
 
-  *x = c0*(150*(c1+c12) - 116.525*s123);
-  *z = 150*(s12+s1) + 116.525*c123 + 26.5;
+  *x = c0*(150*(c1+c12) + 116.525*s123);
+  *z = 150*(s12+s1) - 116.525*c123 + 26.5;
   *alpha = theta1+theta2+theta3;
 
 }//end forward_kinematics
