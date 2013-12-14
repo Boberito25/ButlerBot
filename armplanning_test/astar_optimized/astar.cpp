@@ -6,6 +6,8 @@
 #include <math.h>
 #include <stdio.h>
 #include "forward_kinematics.h"
+#define COSTFUNCTION 0
+
 Astar::Astar(){
 	dist_threshold = .025;
 	int n_ticks = 100;
@@ -153,8 +155,13 @@ void Astar::expand_frontier(int is, int js, int ks){
 }
 
 double Astar::cost(State* s1, State* s2){
+#if CONSTFUNCTION == 1
+
+#else 
 	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
+
+#endif
 }
 
 double Astar::heuristic(State* s){
