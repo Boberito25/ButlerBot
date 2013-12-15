@@ -8,11 +8,12 @@
 #include "forward_kinematics.h"
 
 Astar::Astar(){
-	dist_threshold = 10;
+	dist_threshold = 8;
 	int n_ticks = 100;
 	numticks = n_ticks;
 	n_ticks = numticks;
 	space = new State**[n_ticks];
+	obj_mass = 20;
 	for(int i = 0; i < n_ticks; i++){
 		space[i] = new State*[n_ticks];
 		for(int j = 0; j < n_ticks; j++){
