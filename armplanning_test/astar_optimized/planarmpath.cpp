@@ -10,12 +10,13 @@ int main(int argc, char** argv )
   Astar planner;
 
   int start[3] = {49,49,49};
-  double x;
-  double z;
-  double alpha;
+  double x = -100;
+  double z = 300;
+  double alpha = 0;
 
-  fk(&x, &z, &alpha, 99,99,0,planner.numticks);
+  //  fk(&x, &z, &alpha, 99,99,49,planner.numticks);
   double target[3] = {x,z,alpha};
+ 
    // printf("Target: %f, %f, %f\n", x, z, alpha);
   std::vector<PState*> path = planner.run(start, target);
   int n = path.size();

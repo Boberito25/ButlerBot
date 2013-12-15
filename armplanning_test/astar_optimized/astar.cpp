@@ -8,7 +8,7 @@
 #include "forward_kinematics.h"
 
 Astar::Astar(){
-	dist_threshold = .00025;
+	dist_threshold = 10;
 	int n_ticks = 100;
 	numticks = n_ticks;
 	n_ticks = numticks;
