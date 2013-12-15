@@ -3,6 +3,7 @@
 #include <deque>
 #include <iostream>
 #include <Eigen/Dense>
+#include <Eigen/Core>
 #include <math.h>
 #include <stdio.h>
 #include "forward_kinematics.h"
@@ -12,6 +13,7 @@ Astar::Astar(){
 	int n_ticks = 100;
 	numticks = n_ticks;
 	n_ticks = numticks;
+        time_step = .01;
 	space = new State**[n_ticks];
 	obj_mass = 20;
 	for(int i = 0; i < n_ticks; i++){
@@ -211,6 +213,21 @@ double Astar::cost(State* s1, State* s2){
 	double mag_torque1 = pow(s1c1+s1c12+s1s123,2)
 		+pow(s1c12+s1s123, 2)+pow(s1s123, 2)+.0001;
 	return dist + 9800*(mag_torque2/mag_torque1);
+#elif COSTFUNCTION == 5
+	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
+		+pow(s1->alpha - s2->alpha,2);
+	double s2t1 = tick_to_radians(s2->id[0],numticks);
+	double s2t2 = tick_to_radians(s2->id[1],numticks);
+	double s2t3 = tick_to_radians(s2->id[2],numticks);
+	double s1t1 = tick_to_radians(s1->id[0],numticks);
+	double s1t2 = tick_to_radians(s1->id[1],numticks);
+	double s1t3 = tick_to_radians(s1->id[2],numticks);
+
+	Eigen::Matrix<double,3,5> J = jacobian(0,s1->id[0],s1->id[1],s1->id[2],0,numticks);
+	Eigen::Matrix<double,5,1> thetadot;
+	thetadot << 0, ((s2t1-s1t1)/time_step), ((s2t2-s1t2)/time_step), ((s2t3-s1t3)/time_step),  0;
+	Eigen::Vector3d vel = J*thetadot;
+        return dist+ obj_mass*vel.squaredNorm();
 #else 
 	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);

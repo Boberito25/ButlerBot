@@ -1,10 +1,14 @@
 function [m,pathpts] = plotPath(angles,is3d)
 %plotPath(angles) plots the path of the robot arm moving through each of the given angles
 
-figure;
+if nargin ==1
+    is3d =false;
+end
+
 last  = length(angles);
 pathpts = zeros(3,last);
 %distances = cell(1,last);
+figure;
 for i = 0:last-1
     points = displayArm(angles(last-i,1),angles(last-i,2),angles(last-i,3),angles(last-i,4),angles(last-i,5),is3d);
     if is3d
