@@ -171,7 +171,7 @@ double Astar::cost(State* s1, State* s2){
 
 	double mag_torque = pow(c1+c12+s123,2)
 		+pow(c12+s123, 2)+pow(s123, 2);
-	return dist+mag_torque;
+	return dist+9800*mag_torque;
 
 
 #else 
