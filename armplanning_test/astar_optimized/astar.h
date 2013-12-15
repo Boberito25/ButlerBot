@@ -15,6 +15,7 @@ public:
     double numticks;
 
 private:
+	double obj_mass;
 	/* Space Matrix */
 	State*** space; 
 	/* Frontier Set */

@@ -16,6 +16,7 @@ typedef struct State {
 	double heuristic;
 	double value;
 	bool visited;
+	int id[3];
 } State;
 typedef struct PState {
 	double value;

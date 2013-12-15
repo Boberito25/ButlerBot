@@ -6,7 +6,6 @@
 #include <math.h>
 #include <stdio.h>
 #include "forward_kinematics.h"
-#define COSTFUNCTION 0
 
 Astar::Astar(){
 	dist_threshold = .00025;
@@ -22,6 +21,9 @@ Astar::Astar(){
 				space[i][j][k].visited = false;
 				space[i][j][k].heuristic = -1;
 				space[i][j][k].value = -1;
+				space[i][j][k].id[0] = i;
+				space[i][j][k].id[1] = j;
+				space[i][j][k].id[2] = k;
 			}
 		}
 	}
@@ -155,7 +157,22 @@ void Astar::expand_frontier(int is, int js, int ks){
 }
 
 double Astar::cost(State* s1, State* s2){
-#if CONSTFUNCTION == 1
+#if COSTFUNCTION == 1
+	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
+#elif COSTFUNCTION == 2
+	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
+		+pow(s1->alpha - s2->alpha,2);
+	double t1 = tick_to_radians(s2->id[0],numticks);
+	double t2 = tick_to_radians(s2->id[1],numticks);
+	double t3 = tick_to_radians(s2->id[2],numticks);
+	double c1 = 150*cos(t1)*obj_mass;
+	double c12 = 150*cos(t1+t2)*obj_mass; 
+	double s123 = 116.525*sin(t1+t2+t3)*obj_mass;
+
+	double mag_torque = pow(c1+c12+s123,2)
+		+pow(c12+s123, 2)+pow(s123, 2);
+	return dist+mag_torque;
+
 
 #else 
 	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
@@ -165,8 +182,12 @@ double Astar::cost(State* s1, State* s2){
 }
 
 double Astar::heuristic(State* s){
+#if COSTFUNCTION == 1
+	return pow(s->x - target[0],2)+pow(s->z - target[1],2);
+#else
 	return pow(s->x - target[0],2)+pow(s->z - target[1],2)
 		+pow(s->alpha - target[2],2);
+#endif
 }
 
 void Astar::compute_fk(int i, int j, int k){
