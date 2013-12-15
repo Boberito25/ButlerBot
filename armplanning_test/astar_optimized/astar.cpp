@@ -7,13 +7,19 @@
 #include <math.h>
 #include <stdio.h>
 #include "forward_kinematics.h"
-
+#define BASIC 0
+#define NOALPHA 1
+#define WRENCH 2
+#define WRENCH_NOALPHA 3
+#define WRENCH_RATIO 4
+#define ENERGY_LINEAR 5
 Astar::Astar(){
 	dist_threshold = 8;
 	int n_ticks = 100;
 	numticks = n_ticks;
 	n_ticks = numticks;
-        time_step = .01;
+    time_step = .01;
+    angle_threshold = .1;
 	space = new State**[n_ticks];
 	obj_mass = 20;
 	for(int i = 0; i < n_ticks; i++){
@@ -62,7 +68,7 @@ std::vector<PState*> Astar::run(int* start, double* target){
 	State* current = starts;
 	PState* tracker = new PState;
 	// std::cout << "Searching For Target\n";
-	while(current->heuristic > dist_threshold){
+	while(will_continue(current)){
 		/* Get the next priority */
 		PState* pcur = frontier.top();
 		frontier.pop();
@@ -163,9 +169,9 @@ void Astar::expand_frontier(int is, int js, int ks){
 }
 
 double Astar::cost(State* s1, State* s2){
-#if COSTFUNCTION == 1
+#if COSTFUNCTION == NOALPHA
 	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
-#elif COSTFUNCTION == 2
+#elif COSTFUNCTION == WRENCH
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
 	double t1 = tick_to_radians(s2->id[0],numticks);
@@ -178,7 +184,7 @@ double Astar::cost(State* s1, State* s2){
 	double mag_torque = pow(c1+c12+s123,2)
 		+pow(c12+s123, 2)+pow(s123, 2);
 	return dist+9800*mag_torque;
-#elif COSTFUNCTION == 3
+#elif COSTFUNCTION == WRENCH_NOALPHA
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
 	double t1 = tick_to_radians(s2->id[0],numticks);
 	double t2 = tick_to_radians(s2->id[1],numticks);
@@ -190,7 +196,7 @@ double Astar::cost(State* s1, State* s2){
 	double mag_torque = pow(c1+c12+s123,2)
 		+pow(c12+s123, 2)+pow(s123, 2);
 	return dist+9800*mag_torque;
-#elif COSTFUNCTION == 4
+#elif COSTFUNCTION == WRENCH_RATIO
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
 	double s2t1 = tick_to_radians(s2->id[0],numticks);
@@ -213,7 +219,7 @@ double Astar::cost(State* s1, State* s2){
 	double mag_torque1 = pow(s1c1+s1c12+s1s123,2)
 		+pow(s1c12+s1s123, 2)+pow(s1s123, 2)+.0001;
 	return dist + 9800*(mag_torque2/mag_torque1);
-#elif COSTFUNCTION == 5
+#elif COSTFUNCTION == ENERGY_LINEAR
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
 	double s2t1 = tick_to_radians(s2->id[0],numticks);
@@ -236,7 +242,7 @@ double Astar::cost(State* s1, State* s2){
 }
 
 double Astar::heuristic(State* s){
-#if COSTFUNCTION == 1 || COSTFUNCTION == 3
+#if COSTFUNCTION == NOALPHA || COSTFUNCTION == WRENCH_NOALPHA
 	return pow(s->x - target[0],2)+pow(s->z - target[1],2);
 #else
 	return pow(s->x - target[0],2)+pow(s->z - target[1],2)
@@ -260,4 +266,15 @@ bool Astar::inbounds(int i, int j, int k){
 			return true;
 	}
 	return false;
+}
+
+bool Astar::will_continue(State* current){
+#if COSTFUNCTION == NOALPHA || COSTFUNCTION == WRENCH_NOALPHA
+	return current->heuristic > dist_threshold;
+#else
+	double dist = pow(current->x, 2) + pow(current->z, 2);
+	double angle = tick_to_radians(current->id[0]+current->id[1]+current->id[2],numticks);
+	return !(dist < dist_threshold && angle < angle_threshold);
+#endif
+
 }
