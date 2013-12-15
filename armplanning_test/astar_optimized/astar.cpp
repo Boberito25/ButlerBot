@@ -272,9 +272,11 @@ bool Astar::will_continue(State* current){
 #if COSTFUNCTION == NOALPHA || COSTFUNCTION == WRENCH_NOALPHA
 	return current->heuristic > dist_threshold;
 #else
-	double dist = pow(current->x, 2) + pow(current->z, 2);
+	double dist = pow(current->x-target[0], 2) + pow(current->z-target[1], 2);
 	double angle = tick_to_radians(current->id[0]+current->id[1]+current->id[2],numticks);
-	return !(dist < dist_threshold && angle < angle_threshold);
+	return !(dist < dist_threshold && (abs(angle-target[2]) < angle_threshold
+		|| (abs(angle+2*M_PI-target[2]) < angle_threshold) 
+		|| (abs(angle-2*M_PI-target[2]) < angle_threshold )));
 #endif
 
 }
