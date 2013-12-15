@@ -189,7 +189,8 @@ double Astar::cost(State* s1, State* s2){
 		+pow(c12+s123, 2)+pow(s123, 2);
 	return dist+9800*mag_torque;
 #elif COSTFUNCTION == 4
-	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
+	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
+		+pow(s1->alpha - s2->alpha,2);
 	double s2t1 = tick_to_radians(s2->id[0],numticks);
 	double s2t2 = tick_to_radians(s2->id[1],numticks);
 	double s2t3 = tick_to_radians(s2->id[2],numticks);
