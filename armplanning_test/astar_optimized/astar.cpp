@@ -13,6 +13,8 @@
 #define WRENCH_NOALPHA 3
 #define WRENCH_RATIO 4
 #define ENERGY_LINEAR 5
+#define ENERGY_ANGULAR 6
+#define ENERGY_KINETIC 7
 Astar::Astar(){
 	dist_threshold = 8;
 	int n_ticks = 100;
@@ -42,7 +44,6 @@ Astar::Astar(){
 
 std::vector<PState*> Astar::run(int* start, double* target){
 	// std::cout << "Running A*\n";
-
 	// std::cout << "Initializing target\n";
     this->target = target;
 
@@ -68,20 +69,26 @@ std::vector<PState*> Astar::run(int* start, double* target){
 	State* current = starts;
 	PState* tracker = new PState;
 	// std::cout << "Searching For Target\n";
-	while(will_continue(current)){
+	
+	while(!frontier.empty() && will_continue(current)){
 		/* Get the next priority */
 		PState* pcur = frontier.top();
 		frontier.pop();
+		
 		tracker->value = pcur->value;
 		tracker->state[0] = pcur->state[0];
 		tracker->state[1] = pcur->state[1];
 		tracker->state[2] = pcur->state[2];
 		current = 
 			&space[pcur->state[0]][pcur->state[1]][pcur->state[2]];
-		current->visited = true;
-		expand_frontier(pcur->state[0],pcur->state[1],pcur->state[2]);
+		
+		if(current->visited == false){
+			current->visited = true;
+			expand_frontier(pcur->state[0],pcur->state[1],pcur->state[2]);
+		}
 		delete(pcur);
 	}
+	
 	// std::cout << "Search Completed\n";
 	std::vector<PState*> path;
 	State* back_tracker = current;;
@@ -234,6 +241,37 @@ double Astar::cost(State* s1, State* s2){
 	thetadot << 0, ((s2t1-s1t1)/time_step), ((s2t2-s1t2)/time_step), ((s2t3-s1t3)/time_step),  0;
 	Eigen::Vector3d vel = J*thetadot;
         return dist+ obj_mass*vel.squaredNorm();
+#elif COSTFUNCTION == ENERGY_ANGULAR
+    double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
+	
+	double alphadist = dist + pow(s1->alpha - s2->alpha,2);
+	double s2t1 = tick_to_radians(s2->id[0],numticks);
+	double s2t2 = tick_to_radians(s2->id[1],numticks);
+	double s2t3 = tick_to_radians(s2->id[2],numticks);
+	double s1t1 = tick_to_radians(s1->id[0],numticks);
+	double s1t2 = tick_to_radians(s1->id[1],numticks);
+	double s1t3 = tick_to_radians(s1->id[2],numticks);
+
+	double angular_vel = ((s2t1-s1t1)+(s2t2-s1t2)+(s2t3-s1t3))/time_step;
+	return alphadist + obj_mass*dist*pow(angular_vel,2);
+
+#elif COSTFUNCTION == ENERGY_KINETIC
+	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
+	
+	double alphadist = dist + pow(s1->alpha - s2->alpha,2);
+	double s2t1 = tick_to_radians(s2->id[0],numticks);
+	double s2t2 = tick_to_radians(s2->id[1],numticks);
+	double s2t3 = tick_to_radians(s2->id[2],numticks);
+	double s1t1 = tick_to_radians(s1->id[0],numticks);
+	double s1t2 = tick_to_radians(s1->id[1],numticks);
+	double s1t3 = tick_to_radians(s1->id[2],numticks);
+
+	double angular_vel = ((s2t1-s1t1)+(s2t2-s1t2)+(s2t3-s1t3))/time_step;
+	Eigen::Matrix<double,3,5> J = jacobian(0,s1->id[0],s1->id[1],s1->id[2],0,numticks);
+	Eigen::Matrix<double,5,1> thetadot;
+	thetadot << 0, ((s2t1-s1t1)/time_step), ((s2t2-s1t2)/time_step), ((s2t3-s1t3)/time_step),  0;
+	Eigen::Vector3d vel = J*thetadot;
+    return alphadist+ obj_mass*vel.squaredNorm()+ obj_mass*dist*pow(angular_vel,2);
 #else 
 	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
@@ -273,10 +311,10 @@ bool Astar::will_continue(State* current){
 	return current->heuristic > dist_threshold;
 #else
 	double dist = pow(current->x-target[0], 2) + pow(current->z-target[1], 2);
-	double angle = tick_to_radians(current->id[0]+current->id[1]+current->id[2],numticks);
-	return !(dist < dist_threshold && (abs(angle-target[2]) < angle_threshold
-		|| (abs(angle+2*M_PI-target[2]) < angle_threshold) 
-		|| (abs(angle-2*M_PI-target[2]) < angle_threshold )));
+	double angle = current->alpha;
+	return !(dist < dist_threshold && (fabs(angle-target[2]) < angle_threshold
+		|| (fabs(angle+2*M_PI-target[2]) < angle_threshold) 
+		|| (fabs(angle-2*M_PI-target[2]) < angle_threshold )));
 #endif
 
 }

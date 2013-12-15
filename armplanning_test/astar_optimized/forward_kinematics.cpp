@@ -26,7 +26,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
   *x = c0*(150*(c1+c12) + 116.525*s123);
   *z = 150*(s12+s1) - 116.525*c123 + 26.5;
  
-  *alpha = theta1+theta2+theta3;
+  *alpha = theta1-M_PI/2+theta2+theta3-M_PI/2;
 }//end forward_kinematics
 
 Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
