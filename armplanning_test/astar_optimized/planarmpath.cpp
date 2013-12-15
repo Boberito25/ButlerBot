@@ -7,12 +7,27 @@ int main(int argc, char** argv )
 {
   // std::cout << "Start Program\n";
     
+  double x;
+  double z;
+  double alpha;
+  for(int i = 1; i < argc; i++){
+    char* c = argv[i];
+
+    if(i == 1){
+      x = atof(c);
+    }
+    if(i == 2){
+      z = atof(c);
+    }
+    if(i == 3){
+      alpha = atof(c);
+    }
+  }
+
   Astar planner;
 
   int start[3] = {49,49,49};
-  double x = -100;
-  double z = 300;
-  double alpha = 0;
+  
 
   //  fk(&x, &z, &alpha, 99,99,49,planner.numticks);
   double target[3] = {x,z,alpha};

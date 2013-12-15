@@ -58,7 +58,6 @@ std::vector<PState*> Astar::run(int* start, double* target){
 
 	State* current = starts;
 	PState* tracker = new PState;
-
 	// std::cout << "Searching For Target\n";
 	while(current->heuristic > dist_threshold){
 		/* Get the next priority */
@@ -73,7 +72,7 @@ std::vector<PState*> Astar::run(int* start, double* target){
 		current->visited = true;
 		expand_frontier(pcur->state[0],pcur->state[1],pcur->state[2]);
 		delete(pcur);
-	}	
+	}
 	// std::cout << "Search Completed\n";
 	std::vector<PState*> path;
 	State* back_tracker = current;;
@@ -94,6 +93,7 @@ std::vector<PState*> Astar::run(int* start, double* target){
 
 	return path;
 
+
 }
 
 void Astar::expand_frontier(int is, int js, int ks){
@@ -107,8 +107,9 @@ void Astar::expand_frontier(int is, int js, int ks){
 				if(inbounds(is+i, js+j, ks+k)){
 					/* Check if visited */
 
-					if(space[is+i][js+j][ks+k].visited)
+					if(space[is+i][js+j][ks+k].visited){
 						continue;
+					}
 					/* Has the heuristic been calculated */	
 
 					if(space[is+i][js+j][ks+k].heuristic < 0){
@@ -118,7 +119,9 @@ void Astar::expand_frontier(int is, int js, int ks){
 					}
 					double curcost =  (space[is][js][ks].value - 
 						space[is][js][ks].heuristic) + 
-						cost(&space[is][js][ks], &space[is+i][js+j][ks+k]);
+						cost(&space[is][js][ks], 
+						&space[is+i][js+j][ks+k]);
+						
 
 				    /* Check if new value is less than min value */
 					if(space[is+i][js+j][ks+k].value < 0){
