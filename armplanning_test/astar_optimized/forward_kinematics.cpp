@@ -8,10 +8,10 @@
 //perform the forward kinematics of the robot to figure out where you are
 void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 {
-  double theta0 = tick_to_radians(0,numticks);
-  double theta1 = tick_to_radians(i,numticks);
+  double theta0 = tick_to_radians((int)(floor(numticks/2)-1),numticks);
+  double theta1 = tick_to_radians(i,numticks)+M_PI/2;
   double theta2 = tick_to_radians(j,numticks);
-  double theta3 = tick_to_radians(k,numticks);
+  double theta3 = tick_to_radians(k,numticks)+M_PI/2;
   double theta4 = tick_to_radians(0,numticks);
 
   double c0 = cos(theta0);
@@ -43,9 +43,9 @@ Eigen::Matrix<double,3,5> jacobian(int t0, int t1,int t2,int t3, int t4,int numt
 {
   Eigen::Matrix<double,3,5> J;
   double theta0 = tick_to_radians(t0,numticks);
-  double theta1 = tick_to_radians(t1,numticks);
+  double theta1 = tick_to_radians(t1,numticks)+M_PI/2;
   double theta2 = tick_to_radians(t2,numticks);
-  double theta3 = tick_to_radians(t3,numticks);
+  double theta3 = tick_to_radians(t3,numticks)+M_PI/2;
   double theta4 = tick_to_radians(t4,numticks);
 
   double c0 = cos(theta0);
