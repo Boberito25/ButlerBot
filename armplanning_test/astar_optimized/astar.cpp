@@ -187,7 +187,28 @@ double Astar::cost(State* s1, State* s2){
 	double mag_torque = pow(c1+c12+s123,2)
 		+pow(c12+s123, 2)+pow(s123, 2);
 	return dist+9800*mag_torque;
+#elif COSTFUNCTION == 4
+	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
+	double s2t1 = tick_to_radians(s2->id[0],numticks);
+	double s2t2 = tick_to_radians(s2->id[1],numticks);
+	double s2t3 = tick_to_radians(s2->id[2],numticks);
+	double s2c1 = 150*cos(s2t1)*obj_mass;
+	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass; 
+	double s2s123 = 116.525*sin(s2t1+s2t2+s2t3)*obj_mass;
 
+	double s1t1 = tick_to_radians(s1->id[0],numticks);
+	double s1t2 = tick_to_radians(s1->id[1],numticks);
+	double s1t3 = tick_to_radians(s1->id[2],numticks);
+	double s1c1 = 150*cos(s1t1)*obj_mass;
+	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass; 
+	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;	
+
+	double mag_torque2 = pow(s2c1+s2c12+s2s123,2)
+		+pow(s2c12+s2s123, 2)+pow(s2s123, 2)+.0001;
+
+	double mag_torque1 = pow(s1c1+s1c12+s1s123,2)
+		+pow(s1c12+s1s123, 2)+pow(s1s123, 2)+.0001;
+	return dist + 9800*(mag_torque2/mag_torque1);
 #else 
 	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
