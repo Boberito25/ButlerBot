@@ -190,7 +190,7 @@ double Astar::cost(State* s1, State* s2){
 
 	double mag_torque = pow(c1+c12+s123,2)
 		+pow(c12+s123, 2)+pow(s123, 2);
-	return dist+9800*mag_torque;
+	return dist+mag_torque;
 #elif COSTFUNCTION == WRENCH_NOALPHA
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
 	double t1 = tick_to_radians(s2->id[0],numticks);
@@ -202,7 +202,7 @@ double Astar::cost(State* s1, State* s2){
 
 	double mag_torque = pow(c1+c12+s123,2)
 		+pow(c12+s123, 2)+pow(s123, 2);
-	return dist+9800*mag_torque;
+	return dist+mag_torque;
 #elif COSTFUNCTION == WRENCH_RATIO
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
@@ -225,7 +225,7 @@ double Astar::cost(State* s1, State* s2){
 
 	double mag_torque1 = pow(s1c1+s1c12+s1s123,2)
 		+pow(s1c12+s1s123, 2)+pow(s1s123, 2)+.0001;
-	return dist + 9800*(mag_torque2/mag_torque1);
+	return dist + (mag_torque2/mag_torque1);
 #elif COSTFUNCTION == ENERGY_LINEAR
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
