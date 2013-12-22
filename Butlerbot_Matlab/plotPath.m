@@ -21,9 +21,9 @@ for i = 0:last-1
     pathpts(:,i+1) = points(:,length(points));
     hold on;
     if is3d
-        plot3(pathpts(1,1:i+1),pathpts(2,1:i+1),pathpts(3,1:i+1),'c-');
+        plot3(pathpts(1,1:i+1),pathpts(2,1:i+1),pathpts(3,1:i+1),'r-','LineWidth',3);
     else
-        plot(pathpts(1,1:i+1),pathpts(3,1:i+1),'c-');
+        plot(pathpts(1,1:i+1),pathpts(3,1:i+1),'r-','LineWidth',3);
     end
     hold off;
     
