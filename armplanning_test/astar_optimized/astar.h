@@ -16,7 +16,7 @@ public:
 
 private:
 	double obj_mass;
-        double time_step;
+    double time_step;
 	/* Space Matrix */
 	State*** space; 
 	/* Frontier Set */
