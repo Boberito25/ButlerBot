@@ -5,7 +5,6 @@
 #include <bitset>
 #include <string>
 #include <utility>
-#include <tr1/functional>
 using namespace Eigen;
 /* Types */
 typedef struct State {

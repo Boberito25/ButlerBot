@@ -16,6 +16,7 @@ public:
 
 private:
 	double obj_mass;
+    double time_step;
 	/* Space Matrix */
 	State*** space; 
 	/* Frontier Set */
@@ -32,7 +33,9 @@ private:
 
 	/* Constants */
 	double dist_threshold;
+	double angle_threshold;
 	double* target;
 	void compute_fk(int i, int j, int k);
+	bool will_continue(State* current);
 };
 #endif
