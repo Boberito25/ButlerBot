@@ -20,6 +20,21 @@
 #define GRIP_MIN     0
 #define GRIP_MAX     512
 
+int GetServoNo();
+int GetAngle(int no);
+void doPose(int Base, int Shoulder, int Elbow, int Wrist, int Wrot, int grip);
+int SetAngle(int no, int angle);
+void setNextPose(int no, int angle);
+void ScanServo();
+void readAngles();
+void Move();
+void MoveTest();
+void RelaxServos();
+void parseMove(String m);
+
+char incomingChar;
+String message,SOPHeader,EOPTail,endChars;
+
 BioloidController bioloid = BioloidController(1000000);
 
 const int SERVOCOUNT = 8;
@@ -31,6 +46,8 @@ boolean IDCheck;
 boolean RunCheck;
 
 void setup(){
+   SOPHeader = "Start:";
+   EOPTail = ":End";
    pinMode(0,OUTPUT);  
    bioloid.setup(8);
    currPose[0] = 8;
@@ -42,8 +59,9 @@ void setup(){
   //open serial port
    Serial.begin(9600);
    delay (500);   
-    Serial.println("###########################");    
-   Serial.println("Serial Communication Established.");    
+   Serial.println("###########################");    
+   Serial.println("Serial Communication Established.");   
+   Serial.println("###########################");     
   //Check Lipo Battery Voltage
 /*  CheckVoltage();
 
@@ -65,37 +83,42 @@ void setup(){
 
 void loop(){
   // read the sensor:
-  
-    int inByte = Serial.read();
+  while(Serial.available()) {
+    //int inByte = Serial.read();
     int no;
     int angle;
+    /*
     switch (inByte) {
-
-    case '1':    
-      ScanServo();
-      break;
-
-    case '2':    
-      no = GetServoNo();
-      if (no == -1) {
-        break;
-      }
-      GetAngle(no);
-      Move();
-      break;
-    case '3':
-      doPose(512, 512, 512, 512, 512, 512);
-      break;
-    case '4':    
-      RelaxServos();
-      break;     
-
-    case '5':
-      Move();
-      MoveTest();
-      break;
-    } 
   
+      case '0':
+        Serial.println("Got byte from program");
+        break;
+      case '1':    
+        ScanServo();
+        break;
+  
+      case '2':    
+        no = GetServoNo();
+        if (no == -1) {
+          break;
+        }
+        GetAngle(no);
+        Move();
+        break;
+      case '3':
+        doPose(512, 512, 512, 512, 512, 512);
+        break;
+      case '4':    
+        RelaxServos();
+        break;     
+  
+      case '5':
+        Move();
+        MoveTest();
+        break;
+    } */
+    readAngles();
+  }
 }
 
 int GetServoNo() {
@@ -215,6 +238,51 @@ void ScanServo(){
   }
 }
 
+void readAngles() {
+  while(Serial.available()) { //Start receiving once data is available on the serial link
+        //Start reading the stream
+        incomingChar=Serial.read();
+        message.concat(incomingChar); //Concatanate the received characters to the string message
+
+        //Check for the SOP Header and strip it off once the received string is larger than the SOP header
+
+          if(message.endsWith(SOPHeader)){ //If the last characters correspond to the SOP Heade strip it off and start considering this a valid message
+          message="";
+        }
+        //Check for EOP trailer and strip it off
+        if(message.endsWith(EOPTail)){ // If in the debug state signal that the EOP has been detected
+          message=message.substring(0,message.length()-EOPTail.length());
+          parseMove(message);
+          break;
+        }
+  }
+}
+  
+  
+void parseMove(String m) {
+  int Base, Shoulder, Shoulder1, Elbow, Elbow1, Wrist, Wrot, grip;
+  char message[256];
+  m.toCharArray(message, 256);
+  char *str;
+  char* delim = ",";
+  Base = atoi(strtok_r(message, delim, &str));
+  Shoulder = atoi(strtok_r(NULL, delim, &str));
+  Shoulder1 = atoi(strtok_r(NULL, delim, &str));
+  Elbow = atoi(strtok_r(NULL, delim, &str));
+  Elbow1 = atoi(strtok_r(NULL, delim, &str));
+  Wrist = atoi(strtok_r(NULL, delim, &str));
+  Wrot = atoi(strtok_r(NULL, delim, &str));
+  grip = atoi(strtok_r(NULL, delim, &str));
+  Serial.println(Base);
+  Serial.println(Shoulder);
+  Serial.println(Elbow);
+  Serial.println(Wrist);
+  Serial.println(Wrot);
+  Serial.println(grip);
+  Serial.println(":End");
+}
+  
+  
 void Move(){
     delay(100);                    // recommended pause
 
