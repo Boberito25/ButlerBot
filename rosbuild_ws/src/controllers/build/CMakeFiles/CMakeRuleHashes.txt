@@ -1,6 +1,8 @@
 # Hashes of file build rules.
+a88803c516f4cec6a73f5ff44741596a ../src/controllers/srv/_BasicArmMove.py
 383e6456f386b952087e1c90bf9ede30 ../src/controllers/srv/_TestService.py
-7ea8c0b8644f85daf4ed4dcc52844f2c ../src/controllers/srv/__init__.py
+b281e135424f278e78d5f637f11ae37b ../src/controllers/srv/__init__.py
+0cb5643afa5529c3785e12b76f96d689 ../srv_gen/cpp/include/controllers/BasicArmMove.h
 a606094022fa6b5f4b5976650df05044 ../srv_gen/cpp/include/controllers/TestService.h
 3cd66840cf4fd8221e55cd2a5b1f9b52 CMakeFiles/ROSBUILD_genmsg_cpp
 3cd66840cf4fd8221e55cd2a5b1f9b52 CMakeFiles/ROSBUILD_gensrv_cpp
