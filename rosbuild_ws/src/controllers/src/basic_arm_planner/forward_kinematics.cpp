@@ -1,10 +1,10 @@
-#include "forward_kinematics.h"
+#include "basic_arm_planner/forward_kinematics.h"
 #include <iostream>
 #include <stdio.h>
-#include <Eigen/Dense>
 #include <bitset>
 #include <string>
 #include <utility>
+#include <math.h>
 //perform the forward kinematics of the robot to figure out where you are
 void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 {
@@ -29,7 +29,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
   *alpha = theta1-M_PI/2+theta2+theta3-M_PI/2;
 }//end forward_kinematics
 
-Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
+/*Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
 {
   Eigen::Matrix4d T;
   T << cos(theta),sin(theta)*cos(alpha),-sin(theta)*sin(alpha),a*cos(theta),
@@ -37,9 +37,9 @@ Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
     0,sin(alpha),cos(alpha),d,
     0,0,0,1;
   return T;
-}
+}*/
 
-Eigen::Matrix<double,3,5> jacobian(int t0, int t1,int t2,int t3, int t4,int numticks)
+/*Eigen::Matrix<double,3,5> jacobian(int t0, int t1,int t2,int t3, int t4,int numticks)
 {
   Eigen::Matrix<double,3,5> J;
   double theta0 = tick_to_radians(t0,numticks);
@@ -62,7 +62,7 @@ Eigen::Matrix<double,3,5> jacobian(int t0, int t1,int t2,int t3, int t4,int numt
        0                 , c1+c12+s123           , c12+s123         , s123    , 0;
 
   return J;
-}
+}*/
 
 
 double tick_to_radians(int i, int numticks){

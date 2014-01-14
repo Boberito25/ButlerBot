@@ -2,14 +2,14 @@
 #define BASIC_ARM_PLANNER_H
 #include "ros/ros.h"
 #include "controller.h"
-#include "astar.h"
-#include "forward_kinematics.h"
+#include "basic_arm_planner/astar.h"
+#include "basic_arm_planner/forward_kinematics.h"
 #include "controllers/BasicArmMove.h"
 using namespace std;
-class Basic_Arm_Planer: public Controller
+class Basic_Arm_Planner: public Controller
 {
 public:
-  Test_Controller();
+  Basic_Arm_Planner();
   const char *name() const {return "basic_arm_planner";};
 
   void run();

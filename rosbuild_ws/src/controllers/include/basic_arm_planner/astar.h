@@ -1,18 +1,17 @@
 #ifndef ASTAR_H
 #define ASTAR_H
 
-#include <Eigen/Dense>
 #include <iostream>
 #include <stdio.h>
 #include <queue>          // std::priority_queue
 #include <deque>         // std::vector
 #include <functional>     // std::greater
-#include "forward_kinematics.h"
+#include "basic_arm_planner/forward_kinematics.h"
 class Astar {
 public:
 	Astar();
 	std::vector<PState*> run(int* start, double* target);
-    double numticks;
+    int numticks;
 
 private:
 	double obj_mass;

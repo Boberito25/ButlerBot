@@ -42,6 +42,12 @@ ros/assert.h
 ros/service_traits.h
 ../srv_gen/cpp/include/controllers/ros/service_traits.h
 
+/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/controller.cpp
+controller.h
+/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/controller.h
+ros/ros.h
+/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/ros/ros.h
+
 /home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/test_controller/test_controller.cpp
 test_controller/test_controller.h
 /home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/test_controller/test_controller/test_controller.h

@@ -1,22 +1,12 @@
-#include "astar.h"
+#include "basic_arm_planner/astar.h"
 #include <queue>
 #include <deque>
 #include <iostream>
-#include <Eigen/Dense>
-#include <Eigen/Core>
 #include <math.h>
+#include <cmath>
 #include <stdio.h>
-#include "forward_kinematics.h"
-#define BASIC 0
-#define NOALPHA 1
-#define WRENCH 2
-#define WRENCH_NOALPHA 3
-#define WRENCH_RATIO 4
-#define ENERGY_LINEAR 5
-#define ENERGY_ANGULAR 6
-#define ENERGY_KINETIC 7
-#define TORQUE_RATE 8
-#define TORQUE_KINETIC 9
+#include "basic_arm_planner/forward_kinematics.h"
+
 Astar::Astar(){
 	dist_threshold = 30;
 	int n_ticks = 100;
@@ -178,103 +168,8 @@ void Astar::expand_frontier(int is, int js, int ks){
 }
 
 double Astar::cost(State* s1, State* s2){
-#if COSTFUNCTION == NOALPHA
-	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
-#elif COSTFUNCTION == WRENCH
-	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
-		+pow(s1->alpha - s2->alpha,2);
-	double t1 = tick_to_radians(s2->id[0],numticks);
-	double t2 = tick_to_radians(s2->id[1],numticks);
-	double t3 = tick_to_radians(s2->id[2],numticks);
-	double c1 = 150*cos(t1)*obj_mass;
-	double c12 = 150*cos(t1+t2)*obj_mass; 
-	double s123 = 116.525*sin(t1+t2+t3)*obj_mass;
 
-	double mag_torque = pow(c1+c12+s123,2)
-		+pow(c12+s123, 2)+pow(s123, 2);
-	return dist+mag_torque;
-#elif COSTFUNCTION == WRENCH_NOALPHA
-	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
-	double t1 = tick_to_radians(s2->id[0],numticks);
-	double t2 = tick_to_radians(s2->id[1],numticks);
-	double t3 = tick_to_radians(s2->id[2],numticks);
-	double c1 = 150*cos(t1)*obj_mass;
-	double c12 = 150*cos(t1+t2)*obj_mass; 
-	double s123 = 116.525*sin(t1+t2+t3)*obj_mass;
 
-	double mag_torque = pow(c1+c12+s123,2)
-		+pow(c12+s123, 2)+pow(s123, 2);
-	return dist+mag_torque;
-#elif COSTFUNCTION == WRENCH_RATIO
-	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
-		+pow(s1->alpha - s2->alpha,2);
-	double s2t1 = tick_to_radians(s2->id[0],numticks);
-	double s2t2 = tick_to_radians(s2->id[1],numticks);
-	double s2t3 = tick_to_radians(s2->id[2],numticks);
-	double s2c1 = 150*cos(s2t1)*obj_mass;
-	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass; 
-	double s2s123 = 116.525*sin(s2t1+s2t2+s2t3)*obj_mass;
-
-	double s1t1 = tick_to_radians(s1->id[0],numticks);
-	double s1t2 = tick_to_radians(s1->id[1],numticks);
-	double s1t3 = tick_to_radians(s1->id[2],numticks);
-	double s1c1 = 150*cos(s1t1)*obj_mass;
-	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass; 
-	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;	
-
-	double mag_torque2 = pow(s2c1+s2c12+s2s123,2)
-		+pow(s2c12+s2s123, 2)+pow(s2s123, 2)+.0001;
-
-	double mag_torque1 = pow(s1c1+s1c12+s1s123,2)
-		+pow(s1c12+s1s123, 2)+pow(s1s123, 2)+.0001;
-	return dist + (mag_torque2/mag_torque1);
-#elif COSTFUNCTION == ENERGY_LINEAR
-	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
-		+pow(s1->alpha - s2->alpha,2);
-	double s2t1 = tick_to_radians(s2->id[0],numticks);
-	double s2t2 = tick_to_radians(s2->id[1],numticks);
-	double s2t3 = tick_to_radians(s2->id[2],numticks);
-	double s1t1 = tick_to_radians(s1->id[0],numticks);
-	double s1t2 = tick_to_radians(s1->id[1],numticks);
-	double s1t3 = tick_to_radians(s1->id[2],numticks);
-
-	Eigen::Matrix<double,3,5> J = jacobian(0,s1->id[0],s1->id[1],s1->id[2],0,numticks);
-	Eigen::Matrix<double,5,1> thetadot;
-	thetadot << 0, ((s2t1-s1t1)/time_step), ((s2t2-s1t2)/time_step), ((s2t3-s1t3)/time_step),  0;
-	Eigen::Vector3d vel = J*thetadot;
-        return dist+ obj_mass*vel.squaredNorm();
-#elif COSTFUNCTION == ENERGY_ANGULAR
-    double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
-	
-	double alphadist = dist + pow(s1->alpha - s2->alpha,2);
-	double s2t1 = tick_to_radians(s2->id[0],numticks);
-	double s2t2 = tick_to_radians(s2->id[1],numticks);
-	double s2t3 = tick_to_radians(s2->id[2],numticks);
-	double s1t1 = tick_to_radians(s1->id[0],numticks);
-	double s1t2 = tick_to_radians(s1->id[1],numticks);
-	double s1t3 = tick_to_radians(s1->id[2],numticks);
-
-	double angular_vel = ((s2t1-s1t1)+(s2t2-s1t2)+(s2t3-s1t3))/time_step;
-	return alphadist + obj_mass*dist*pow(angular_vel,2);
-
-#elif COSTFUNCTION == ENERGY_KINETIC
-	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
-	
-	double alphadist = dist + pow(s1->alpha - s2->alpha,2);
-	double s2t1 = tick_to_radians(s2->id[0],numticks);
-	double s2t2 = tick_to_radians(s2->id[1],numticks);
-	double s2t3 = tick_to_radians(s2->id[2],numticks);
-	double s1t1 = tick_to_radians(s1->id[0],numticks);
-	double s1t2 = tick_to_radians(s1->id[1],numticks);
-	double s1t3 = tick_to_radians(s1->id[2],numticks);
-
-	double angular_vel = ((s2t1-s1t1)+(s2t2-s1t2)+(s2t3-s1t3))/time_step;
-	Eigen::Matrix<double,3,5> J = jacobian(0,s1->id[0],s1->id[1],s1->id[2],0,numticks);
-	Eigen::Matrix<double,5,1> thetadot;
-	thetadot << 0, ((s2t1-s1t1)/time_step), ((s2t2-s1t2)/time_step), ((s2t3-s1t3)/time_step),  0;
-	Eigen::Vector3d vel = J*thetadot;
-    return alphadist+ obj_mass*vel.squaredNorm()+ obj_mass*dist*pow(angular_vel,2);
-#elif COSTFUNCTION == TORQUE_RATE
     
 	double s2t1 = tick_to_radians(s2->id[0],numticks);
 	double s2t2 = tick_to_radians(s2->id[1],numticks);
@@ -295,53 +190,11 @@ double Astar::cost(State* s1, State* s2){
 
 	double mag_torque1 = pow(s1c1+s1c12+s1s123,2)
 		+pow(s1c12+s1s123, 2)+pow(s1s123, 2)+.0001;
-	return abs(mag_torque2-mag_torque1)/time_step;
-#elif COSTFUNCTION == TORQUE_KINETIC
-	//Torque Rate
-	double s2t1 = tick_to_radians(s2->id[0],numticks);
-	double s2t2 = tick_to_radians(s2->id[1],numticks);
-	double s2t3 = tick_to_radians(s2->id[2],numticks);
-	double s2c1 = 150*cos(s2t1)*obj_mass;
-	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass; 
-	double s2s123 = 116.525*sin(s2t1+s2t2+s2t3)*obj_mass;
-
-	double s1t1 = tick_to_radians(s1->id[0],numticks);
-	double s1t2 = tick_to_radians(s1->id[1],numticks);
-	double s1t3 = tick_to_radians(s1->id[2],numticks);
-	double s1c1 = 150*cos(s1t1)*obj_mass;
-	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass; 
-	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;	
-
-	double mag_torque2 = pow(s2c1+s2c12+s2s123,2)
-		+pow(s2c12+s2s123, 2)+pow(s2s123, 2)+.0001;
-
-	double mag_torque1 = pow(s1c1+s1c12+s1s123,2)
-		+pow(s1c12+s1s123, 2)+pow(s1s123, 2)+.0001;
-
-	//Kinetic
-
-	Eigen::Matrix<double,3,5> J = jacobian(0,s1->id[0],s1->id[1],s1->id[2],0,numticks);
-	Eigen::Matrix<double,5,1> thetadot;
-	thetadot << 0, ((s2t1-s1t1)/time_step), ((s2t2-s1t2)/time_step), ((s2t3-s1t3)/time_step),  0;
-	Eigen::Vector3d vel = J*thetadot;
-	return abs(mag_torque2-mag_torque1)/time_step+obj_mass*vel.squaredNorm();
-
-#else 
-	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
-		+pow(s1->alpha - s2->alpha,2);
-
-#endif
+	return std::abs(mag_torque2-mag_torque1)/time_step;
 }
 
 double Astar::heuristic(State* s){
-#if COSTFUNCTION == NOALPHA || COSTFUNCTION == WRENCH_NOALPHA
-	return pow(s->x - target[0],2)+pow(s->z - target[1],2);
-#elif COSTFUNCTION == TORQUE_RATE || COSTFUNCTION == TORQUE_KINETIC
 	return 0;
-#else
-	return pow(s->x - target[0],2)+pow(s->z - target[1],2)
-		+pow(s->alpha - target[2],2);
-#endif
 }
 
 void Astar::compute_fk(int i, int j, int k){
@@ -363,18 +216,6 @@ bool Astar::inbounds(int i, int j, int k){
 }
 
 bool Astar::will_continue(State* current){
-#if COSTFUNCTION == NOALPHA || COSTFUNCTION == WRENCH_NOALPHA 
 	double dist = pow(current->x-target[0], 2) + pow(current->z-target[1], 2);
 	return dist > dist_threshold;
-#elif COSTFUNCTION == TORQUE_RATE || COSTFUNCTION == TORQUE_KINETIC
-	double dist = pow(current->x-target[0], 2) + pow(current->z-target[1], 2);
-	return dist > dist_threshold;
-#else
-	double dist = pow(current->x-target[0], 2) + pow(current->z-target[1], 2);
-	double angle = current->alpha;
-	return !(dist < dist_threshold && (fabs(angle-target[2]) < angle_threshold
-		|| (fabs(angle+2*M_PI-target[2]) < angle_threshold) 
-		|| (fabs(angle-2*M_PI-target[2]) < angle_threshold )));
-#endif
-
 }

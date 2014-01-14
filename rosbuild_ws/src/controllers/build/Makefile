@@ -176,6 +176,19 @@ ROSBUILD_gensrv_py/fast:
 .PHONY : ROSBUILD_gensrv_py/fast
 
 #=============================================================================
+# Target rules for targets named basic_arm_planner
+
+# Build rule for target.
+basic_arm_planner: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 basic_arm_planner
+.PHONY : basic_arm_planner
+
+# fast build rule for target.
+basic_arm_planner/fast:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/build
+.PHONY : basic_arm_planner/fast
+
+#=============================================================================
 # Target rules for targets named clean_test_results
 
 # Build rule for target.
@@ -358,19 +371,6 @@ test-results-run/fast:
 .PHONY : test-results-run/fast
 
 #=============================================================================
-# Target rules for targets named test_controller
-
-# Build rule for target.
-test_controller: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_controller
-.PHONY : test_controller
-
-# fast build rule for target.
-test_controller/fast:
-	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/build
-.PHONY : test_controller/fast
-
-#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -409,12 +409,84 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/basic_arm_planner/astar.o: src/basic_arm_planner/astar.cpp.o
+.PHONY : src/basic_arm_planner/astar.o
+
+# target to build an object file
+src/basic_arm_planner/astar.cpp.o:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/astar.cpp.o
+.PHONY : src/basic_arm_planner/astar.cpp.o
+
+src/basic_arm_planner/astar.i: src/basic_arm_planner/astar.cpp.i
+.PHONY : src/basic_arm_planner/astar.i
+
+# target to preprocess a source file
+src/basic_arm_planner/astar.cpp.i:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/astar.cpp.i
+.PHONY : src/basic_arm_planner/astar.cpp.i
+
+src/basic_arm_planner/astar.s: src/basic_arm_planner/astar.cpp.s
+.PHONY : src/basic_arm_planner/astar.s
+
+# target to generate assembly for a file
+src/basic_arm_planner/astar.cpp.s:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/astar.cpp.s
+.PHONY : src/basic_arm_planner/astar.cpp.s
+
+src/basic_arm_planner/basic_arm_planner.o: src/basic_arm_planner/basic_arm_planner.cpp.o
+.PHONY : src/basic_arm_planner/basic_arm_planner.o
+
+# target to build an object file
+src/basic_arm_planner/basic_arm_planner.cpp.o:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o
+.PHONY : src/basic_arm_planner/basic_arm_planner.cpp.o
+
+src/basic_arm_planner/basic_arm_planner.i: src/basic_arm_planner/basic_arm_planner.cpp.i
+.PHONY : src/basic_arm_planner/basic_arm_planner.i
+
+# target to preprocess a source file
+src/basic_arm_planner/basic_arm_planner.cpp.i:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.i
+.PHONY : src/basic_arm_planner/basic_arm_planner.cpp.i
+
+src/basic_arm_planner/basic_arm_planner.s: src/basic_arm_planner/basic_arm_planner.cpp.s
+.PHONY : src/basic_arm_planner/basic_arm_planner.s
+
+# target to generate assembly for a file
+src/basic_arm_planner/basic_arm_planner.cpp.s:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.s
+.PHONY : src/basic_arm_planner/basic_arm_planner.cpp.s
+
+src/basic_arm_planner/forward_kinematics.o: src/basic_arm_planner/forward_kinematics.cpp.o
+.PHONY : src/basic_arm_planner/forward_kinematics.o
+
+# target to build an object file
+src/basic_arm_planner/forward_kinematics.cpp.o:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/forward_kinematics.cpp.o
+.PHONY : src/basic_arm_planner/forward_kinematics.cpp.o
+
+src/basic_arm_planner/forward_kinematics.i: src/basic_arm_planner/forward_kinematics.cpp.i
+.PHONY : src/basic_arm_planner/forward_kinematics.i
+
+# target to preprocess a source file
+src/basic_arm_planner/forward_kinematics.cpp.i:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/forward_kinematics.cpp.i
+.PHONY : src/basic_arm_planner/forward_kinematics.cpp.i
+
+src/basic_arm_planner/forward_kinematics.s: src/basic_arm_planner/forward_kinematics.cpp.s
+.PHONY : src/basic_arm_planner/forward_kinematics.s
+
+# target to generate assembly for a file
+src/basic_arm_planner/forward_kinematics.cpp.s:
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/forward_kinematics.cpp.s
+.PHONY : src/basic_arm_planner/forward_kinematics.cpp.s
+
 src/controller.o: src/controller.cpp.o
 .PHONY : src/controller.o
 
 # target to build an object file
 src/controller.cpp.o:
-	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.o
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/controller.cpp.o
 .PHONY : src/controller.cpp.o
 
 src/controller.i: src/controller.cpp.i
@@ -422,7 +494,7 @@ src/controller.i: src/controller.cpp.i
 
 # target to preprocess a source file
 src/controller.cpp.i:
-	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.i
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/controller.cpp.i
 .PHONY : src/controller.cpp.i
 
 src/controller.s: src/controller.cpp.s
@@ -430,32 +502,8 @@ src/controller.s: src/controller.cpp.s
 
 # target to generate assembly for a file
 src/controller.cpp.s:
-	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.s
+	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/controller.cpp.s
 .PHONY : src/controller.cpp.s
-
-src/test_controller/test_controller.o: src/test_controller/test_controller.cpp.o
-.PHONY : src/test_controller/test_controller.o
-
-# target to build an object file
-src/test_controller/test_controller.cpp.o:
-	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.o
-.PHONY : src/test_controller/test_controller.cpp.o
-
-src/test_controller/test_controller.i: src/test_controller/test_controller.cpp.i
-.PHONY : src/test_controller/test_controller.i
-
-# target to preprocess a source file
-src/test_controller/test_controller.cpp.i:
-	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.i
-.PHONY : src/test_controller/test_controller.cpp.i
-
-src/test_controller/test_controller.s: src/test_controller/test_controller.cpp.s
-.PHONY : src/test_controller/test_controller.s
-
-# target to generate assembly for a file
-src/test_controller/test_controller.cpp.s:
-	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.s
-.PHONY : src/test_controller/test_controller.cpp.s
 
 # Help Target
 help:
@@ -466,6 +514,7 @@ help:
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_gensrv_cpp"
 	@echo "... ROSBUILD_gensrv_py"
+	@echo "... basic_arm_planner"
 	@echo "... clean_test_results"
 	@echo "... doxygen"
 	@echo "... edit_cache"
@@ -486,16 +535,21 @@ help:
 	@echo "... test-future"
 	@echo "... test-results"
 	@echo "... test-results-run"
-	@echo "... test_controller"
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/basic_arm_planner/astar.o"
+	@echo "... src/basic_arm_planner/astar.i"
+	@echo "... src/basic_arm_planner/astar.s"
+	@echo "... src/basic_arm_planner/basic_arm_planner.o"
+	@echo "... src/basic_arm_planner/basic_arm_planner.i"
+	@echo "... src/basic_arm_planner/basic_arm_planner.s"
+	@echo "... src/basic_arm_planner/forward_kinematics.o"
+	@echo "... src/basic_arm_planner/forward_kinematics.i"
+	@echo "... src/basic_arm_planner/forward_kinematics.s"
 	@echo "... src/controller.o"
 	@echo "... src/controller.i"
 	@echo "... src/controller.s"
-	@echo "... src/test_controller/test_controller.o"
-	@echo "... src/test_controller/test_controller.i"
-	@echo "... src/test_controller/test_controller.s"
 .PHONY : help
 
 
