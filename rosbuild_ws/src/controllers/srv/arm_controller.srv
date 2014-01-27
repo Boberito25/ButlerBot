@@ -1,0 +1,10 @@
+int16 base
+int16 shoulder
+int16 shoulder1
+int16 elbow
+int16 elbow1
+int16 wrist
+int16 wrot
+int16 grip
+---
+bool success
