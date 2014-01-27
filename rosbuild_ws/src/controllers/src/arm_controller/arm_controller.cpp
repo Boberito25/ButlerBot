@@ -9,3 +9,7 @@ void Arm_Controller::init()
 {
 	
 }
+
+int main(int argc, char** argv)
+{
+}
