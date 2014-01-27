@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/arm_controller/arduino-serial-lib.h
+stdint.h
+-
+
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arduino-serial-lib.cpp
+arm_controller/arduino-serial-lib.h
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arm_controller/arduino-serial-lib.h
+stdio.h
+-
+unistd.h
+-
+fcntl.h
+-
+errno.h
+-
+termios.h
+-
+string.h
+-
+sys/ioctl.h
+-
+

@@ -35,3 +35,7 @@ rosbuild_gensrv()
 #Basic Arm Planner (x,z rate of change in torque)
 rosbuild_add_executable(basic_arm_planner
 src/basic_arm_planner/basic_arm_planner.cpp src/controller.cpp src/basic_arm_planner/forward_kinematics.cpp src/basic_arm_planner/astar.cpp)
+
+#Arm Controller
+rosbuild_add_executable(arm_controller
+src/arm_controller/arduino-serial-lib.cpp src/arm_controller/arm_controller.cpp src/controller.cpp)
