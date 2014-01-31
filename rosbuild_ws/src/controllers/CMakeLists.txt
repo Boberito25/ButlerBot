@@ -30,12 +30,10 @@ rosbuild_gensrv()
 #target_link_libraries(example ${PROJECT_NAME})
 
 #Test Controller
-#rosbuild_add_executable(test_controller src/test_controller/test_controller.cpp src/controller.cpp)
+rosbuild_add_executable(test_controller src/test_controller/test_controller.cpp src/controller.cpp)
 
 #Basic Arm Planner (x,z rate of change in torque)
-rosbuild_add_executable(basic_arm_planner
-src/basic_arm_planner/basic_arm_planner.cpp src/controller.cpp src/basic_arm_planner/forward_kinematics.cpp src/basic_arm_planner/astar.cpp)
+rosbuild_add_executable(basic_arm_planner src/basic_arm_planner/basic_arm_planner.cpp src/controller.cpp src/basic_arm_planner/forward_kinematics.cpp src/basic_arm_planner/astar.cpp)
 
 #Arm Controller
-rosbuild_add_executable(arm_controller
-src/arm_controller/arduino-serial-lib.cpp src/arm_controller/arm_controller.cpp src/controller.cpp)
+rosbuild_add_executable(arm_controller src/arm_controller/arduino-serial-lib.cpp src/arm_controller/arm_controller.cpp src/controller.cpp)
