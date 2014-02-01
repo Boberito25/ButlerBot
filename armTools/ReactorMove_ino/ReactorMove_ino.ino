@@ -58,7 +58,7 @@ void setup(){
    RunCheck = 0;
   //open serial port
    Serial.begin(9600);
-   delay (500);   
+   delay (10);   
    Serial.println("###########################");    
    Serial.println("Serial Communication Established.");   
    Serial.println("###########################");     
@@ -68,7 +68,7 @@ void setup(){
   MoveCenter();
 */
 //  
-  delay(5000);
+  delay(10);
   
 //Scan Servos, return position.
 /*  ScanServo();
@@ -77,7 +77,8 @@ void setup(){
   
   MoveHome();
 */  
- 
+  RelaxServos();
+  doPose(512, 512, 512, 512, 512, 512); 
   RunCheck = 1;
 }
 
@@ -117,6 +118,7 @@ void loop(){
         MoveTest();
         break;
     } */
+
     readAngles();
   }
 }
@@ -148,13 +150,18 @@ int GetAngle(int no) {
 }
 
 void doPose(int Base, int Shoulder, int Elbow, int Wrist, int Wrot, int grip) {
-  setNextPose(1, Base);
-  setNextPose(2, Shoulder);
-  setNextPose(4, Elbow);
-  setNextPose(6, Wrist);
-  setNextPose(7, Wrot);
-  setNextPose(8, grip);
+  unsigned long starttime, stoptime;
+  starttime = millis();
+  setNextPose(Base, Shoulder, Elbow, Wrist, Wrot, grip);
+  stoptime = millis();
+  Serial.println("time setNextPose = ");
+  Serial.println(stoptime - starttime);
+  starttime = millis();
   Move();
+  stoptime = millis();
+  Serial.println("time Move = ");
+  Serial.println(stoptime - starttime);
+  Serial.println("Hello:End");
 }
 
 int SetAngle(int no, int angle) {
@@ -167,40 +174,28 @@ int SetAngle(int no, int angle) {
   setNextPose(no, angle);
 }
 
-void setNextPose(int no, int angle) {
+void setNextPose(int Base, int Shoulder, int Elbow, int Wrist, int Wrot, int grip) {
   int thatsTheRightNumber = 300;
-  switch (no) {
-    case 1:
-      thatsTheRightNumber = max(min(angle, BASE_MAX), BASE_MIN);
+      thatsTheRightNumber = max(min(Base, BASE_MAX), BASE_MIN);
       bioloid.setNextPose(1, thatsTheRightNumber);
-      break;
-    case 2:
-    case 3:
-      thatsTheRightNumber = max(min(angle, SHOULDER_MAX), SHOULDER_MIN);
+
+      thatsTheRightNumber = max(min(Shoulder, SHOULDER_MAX), SHOULDER_MIN);
       bioloid.setNextPose(2, thatsTheRightNumber);
       bioloid.setNextPose(3, 1024-thatsTheRightNumber);
-      break;
-    case 4:
-    case 5:
-      thatsTheRightNumber = max(min(angle, ELBOW_MAX), ELBOW_MIN);
+
+      thatsTheRightNumber = max(min(Elbow, ELBOW_MAX), ELBOW_MIN);
       bioloid.setNextPose(4, thatsTheRightNumber);
       bioloid.setNextPose(5, 1024-thatsTheRightNumber);
-      break;
-    case 6:
-      thatsTheRightNumber = max(min(angle, WRIST_MAX), WRIST_MIN);
+
+      thatsTheRightNumber = max(min(Wrist, WRIST_MAX), WRIST_MIN);
       bioloid.setNextPose(6, thatsTheRightNumber);
-      break;
-    case 7:
-      thatsTheRightNumber = max(min(angle, WROT_MAX), WROT_MIN);
+
+      thatsTheRightNumber = max(min(Wrot, WROT_MAX), WROT_MIN);
       bioloid.setNextPose(7, thatsTheRightNumber);
-      break;
-    case 8:
-      thatsTheRightNumber = max(min(angle, GRIP_MAX), GRIP_MIN);
+
+      thatsTheRightNumber = max(min(grip, GRIP_MAX), GRIP_MIN);
       bioloid.setNextPose(8, thatsTheRightNumber);
-      break;
-    default:
-      break;
-  }
+
 }
       
 void ScanServo(){
@@ -226,7 +221,7 @@ void ScanServo(){
   }
   
   id = (id++)%SERVOCOUNT;
-  delay(1000);
+  delay(10);
   }
   if (IDCheck == 0){
     Serial.println("###########################");
@@ -239,6 +234,8 @@ void ScanServo(){
 }
 
 void readAngles() {
+  unsigned long starttime, stoptime;
+  starttime = millis();
   while(Serial.available()) { //Start receiving once data is available on the serial link
         //Start reading the stream
         incomingChar=Serial.read();
@@ -256,6 +253,9 @@ void readAngles() {
           break;
         }
   }
+  stoptime = millis();
+  Serial.println("Time = ");
+  Serial.println(stoptime - starttime);
 }
   
   
@@ -273,18 +273,19 @@ void parseMove(String m) {
   Wrist = atoi(strtok_r(NULL, delim, &str));
   Wrot = atoi(strtok_r(NULL, delim, &str));
   grip = atoi(strtok_r(NULL, delim, &str));
-  Serial.println(Base);
+  doPose(Base, Shoulder, Elbow, Wrist, Wrot, grip);
+  /*Serial.println(Base);
   Serial.println(Shoulder);
   Serial.println(Elbow);
   Serial.println(Wrist);
   Serial.println(Wrot);
-  Serial.println(grip);
-  Serial.println(":End");
+  Serial.println(grip);*/
+
 }
   
   
 void Move(){
-    delay(100);                    // recommended pause
+    delay(10);                    // recommended pause
 
     //bioloid.loadPose(Center);   // load the pose from FLASH, into the nextPose buffer
     bioloid.readPose();            // read in current servo positions to the curPose buffer
@@ -293,8 +294,7 @@ void Move(){
         Serial.println(bioloid.getCurPose(i));
         Serial.println(bioloid.getNextPose(i));
     }
-    delay(1000);
-    bioloid.interpolateSetup(1000); // setup for interpolation from current->next over 1/2 a second
+    bioloid.interpolateSetup(50); // setup for interpolation from current->next over 1/2 a second
     while(bioloid.interpolating > 0){  // do this while we have not reached our new pose
         bioloid.interpolateStep();     // move servos, if necessary. 
         delay(3);
@@ -305,7 +305,7 @@ void MoveTest(){
   Serial.println("###########################");
   Serial.println("Initializing Movement Sign Test");  
   Serial.println("###########################");
-  delay(500);  
+  delay(10);  
   id = 1;
   pos = pos2 = 512;
  
