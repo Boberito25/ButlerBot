@@ -21,6 +21,7 @@ char *formatMessage(int base, int shoulder, int shoulder1, int elbow, int elbow1
 bool Arm_Controller::armMove(controllers::armMove::Request &req,
           controllers::armMove::Response &res)
 {
+  //TODO Change generalize to array of angles for each join
   int fd;
   int base, shoulder, shoulder1, elbow, elbow1, wrist, wrot, grip;
   base = req.base;
