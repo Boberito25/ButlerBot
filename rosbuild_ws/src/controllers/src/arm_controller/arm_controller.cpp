@@ -32,7 +32,7 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
   wrot = req.wrot;
   grip = req.grip;
   char *portname = (char*)malloc(sizeof(char) * 40);
-  strcpy(portname, "/dev/tty.usbserial-A501RXIB");
+  strcpy(portname, "/dev/ttyUSB0");
   ROS_INFO("copy success\n");
   fd = serialport_init(portname, 9600);
   ROS_INFO("open success!\n");
