@@ -423,6 +423,19 @@ test-results-run/fast:
 .PHONY : test-results-run/fast
 
 #=============================================================================
+# Target rules for targets named test_controller
+
+# Build rule for target.
+test_controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_controller
+.PHONY : test_controller
+
+# fast build rule for target.
+test_controller/fast:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/build
+.PHONY : test_controller/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -588,6 +601,7 @@ src/controller.o: src/controller.cpp.o
 src/controller.cpp.o:
 	$(MAKE) -f CMakeFiles/arm_controller.dir/build.make CMakeFiles/arm_controller.dir/src/controller.cpp.o
 	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/controller.cpp.o
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.o
 .PHONY : src/controller.cpp.o
 
 src/controller.i: src/controller.cpp.i
@@ -597,6 +611,7 @@ src/controller.i: src/controller.cpp.i
 src/controller.cpp.i:
 	$(MAKE) -f CMakeFiles/arm_controller.dir/build.make CMakeFiles/arm_controller.dir/src/controller.cpp.i
 	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/controller.cpp.i
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.i
 .PHONY : src/controller.cpp.i
 
 src/controller.s: src/controller.cpp.s
@@ -606,7 +621,32 @@ src/controller.s: src/controller.cpp.s
 src/controller.cpp.s:
 	$(MAKE) -f CMakeFiles/arm_controller.dir/build.make CMakeFiles/arm_controller.dir/src/controller.cpp.s
 	$(MAKE) -f CMakeFiles/basic_arm_planner.dir/build.make CMakeFiles/basic_arm_planner.dir/src/controller.cpp.s
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/controller.cpp.s
 .PHONY : src/controller.cpp.s
+
+src/test_controller/test_controller.o: src/test_controller/test_controller.cpp.o
+.PHONY : src/test_controller/test_controller.o
+
+# target to build an object file
+src/test_controller/test_controller.cpp.o:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.o
+.PHONY : src/test_controller/test_controller.cpp.o
+
+src/test_controller/test_controller.i: src/test_controller/test_controller.cpp.i
+.PHONY : src/test_controller/test_controller.i
+
+# target to preprocess a source file
+src/test_controller/test_controller.cpp.i:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.i
+.PHONY : src/test_controller/test_controller.cpp.i
+
+src/test_controller/test_controller.s: src/test_controller/test_controller.cpp.s
+.PHONY : src/test_controller/test_controller.s
+
+# target to generate assembly for a file
+src/test_controller/test_controller.cpp.s:
+	$(MAKE) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/src/test_controller/test_controller.cpp.s
+.PHONY : src/test_controller/test_controller.cpp.s
 
 # Help Target
 help:
@@ -642,6 +682,7 @@ help:
 	@echo "... test-future"
 	@echo "... test-results"
 	@echo "... test-results-run"
+	@echo "... test_controller"
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
@@ -663,6 +704,9 @@ help:
 	@echo "... src/controller.o"
 	@echo "... src/controller.i"
 	@echo "... src/controller.s"
+	@echo "... src/test_controller/test_controller.o"
+	@echo "... src/test_controller/test_controller.i"
+	@echo "... src/test_controller/test_controller.s"
 .PHONY : help
 
 
