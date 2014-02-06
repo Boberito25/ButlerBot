@@ -10,7 +10,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 {
   double theta0 = tick_to_radians((int)(floor(numticks/2)-1),numticks);
   double theta1 = tick_to_radians(i,numticks)+M_PI/2;
-  double theta2 = tick_to_radians(j,numticks);
+  double theta2 = tick_to_radians(j,numticks)+M_PI/2;
   double theta3 = tick_to_radians(k,numticks)+M_PI/2;
   double theta4 = tick_to_radians(0,numticks);
 
@@ -26,7 +26,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
   *x = c0*(150*(c1+c12) + 116.525*s123);
   *z = 150*(s12+s1) - 116.525*c123 + 26.5;
  
-  *alpha = theta1-M_PI/2+theta2+theta3-M_PI/2;
+  *alpha = theta1-M_PI/2 + theta2-M_PI/2 + theta3-M_PI/2;
 }//end forward_kinematics
 
 /*Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
@@ -66,6 +66,6 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 
 
 double tick_to_radians(int i, int numticks){
-  return (M_PI/numticks)*(i-49);
+  return (M_PI/numticks)*(i-(numticks/2 -1));
 }
 

@@ -46,24 +46,6 @@ ros/assert.h
 ros/service_traits.h
 ../srv_gen/cpp/include/controllers/ros/service_traits.h
 
-/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arduino-serial-lib.cpp
-arm_controller/arduino-serial-lib.h
-/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arm_controller/arduino-serial-lib.h
-stdio.h
--
-unistd.h
--
-fcntl.h
--
-errno.h
--
-termios.h
--
-string.h
--
-sys/ioctl.h
--
-
 /home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arm_controller.cpp
 ros/ros.h
 /home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/ros/ros.h
@@ -83,12 +65,6 @@ getopt.h
 -
 arm_controller/arduino-serial-lib.h
 /home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arm_controller/arduino-serial-lib.h
-
-/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/controller.cpp
-controller.h
-/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/controller.h
-ros/ros.h
-/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/src/ros/ros.h
 
 /opt/ros/groovy/include/XmlRpcDecl.h
 ros/macros.h

@@ -1,7 +1,7 @@
 # Hashes of file build rules.
 a88803c516f4cec6a73f5ff44741596a ../src/controllers/srv/_BasicArmMove.py
 383e6456f386b952087e1c90bf9ede30 ../src/controllers/srv/_TestService.py
-1a52a1db7018831dc5150a5d3d0a9405 ../src/controllers/srv/__init__.py
+4b789295ee00037509b8586236314929 ../src/controllers/srv/__init__.py
 dc7e81c4c7e705b93e9f6ffbfee1d94e ../src/controllers/srv/_armMove.py
 4a6d85f6797921a614270d7e29bec136 ../src/controllers/srv/_arm_controller.py
 0cb5643afa5529c3785e12b76f96d689 ../srv_gen/cpp/include/controllers/BasicArmMove.h
