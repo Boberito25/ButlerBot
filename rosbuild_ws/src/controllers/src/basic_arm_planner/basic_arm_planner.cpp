@@ -2,7 +2,7 @@
 #include "basic_arm_planner/astar.h"
 #include "basic_arm_planner/forward_kinematics.h"
 #include "ros/ros.h"
-#include "controllers/BasicArmMove.h"
+#include "controllers/BasicArmPlan.h"
 #include <vector>
 Basic_Arm_Planner::Basic_Arm_Planner(){}
 void Basic_Arm_Planner::run(){}
@@ -32,6 +32,6 @@ bool Basic_Arm_Planner::move(
 int main(int argc, char **argv){
 	ros::init(argc, argv, "basic_arm_planner");
 	Basic_Arm_Planner c = Basic_Arm_Planner();
-	ros::ServiceServer planner = c.n.advertiseService("Basic_Arm_Mover", &Basic_Arm_Planner::move, &c);
+	ros::ServiceServer planner = c.n.advertiseService("Basic_Arm_Plan", &Basic_Arm_Planner::move, &c);
 	ros::spin();
 }

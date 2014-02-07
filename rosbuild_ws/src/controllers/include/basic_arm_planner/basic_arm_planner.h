@@ -4,7 +4,7 @@
 #include "controller.h"
 #include "basic_arm_planner/astar.h"
 #include "basic_arm_planner/forward_kinematics.h"
-#include "controllers/BasicArmMove.h"
+#include "controllers/BasicArmPlan.h"
 using namespace std;
 class Basic_Arm_Planner: public Controller
 {
@@ -14,7 +14,7 @@ public:
 
   void run();
   void init();
-  bool move(controllers::BasicArmMove::Request &req,
-  			controllers::BasicArmMove::Response &res);
+  bool move(controllers::BasicArmPlan::Request &req,
+  			controllers::BasicArmPlan::Response &res);
 };
 #endif
