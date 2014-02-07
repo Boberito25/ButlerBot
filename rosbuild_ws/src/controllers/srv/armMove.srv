@@ -1,10 +1,8 @@
-int16 base
-int16 shoulder
-int16 shoulder1
-int16 elbow
-int16 elbow1
-int16 wrist
-int16 wrot
-int16 grip
+float32[] base
+float32[] shoulder
+float32[] elbow
+float32[] wrist
+float32[] wrot
+float32[] grip
 ---
 bool success
