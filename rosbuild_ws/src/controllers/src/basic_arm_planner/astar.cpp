@@ -81,11 +81,9 @@ std::vector<PState*> Astar::run(int* start, double* target){
 		delete(pcur);
 	}
 	
-	// std::cout << "Search Completed\n";
 	std::vector<PState*> path;
 	State* back_tracker = current;;
 	path.push_back(tracker);
-	// std::cout <<"Compiling Path\n";
 	while(back_tracker != starts){
 		int i0 = back_tracker->prev[0];
 		int i1 = back_tracker->prev[1];
