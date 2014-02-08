@@ -29,8 +29,8 @@ basic_arm_planner/astar.h
 ../include/basic_arm_planner/basic_arm_planner/astar.h
 basic_arm_planner/forward_kinematics.h
 ../include/basic_arm_planner/basic_arm_planner/forward_kinematics.h
-controllers/BasicArmMove.h
-../include/basic_arm_planner/controllers/BasicArmMove.h
+controllers/BasicArmPlan.h
+../include/basic_arm_planner/controllers/BasicArmPlan.h
 
 ../include/basic_arm_planner/forward_kinematics.h
 vector
@@ -45,30 +45,6 @@ utility
 ../include/controller.h
 ros/ros.h
 ../include/ros/ros.h
-
-../srv_gen/cpp/include/controllers/BasicArmMove.h
-string
--
-vector
--
-map
--
-ostream
--
-ros/serialization.h
-../srv_gen/cpp/include/controllers/ros/serialization.h
-ros/builtin_message_traits.h
-../srv_gen/cpp/include/controllers/ros/builtin_message_traits.h
-ros/message_operations.h
-../srv_gen/cpp/include/controllers/ros/message_operations.h
-ros/time.h
-../srv_gen/cpp/include/controllers/ros/time.h
-ros/macros.h
-../srv_gen/cpp/include/controllers/ros/macros.h
-ros/assert.h
-../srv_gen/cpp/include/controllers/ros/assert.h
-ros/service_traits.h
-../srv_gen/cpp/include/controllers/ros/service_traits.h
 
 /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/astar.cpp
 basic_arm_planner/astar.h
@@ -97,32 +73,10 @@ basic_arm_planner/forward_kinematics.h
 /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner/forward_kinematics.h
 ros/ros.h
 /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/ros/ros.h
-controllers/BasicArmMove.h
-/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/controllers/BasicArmMove.h
+controllers/BasicArmPlan.h
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/controllers/BasicArmPlan.h
 vector
 -
-
-/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/forward_kinematics.cpp
-basic_arm_planner/forward_kinematics.h
-/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner/forward_kinematics.h
-iostream
--
-stdio.h
--
-bitset
--
-string
--
-utility
--
-math.h
--
-
-/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/controller.cpp
-controller.h
-/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/controller.h
-ros/ros.h
-/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/ros/ros.h
 
 /opt/ros/groovy/include/XmlRpcDecl.h
 ros/macros.h
@@ -319,10 +273,6 @@ boost/make_shared.hpp
 -
 
 /opt/ros/groovy/include/ros/message_forward.h
-
-/opt/ros/groovy/include/ros/message_operations.h
-ostream
--
 
 /opt/ros/groovy/include/ros/message_traits.h
 message_forward.h
