@@ -1,10 +1,12 @@
 # Hashes of file build rules.
 a88803c516f4cec6a73f5ff44741596a ../src/controllers/srv/_BasicArmMove.py
+762fe01b75eec60ae0a7c821051e51fb ../src/controllers/srv/_BasicArmPlan.py
 383e6456f386b952087e1c90bf9ede30 ../src/controllers/srv/_TestService.py
-4b789295ee00037509b8586236314929 ../src/controllers/srv/__init__.py
+b1c50f0a3e210f1c35679cfee9705fae ../src/controllers/srv/__init__.py
 dc7e81c4c7e705b93e9f6ffbfee1d94e ../src/controllers/srv/_armMove.py
 4a6d85f6797921a614270d7e29bec136 ../src/controllers/srv/_arm_controller.py
 0cb5643afa5529c3785e12b76f96d689 ../srv_gen/cpp/include/controllers/BasicArmMove.h
+4533da23ca9d25c073a2d769ab5c4b61 ../srv_gen/cpp/include/controllers/BasicArmPlan.h
 a606094022fa6b5f4b5976650df05044 ../srv_gen/cpp/include/controllers/TestService.h
 d9bef3505c234ee77aeedf86e56fa93f ../srv_gen/cpp/include/controllers/armMove.h
 32f7381f1e6cfd960ac5d998084da0f4 ../srv_gen/cpp/include/controllers/arm_controller.h

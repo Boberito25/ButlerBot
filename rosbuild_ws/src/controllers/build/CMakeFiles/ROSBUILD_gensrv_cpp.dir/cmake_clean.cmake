@@ -4,7 +4,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/ROSBUILD_gensrv_cpp"
   "../srv_gen/cpp/include/controllers/armMove.h"
   "../srv_gen/cpp/include/controllers/TestService.h"
-  "../srv_gen/cpp/include/controllers/BasicArmMove.h"
+  "../srv_gen/cpp/include/controllers/BasicArmPlan.h"
 )
 
 # Per-language clean rules from dependency scanning.
