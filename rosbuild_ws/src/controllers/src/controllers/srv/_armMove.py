@@ -6,21 +6,19 @@ import struct
 
 
 class armMoveRequest(genpy.Message):
-  _md5sum = "ac905efe303267c46f982709d9b792e6"
+  _md5sum = "5a7bbb0c83efa6b2a771da8ea8d8aa0c"
   _type = "controllers/armMoveRequest"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """int16 base
-int16 shoulder
-int16 shoulder1
-int16 elbow
-int16 elbow1
-int16 wrist
-int16 wrot
-int16 grip
+  _full_text = """float32[] base
+float32[] shoulder
+float32[] elbow
+float32[] wrist
+float32[] wrot
+float32[] grip
 
 """
-  __slots__ = ['base','shoulder','shoulder1','elbow','elbow1','wrist','wrot','grip']
-  _slot_types = ['int16','int16','int16','int16','int16','int16','int16','int16']
+  __slots__ = ['base','shoulder','elbow','wrist','wrot','grip']
+  _slot_types = ['float32[]','float32[]','float32[]','float32[]','float32[]','float32[]']
 
   def __init__(self, *args, **kwds):
     """
@@ -30,7 +28,7 @@ int16 grip
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       base,shoulder,shoulder1,elbow,elbow1,wrist,wrot,grip
+       base,shoulder,elbow,wrist,wrot,grip
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -40,30 +38,24 @@ int16 grip
       super(armMoveRequest, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
       if self.base is None:
-        self.base = 0
+        self.base = []
       if self.shoulder is None:
-        self.shoulder = 0
-      if self.shoulder1 is None:
-        self.shoulder1 = 0
+        self.shoulder = []
       if self.elbow is None:
-        self.elbow = 0
-      if self.elbow1 is None:
-        self.elbow1 = 0
+        self.elbow = []
       if self.wrist is None:
-        self.wrist = 0
+        self.wrist = []
       if self.wrot is None:
-        self.wrot = 0
+        self.wrot = []
       if self.grip is None:
-        self.grip = 0
+        self.grip = []
     else:
-      self.base = 0
-      self.shoulder = 0
-      self.shoulder1 = 0
-      self.elbow = 0
-      self.elbow1 = 0
-      self.wrist = 0
-      self.wrot = 0
-      self.grip = 0
+      self.base = []
+      self.shoulder = []
+      self.elbow = []
+      self.wrist = []
+      self.wrot = []
+      self.grip = []
 
   def _get_types(self):
     """
@@ -77,8 +69,30 @@ int16 grip
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self
-      buff.write(_struct_8h.pack(_x.base, _x.shoulder, _x.shoulder1, _x.elbow, _x.elbow1, _x.wrist, _x.wrot, _x.grip))
+      length = len(self.base)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.pack(pattern, *self.base))
+      length = len(self.shoulder)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.pack(pattern, *self.shoulder))
+      length = len(self.elbow)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.pack(pattern, *self.elbow))
+      length = len(self.wrist)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.pack(pattern, *self.wrist))
+      length = len(self.wrot)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.pack(pattern, *self.wrot))
+      length = len(self.grip)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.pack(pattern, *self.grip))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -89,10 +103,48 @@ int16 grip
     """
     try:
       end = 0
-      _x = self
       start = end
-      end += 16
-      (_x.base, _x.shoulder, _x.shoulder1, _x.elbow, _x.elbow1, _x.wrist, _x.wrot, _x.grip,) = _struct_8h.unpack(str[start:end])
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.base = struct.unpack(pattern, str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.shoulder = struct.unpack(pattern, str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.elbow = struct.unpack(pattern, str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.wrist = struct.unpack(pattern, str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.wrot = struct.unpack(pattern, str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.grip = struct.unpack(pattern, str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -105,8 +157,30 @@ int16 grip
     :param numpy: numpy python module
     """
     try:
-      _x = self
-      buff.write(_struct_8h.pack(_x.base, _x.shoulder, _x.shoulder1, _x.elbow, _x.elbow1, _x.wrist, _x.wrot, _x.grip))
+      length = len(self.base)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.base.tostring())
+      length = len(self.shoulder)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.shoulder.tostring())
+      length = len(self.elbow)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.elbow.tostring())
+      length = len(self.wrist)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.wrist.tostring())
+      length = len(self.wrot)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.wrot.tostring())
+      length = len(self.grip)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.grip.tostring())
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -118,16 +192,53 @@ int16 grip
     """
     try:
       end = 0
-      _x = self
       start = end
-      end += 16
-      (_x.base, _x.shoulder, _x.shoulder1, _x.elbow, _x.elbow1, _x.wrist, _x.wrot, _x.grip,) = _struct_8h.unpack(str[start:end])
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.base = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.shoulder = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.elbow = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.wrist = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.wrot = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      end += struct.calcsize(pattern)
+      self.grip = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_8h = struct.Struct("<8h")
 """autogenerated by genpy from controllers/armMoveResponse.msg. Do not edit."""
 import sys
 python3 = True if sys.hexversion > 0x03000000 else False
@@ -140,6 +251,7 @@ class armMoveResponse(genpy.Message):
   _type = "controllers/armMoveResponse"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """bool success
+
 
 """
   __slots__ = ['success']
@@ -230,6 +342,6 @@ _struct_I = genpy.struct_I
 _struct_B = struct.Struct("<B")
 class armMove(object):
   _type          = 'controllers/armMove'
-  _md5sum = '407a8b06ff8c582b34020cd9a18a6609'
+  _md5sum = '12ec2c38c4b52f54cb430d38cc34d7d4'
   _request_class  = armMoveRequest
   _response_class = armMoveResponse

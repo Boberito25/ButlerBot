@@ -1,5 +1,6 @@
 FILE(REMOVE_RECURSE
   "../srv_gen"
+  "../srv_gen"
   "../src/controllers/srv"
   "CMakeFiles/arm_controller.dir/src/arm_controller/arduino-serial-lib.cpp.o"
   "CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o"

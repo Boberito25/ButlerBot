@@ -15,5 +15,6 @@ public:
   void init();
   bool armMove(controllers::armMove::Request &req,
   	           controllers::armMove::Response &res);
+  int* rad2ticks(float* inarr);
 };
 #endif
