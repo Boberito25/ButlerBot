@@ -1,0 +1,5 @@
+<launch>
+	<group ns="arm_controller">
+		<node pkg="controllers" name="bldskanfdlkjfskjxcbvnxlz" type="arm_controller" output="screen"/>
+	</group>
+</launch>

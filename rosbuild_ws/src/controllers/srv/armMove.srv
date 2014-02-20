@@ -1,0 +1,8 @@
+float32[] base
+float32[] shoulder
+float32[] elbow
+float32[] wrist
+float32[] wrot
+float32[] grip
+---
+bool success

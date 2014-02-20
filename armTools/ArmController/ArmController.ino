@@ -14,20 +14,11 @@ void setup(){
    bioloid.setup(8);
    bioloid.poseSize = SERVOCOUNT;
    currPose[0] = 8;
-   /*currPose[1] = 512;
-   currPose[2] = 512;
-   currPose[3] = 512;
-   currPose[4] = 512;
-   currPose[5] = 512;
-   currPose[6] = 512;
-   currPose[7] = 512;
-   currPose[8] = 512;*/
   
    Serial.println("###########################");    
    Serial.println("Serial Communication Established.");  
    Serial.println("###########################");
-   Serial.println("Relaxing Servos...");  
-   //RelaxServos();
+   Serial.println("Relaxing Servos...");
    bioloid.readPose();
    readServos();
    delay(5000);
@@ -95,25 +86,10 @@ void loop(){
         Serial.println("Give a valid id plz");
         return;
     }
-    /*Serial.print("Waiting for angle:");
-    delay (3000);
-    if (Serial.available() > 0) {
-        while(Serial.available() > 0) {
-            angle = Serial.read();
-            Serial.println(angle);
-            
-    }
-    else {
-        return;
-    }
-    if (angle < 300 || angle > 800) {
-        Serial.println("Give a reasonable angle plz");
-        return;
-    }*/
+
     currPose[inByte] = 800;
     Serial.print("Servo Position: ");
     Serial.println(angle);
-
 }
 
 void MoveSomewhere(){

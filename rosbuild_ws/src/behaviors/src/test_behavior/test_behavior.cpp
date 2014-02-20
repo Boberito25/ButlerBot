@@ -19,7 +19,7 @@ Test_Behavior::Test_Behavior()
 
 void Test_Behavior::init()
 {
-    name = "test_behavior";
+  name = "test_behavior";
   tester = n.serviceClient<controllers::TestService>("test");
   counter = 0;	
 }

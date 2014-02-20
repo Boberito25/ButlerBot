@@ -7,6 +7,8 @@ all:
 	g++ -D COSTFUNCTION=5 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_energy_linear
 	g++ -D COSTFUNCTION=6 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_energy_angular
 	g++ -D COSTFUNCTION=7 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_energy_kinetic
+	g++ -D COSTFUNCTION=8 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_torque_rate
+	g++ -D COSTFUNCTION=9 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_torque_kinetic
 
 basic:
 	g++ -D COSTFUNCTION=0 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_basic
@@ -24,6 +26,11 @@ energyangular:
 	g++ -D COSTFUNCTION=6 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_energy_angular
 energykinetic:
 	g++ -D COSTFUNCTION=7 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_energy_kinetic
+torquerate:
+	g++ -D COSTFUNCTION=8 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_torque_rate
+torquekinetic:
+	g++ -D COSTFUNCTION=9 -g3 -O3 -msse2 -I../Eigen/ -L../Eigen/Eigen/src planarmpath.cpp forward_kinematics.cpp -o astar_torque_kinetic
+
 
 clean:
 	rm -f astar_basic
@@ -34,3 +41,5 @@ clean:
 	rm -f astar_energy_linear
 	rm -f astar_energy_angular
 	rm -f astar_energy_kinetic
+	rm -f astar_torque_rate
+	rm -f astar_torque_kinetic

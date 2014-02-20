@@ -15,7 +15,5 @@ public:
 private: 	
   int counter;
   ros::ServiceClient tester;
-
-  
 };
 #endif
