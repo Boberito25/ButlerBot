@@ -6,9 +6,9 @@
 #include <string>
 #include <utility>
 //perform the forward kinematics of the robot to figure out where you are
-void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
+void fk (double* x, double* z, double* alpha, int t0, int i, int j, int k, int numticks)
 {
-  double theta0 = tick_to_radians((int)(floor(numticks/2)-1),numticks);
+  double theta0 = tick_to_radians(t0,numticks);
   double theta1 = tick_to_radians(i,numticks)+M_PI/2;
   double theta2 = tick_to_radians(j,numticks);
   double theta3 = tick_to_radians(k,numticks)+M_PI/2;
@@ -25,7 +25,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 
   *x = c0*(150*(c1+c12) + 116.525*s123);
   *z = 150*(s12+s1) - 116.525*c123 + 26.5;
- 
+
   *alpha = theta1-M_PI/2+theta2+theta3-M_PI/2;
 }//end forward_kinematics
 
@@ -56,7 +56,7 @@ Eigen::Matrix<double,3,5> jacobian(int t0, int t1,int t2,int t3, int t4,int numt
   double s12 = 150*sin(theta1+theta2);
   double c123 = 116.525*cos(theta1+theta2+theta3);
   double s123 = 116.525*sin(theta1+theta2+theta3);
-  
+
   J << -s0*(c1+c12+s123) , c0*(-1*(s1+s12)+c123) , c0*(-1*s12+c123) , c0*c123 , 0,
        -c0*(c1+c12+s123) , s0*(-1*(s1+s12)+c123) , s0*(-1*s12+c123) , s0*c123 , 0,
        0                 , c1+c12+s123           , c12+s123         , s123    , 0;
@@ -67,5 +67,9 @@ Eigen::Matrix<double,3,5> jacobian(int t0, int t1,int t2,int t3, int t4,int numt
 
 double tick_to_radians(int i, int numticks){
   return (M_PI/numticks)*(i-49);
+}
+
+int radian_to_ticks(double t, int numticks){
+  return numticks/M_PI*t + 49;
 }
 

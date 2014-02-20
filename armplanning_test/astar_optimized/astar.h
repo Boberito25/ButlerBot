@@ -11,14 +11,14 @@
 class Astar {
 public:
 	Astar();
-	std::vector<PState*> run(int* start, double* target);
+	std::vector<PState*> run(int* start, double* target,double targett0);
     double numticks;
 
 private:
 	double obj_mass;
         double time_step;
 	/* Space Matrix */
-	State*** space; 
+	State*** space;
 	/* Frontier Set */
 	typedef std::priority_queue
 	  <PState*,std::deque<PState*>,pstate_comp> statepq;
@@ -35,6 +35,7 @@ private:
 	double dist_threshold;
 	double angle_threshold;
 	double* target;
+        int t0;
 	void compute_fk(int i, int j, int k);
 	bool will_continue(State* current);
 };
