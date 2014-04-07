@@ -13,6 +13,7 @@ public:
 
   void run();
   void init();
+  bool anglesGet(controllers::armAngles::Response &res);
   bool armMove(controllers::armMove::Request &req,
   	           controllers::armMove::Response &res);
   int* rad2ticks(float* inarr);
