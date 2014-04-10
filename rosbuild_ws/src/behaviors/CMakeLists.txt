@@ -33,3 +33,5 @@ rosbuild_add_boost_directories()
 
 
 rosbuild_add_executable(test_behavior src/test_behavior/test_behavior.cpp src/behavior.cpp)
+
+rosbuild_add_executable(basic_arm_move_behavior src/basic_arm_move_behavior/basic_arm_move_behavior.cpp src/behavior.cpp)

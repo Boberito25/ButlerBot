@@ -1,0 +1,10 @@
+float64 theta1
+float64 theta2
+float64 theta3
+float64 x
+float64 z
+float64 alpha
+---
+float64[] theta1s
+float64[] theta2s
+float64[] theta3s
