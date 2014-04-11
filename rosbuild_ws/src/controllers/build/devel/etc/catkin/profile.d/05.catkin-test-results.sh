@@ -1,4 +1,4 @@
 # generated from catkin/cmake/env-hooks/05.catkin-test-results.sh.develspace.in
 
-export CATKIN_TEST_RESULTS_DIR="/home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/build/test_results"
+export CATKIN_TEST_RESULTS_DIR="/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/build/test_results"
 export ROS_TEST_RESULTS_DIR="$CATKIN_TEST_RESULTS_DIR"

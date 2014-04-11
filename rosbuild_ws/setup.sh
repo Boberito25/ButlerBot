@@ -23,7 +23,11 @@ if [ x"$_ROSINSTALL_IN_RECURSION" != x"recurse" ] ; then
   export ROS_PACKAGE_PATH=
 fi
 
-export ROS_WORKSPACE=~/Documents/ButlerBot/rosbuild_ws
+<<<<<<< HEAD
+export ROS_WORKSPACE=/home/ButlerBot/rosbuild_ws
+=======
+export ROS_WORKSPACE=~/Downloads/ButlerBot/rosbuild_ws
+>>>>>>> 527ab364b981901a1909b8c6568ca15105bd2adb
 if [ ! "$ROS_MASTER_URI" ] ; then export ROS_MASTER_URI=http://localhost:11311 ; fi
 unset ROS_ROOT
 
@@ -167,7 +171,11 @@ EOPYTHON`
 unset _ROS_PACKAGE_PATH_ROSINSTALL
 
 # restore ROS_WORKSPACE in case other setup.sh changed/unset it
-export ROS_WORKSPACE=~/Documents/ButlerBot/rosbuild_ws
+<<<<<<< HEAD
+export ROS_WORKSPACE=/home/ButlerBot/rosbuild_ws
+=======
+export ROS_WORKSPACE=~/Downloads/ButlerBot/rosbuild_ws
+>>>>>>> 527ab364b981901a1909b8c6568ca15105bd2adb
 
 # if setup.sh did not set ROS_ROOT (pre-fuerte)
 if [ -z "${ROS_ROOT}" ]; then

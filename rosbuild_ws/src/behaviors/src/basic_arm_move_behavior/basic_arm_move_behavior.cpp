@@ -41,20 +41,20 @@ void Basic_Arm_Move_Behavior::run()
 
 			//Request access to all controllers
 			while(!request_controller("arm_controller"))
-    			loop_rate.sleep();
-    		while(!request_controller("basic_arm_planner"))
-    			loo_rate.sleep();
+    				loop_rate.sleep();
+	    		while(!request_controller("basic_arm_planner"))
+    				loop_rate.sleep();
 
-    		//Get Current Pose
+    			//Get Current Pose
 
 
-    		//Plan a Path
-    		plan_path();
+    			//Plan a Path
+	    		plan_path();
 
-    		//Move arm if path plan exists
-    		if(theta0_path.size() != 0){
-    			arm_move();
-    		}
+    			//Move arm if path plan exists
+	    		if(theta0_path.size() != 0){
+    				arm_move();
+    			}
 		}		
 	}
 }

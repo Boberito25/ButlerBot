@@ -46,6 +46,27 @@ utility
 ros/ros.h
 ../include/ros/ros.h
 
+<<<<<<< HEAD
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/astar.cpp
+basic_arm_planner/astar.h
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner/astar.h
+queue
+-
+deque
+-
+iostream
+-
+math.h
+-
+cmath
+-
+stdio.h
+-
+basic_arm_planner/forward_kinematics.h
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner/forward_kinematics.h
+
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner.cpp
+=======
 ../srv_gen/cpp/include/controllers/BasicArmPlan.h
 string
 -
@@ -71,6 +92,7 @@ ros/service_traits.h
 ../srv_gen/cpp/include/controllers/ros/service_traits.h
 
 /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner.cpp
+>>>>>>> eb611db54821b4996da5e8e56e12fe8d8ea27f21
 basic_arm_planner/basic_arm_planner.h
 /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner/basic_arm_planner.h
 basic_arm_planner/astar.h
@@ -78,9 +100,15 @@ basic_arm_planner/astar.h
 basic_arm_planner/forward_kinematics.h
 /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner/forward_kinematics.h
 ros/ros.h
+<<<<<<< HEAD
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/ros/ros.h
+controllers/BasicArmPlan.h
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/controllers/BasicArmPlan.h
+=======
 /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/ros/ros.h
 controllers/BasicArmPlan.h
 /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/controllers/BasicArmPlan.h
+>>>>>>> eb611db54821b4996da5e8e56e12fe8d8ea27f21
 vector
 -
 
@@ -279,10 +307,6 @@ boost/make_shared.hpp
 -
 
 /opt/ros/groovy/include/ros/message_forward.h
-
-/opt/ros/groovy/include/ros/message_operations.h
-ostream
--
 
 /opt/ros/groovy/include/ros/message_traits.h
 message_forward.h
