@@ -1,6 +1,5 @@
 FILE(REMOVE_RECURSE
   "../srv_gen"
-  "../srv_gen"
   "../src/controllers/srv"
   "CMakeFiles/ROSBUILD_genmsg_cpp"
 )

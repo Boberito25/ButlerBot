@@ -33,17 +33,21 @@ bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers
   sprintf(end, "GETANG");
   serialport_write(fd, end);
   char returnval[256];
-  serialport_read_until(fd, returnval, 'Q', 256, 10000);
+  ROS_INFO("before read\n");
+  char e = 'Q';
+  serialport_read_until(fd, returnval, e, 256, 1000000);
   char *str;
   char delim = ',';
+  ROS_INFO(returnval);
+  ROS_INFO("done\n");
   res.base = atoi(strtok_r(returnval, &delim, &str));
-  res.shoulder = atoi(strtok_r(returnval, &delim, &str));
-  res.shoulder1 = atoi(strtok_r(returnval, &delim, &str));
-  res.elbow = atoi(strtok_r(returnval, &delim, &str));
-  res.elbow1 = atoi(strtok_r(returnval, &delim, &str));
-  res.wrist = atoi(strtok_r(returnval, &delim, &str));
-  res.wrot = atoi(strtok_r(returnval, &delim, &str));
-  res.grip = atoi(strtok_r(returnval, &delim, &str));
+  res.shoulder = atoi(strtok_r(NULL, &delim, &str));
+  res.shoulder1 = atoi(strtok_r(NULL, &delim, &str));
+  res.elbow = atoi(strtok_r(NULL, &delim, &str));
+  res.elbow1 = atoi(strtok_r(NULL, &delim, &str));
+  res.wrist = atoi(strtok_r(NULL, &delim, &str));
+  res.wrot = atoi(strtok_r(NULL, &delim, &str));
+  res.grip = atoi(strtok_r(NULL, &e, &str));
   return true;
 }
 

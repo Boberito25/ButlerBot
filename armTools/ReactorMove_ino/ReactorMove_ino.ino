@@ -48,6 +48,11 @@ boolean IDCheck;
 boolean RunCheck;
 
 void setup(){
+     Serial.begin(9600);
+   delay (100);   
+/*   Serial.println("###########################\n");    
+   Serial.println("Serial Communication Established.\n");   
+   Serial.println("###########################"); */
    SOPHeader = "Start:";
    EOPTail = ":End";
    Eof = "ARRDONE";
@@ -63,11 +68,7 @@ void setup(){
    IDCheck = 1;
    RunCheck = 0;
   //open serial port
-   Serial.begin(9600);
-   delay (10);   
-   Serial.println("###########################");    
-   Serial.println("Serial Communication Established.");   
-   Serial.println("###########################");     
+
   //Check Lipo Battery Voltage
 /*  CheckVoltage();
 
@@ -81,17 +82,16 @@ void setup(){
   
   MoveTest();
   
-  MoveHome();
-*/  
+  MoveHome();*/
+
   RelaxServos();
   doPose(512, 512, 512, 512, 512, 512); 
   RunCheck = 1;
-  delay(100000);
+  delay(10);
 }
 
 void loop(){
   // read the sensor:
-  while(Serial.available()) {
     //int inByte = Serial.read();
     int no;
     int angle;
@@ -127,7 +127,6 @@ void loop(){
     } */
 
     readAngles();
-  }
 }
 
 int GetServoNo() {
@@ -246,13 +245,13 @@ void readAngles() {
   int i = 0;
   while(Serial.available()) {
       //Start reading the stream
-        
+      //Serial.println("before read");
       incomingChar=Serial.read();
       message.concat(incomingChar); //Concatanate the received characters to the string message
-
-      if(message.endsWith(Startseq)) {
+      /*if(message.endsWith(Startseq)) {
         incomingChar=Serial.read();
         message.concat(incomingChar);
+        Serial.println(message);
         //Check for the SOP Header and strip it off once the received string is larger than the SOP header
         if(message.endsWith(SOPHeader)) {
           message = "";
@@ -270,7 +269,7 @@ void readAngles() {
             break;
           }
         }
-      }
+      }*/
       if (message.endsWith(getangles)) {
         message = "";
         int id = 1;
@@ -284,10 +283,10 @@ void readAngles() {
         Serial.print("Q");
         return;
       }
-  }
+  }/*
   for (int j = 0; j < i; j++) {
     doPose(path[j*6], path[j*6+1], path[j*6+2], path[j*6+3], path[j*6+4], path[j*6+5]);
-  }
+  }*/
   return;
 
   /*while(Serial.available()) { //Start receiving once data is available on the serial link
@@ -490,10 +489,10 @@ void MoveTest(){
 
 void RelaxServos(){
   id = 1;
-  Serial.println("###########################");
+  /*Serial.println("###########################");
   Serial.println("Relaxing Servos.");
   Serial.println("###########################");    
-  while(id <= SERVOCOUNT){
+  */while(id <= SERVOCOUNT){
     Relax(id);
     id = (id++)%SERVOCOUNT;
     delay(50);
