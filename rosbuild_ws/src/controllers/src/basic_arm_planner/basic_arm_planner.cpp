@@ -8,8 +8,8 @@ Basic_Arm_Planner::Basic_Arm_Planner(){}
 void Basic_Arm_Planner::run(){}
 void Basic_Arm_Planner::init(){}
 bool Basic_Arm_Planner::move(
-		  controllers::BasicArmMove::Request &req,
-          controllers::BasicArmMove::Response &res){
+		  controllers::BasicArmPlan::Request &req,
+          controllers::BasicArmPlan::Response &res){
 	Astar planner;
 	int start[3] = {req.theta1, req.theta2, req.theta3};
 	double target[3] = {req.x, req.z, req.alpha};
