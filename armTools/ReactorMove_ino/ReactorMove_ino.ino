@@ -30,15 +30,17 @@ void readAngles();
 void Move();
 void MoveTest();
 void RelaxServos();
-void parseMove(String m);
+void parseMove(String m, int counter);
 
 char incomingChar;
 String message,SOPHeader,EOPTail,endChars;
+String Eof,Startseq,Endseq,getangles;
 
 BioloidController bioloid = BioloidController(1000000);
 
 const int SERVOCOUNT = 8;
 prog_uint16_t currPose[SERVOCOUNT+1];
+prog_uint16_t path[2000];
 int id;
 int pos;
 int pos2;
@@ -48,6 +50,10 @@ boolean RunCheck;
 void setup(){
    SOPHeader = "Start:";
    EOPTail = ":End";
+   Eof = "ARRDONE";
+   Startseq = "STARTSEQ";
+   getangles = "GETANG";
+   Endseq = "ENDSEQ";
    pinMode(0,OUTPUT);  
    bioloid.setup(8);
    currPose[0] = 8;
@@ -80,6 +86,7 @@ void setup(){
   RelaxServos();
   doPose(512, 512, 512, 512, 512, 512); 
   RunCheck = 1;
+  delay(100000);
 }
 
 void loop(){
@@ -234,32 +241,81 @@ void ScanServo(){
 }
 
 void readAngles() {
-  unsigned long starttime, stoptime;
-  starttime = millis();
-  while(Serial.available()) { //Start receiving once data is available on the serial link
+  /*unsigned long starttime, stoptime;
+  starttime = millis();*/
+  int i = 0;
+  while(Serial.available()) {
+      //Start reading the stream
+        
+      incomingChar=Serial.read();
+      message.concat(incomingChar); //Concatanate the received characters to the string message
+
+      if(message.endsWith(Startseq)) {
+        incomingChar=Serial.read();
+        message.concat(incomingChar);
+        //Check for the SOP Header and strip it off once the received string is larger than the SOP header
+        if(message.endsWith(SOPHeader)) {
+          message = "";
+          while(Serial.available()) { //Start receiving once data is available on the serial link
+            incomingChar=Serial.read();
+            message.concat(incomingChar);
+            if(message.endsWith(EOPTail)) {
+              message = message.substring(0,message.length()-Endseq.length());
+              parseMove(message, i);
+              i++;
+              break;
+            }
+          }
+          if (message.endsWith(Eof)) {
+            break;
+          }
+        }
+      }
+      if (message.endsWith(getangles)) {
+        message = "";
+        int id = 1;
+        //Serial.print("begin");
+        while (id <= SERVOCOUNT) {
+          pos =  ax12GetRegister(id, 36, 2);
+          Serial.print(pos);
+          Serial.print(",");
+          id++;
+        }
+        Serial.print("Q");
+        return;
+      }
+  }
+  for (int j = 0; j < i; j++) {
+    doPose(path[j*6], path[j*6+1], path[j*6+2], path[j*6+3], path[j*6+4], path[j*6+5]);
+  }
+  return;
+
+  /*while(Serial.available()) { //Start receiving once data is available on the serial link
+        int i = 0;
         //Start reading the stream
         incomingChar=Serial.read();
         message.concat(incomingChar); //Concatanate the received characters to the string message
-
-        //Check for the SOP Header and strip it off once the received string is larger than the SOP header
-
-          if(message.endsWith(SOPHeader)){ //If the last characters correspond to the SOP Heade strip it off and start considering this a valid message
+          
+        if(message.endsWith(SOPHeader)){ //If the last characters correspond to the SOP Heade strip it off and start considering this a valid message
           message="";
         }
         //Check for EOP trailer and strip it off
         if(message.endsWith(EOPTail)){ // If in the debug state signal that the EOP has been detected
           message=message.substring(0,message.length()-EOPTail.length());
-          parseMove(message);
+          parseMove(message, path, i);
+          i++;
+        }
+        if(message.endsWith(EOF)) {
           break;
         }
   }
   stoptime = millis();
   Serial.println("Time = ");
-  Serial.println(stoptime - starttime);
+  Serial.println(stoptime - starttime);*/
 }
   
   
-void parseMove(String m) {
+void parseMove(String m, int counter) {
   int Base, Shoulder, Shoulder1, Elbow, Elbow1, Wrist, Wrot, grip;
   char message[256];
   m.toCharArray(message, 256);
@@ -273,7 +329,14 @@ void parseMove(String m) {
   Wrist = atoi(strtok_r(NULL, delim, &str));
   Wrot = atoi(strtok_r(NULL, delim, &str));
   grip = atoi(strtok_r(NULL, delim, &str));
-  doPose(Base, Shoulder, Elbow, Wrist, Wrot, grip);
+  
+  path[counter * 6] = Base;
+  path[counter * 6 + 1] = Shoulder;
+  path[counter * 6 + 2] = Elbow;
+  path[counter * 6 + 3] = Wrist;
+  path[counter * 6 + 4] = Wrot;
+  path[counter * 6 + 5] = grip;
+  //doPose(Base, Shoulder, Elbow, Wrist, Wrot, grip);
   /*Serial.println(Base);
   Serial.println(Shoulder);
   Serial.println(Elbow);
