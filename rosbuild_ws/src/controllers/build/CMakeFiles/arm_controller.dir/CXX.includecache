@@ -17,10 +17,36 @@ controller.h
 ../include/arm_controller/controller.h
 controllers/armMove.h
 ../include/arm_controller/controllers/armMove.h
+controllers/armAngles.h
+../include/arm_controller/controllers/armAngles.h
 
 ../include/controller.h
 ros/ros.h
 ../include/ros/ros.h
+
+../srv_gen/cpp/include/controllers/armAngles.h
+string
+-
+vector
+-
+map
+-
+ostream
+-
+ros/serialization.h
+../srv_gen/cpp/include/controllers/ros/serialization.h
+ros/builtin_message_traits.h
+../srv_gen/cpp/include/controllers/ros/builtin_message_traits.h
+ros/message_operations.h
+../srv_gen/cpp/include/controllers/ros/message_operations.h
+ros/time.h
+../srv_gen/cpp/include/controllers/ros/time.h
+ros/macros.h
+../srv_gen/cpp/include/controllers/ros/macros.h
+ros/assert.h
+../srv_gen/cpp/include/controllers/ros/assert.h
+ros/service_traits.h
+../srv_gen/cpp/include/controllers/ros/service_traits.h
 
 ../srv_gen/cpp/include/controllers/armMove.h
 string
@@ -53,6 +79,8 @@ arm_controller/arm_controller.h
 /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arm_controller/arm_controller.h
 controllers/armMove.h
 /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/controllers/armMove.h
+controllers/armAngles.h
+/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/controllers/armAngles.h
 stdio.h
 -
 math.h

@@ -4,14 +4,18 @@
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/astar.cpp.o
  ../include/basic_arm_planner/astar.h
  ../include/basic_arm_planner/forward_kinematics.h
- /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/astar.cpp
+ /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/astar.cpp
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o
  ../include/basic_arm_planner/astar.h
  ../include/basic_arm_planner/basic_arm_planner.h
  ../include/basic_arm_planner/forward_kinematics.h
  ../include/controller.h
- ../srv_gen/cpp/include/controllers/BasicArmMove.h
+<<<<<<< HEAD
  /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner.cpp
+=======
+ ../srv_gen/cpp/include/controllers/BasicArmPlan.h
+ /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/basic_arm_planner.cpp
+>>>>>>> eb611db54821b4996da5e8e56e12fe8d8ea27f21
  /opt/ros/groovy/include/XmlRpcDecl.h
  /opt/ros/groovy/include/XmlRpcValue.h
  /opt/ros/groovy/include/ros/advertise_options.h
@@ -30,7 +34,6 @@ CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o
  /opt/ros/groovy/include/ros/message.h
  /opt/ros/groovy/include/ros/message_event.h
  /opt/ros/groovy/include/ros/message_forward.h
- /opt/ros/groovy/include/ros/message_operations.h
  /opt/ros/groovy/include/ros/message_traits.h
  /opt/ros/groovy/include/ros/names.h
  /opt/ros/groovy/include/ros/node_handle.h
@@ -68,10 +71,10 @@ CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o
  /opt/ros/groovy/include/rosconsole/macros_generated.h
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/forward_kinematics.cpp.o
  ../include/basic_arm_planner/forward_kinematics.h
- /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/forward_kinematics.cpp
+ /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/basic_arm_planner/forward_kinematics.cpp
 CMakeFiles/basic_arm_planner.dir/src/controller.cpp.o
  ../include/controller.h
- /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/controller.cpp
+ /home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers/src/controller.cpp
  /opt/ros/groovy/include/XmlRpcDecl.h
  /opt/ros/groovy/include/XmlRpcValue.h
  /opt/ros/groovy/include/ros/advertise_options.h

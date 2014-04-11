@@ -11,20 +11,30 @@ bool Basic_Arm_Planner::move(
 		  controllers::BasicArmPlan::Request &req,
           controllers::BasicArmPlan::Response &res){
 	Astar planner;
-	int start[3] = {req.theta1, req.theta2, req.theta3};
-	double target[3] = {req.x, req.z, req.alpha};
-	vector<PState*> path = planner.run(start, target);
-	
+	int start[4] = {req.theta0, req.theta1, req.theta2, req.theta3};
+	double target[4] = {req.x, req.y, req.z, req.alpha};
+
+	//Calculate Correct plane
+	double targetT0 = atan2(req.y,req.x);
+
+	vector<PState*> path = planner.run(start, target);	
+	ROS_INFO("PLAN MADE\n");
+    //Change to Correct Plane
+    res.theta0s.push_back(targetT0);
+    res.theta1s.push_back(start[1]);
+    res.theta2s.push_back(start[2]);
+    res.theta3s.push_back(start[3]);
+	ROS_INFO("PATH_STARTED\n");	
 	//Construct paths
 	int len = path.size();
-
-	for(int i = 0; i < len; i++){
+	for(int i = 1; i < len; i++){
+		res.theta0s.push_back(targetT0);
 		res.theta1s.push_back(tick_to_radians(path.at(i)->state[0], planner.numticks));
 		res.theta2s.push_back(tick_to_radians(path.at(i)->state[1], planner.numticks));
 		res.theta3s.push_back(tick_to_radians(path.at(i)->state[2], planner.numticks));
 	}
 
-	delete &planner;
+	ROS_INFO("PATH FORMATED\n");
 
 	return true;
 

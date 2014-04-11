@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "arm_controller/arm_controller.h"
 #include "controllers/armMove.h"
+#include "controllers/armAngles.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -21,6 +22,31 @@ void Arm_Controller::init()
 char *formatMessage(int base, int shoulder, int shoulder1, int elbow, int elbow1, 
                     int wrist, int wrot, int grip);
 
+bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers::armAngles::Response &res) {
+  int fd;
+  char *portname = (char*)malloc(sizeof(char) * 15);
+  strcpy(portname, "/dev/ttyUSB1");
+  ROS_INFO("copy success\n");
+  fd = serialport_init(portname, 9600);
+  ROS_INFO("open success!\n");
+  char* end = (char*)malloc(sizeof(char) * 10);
+  sprintf(end, "GETANG");
+  serialport_write(fd, end);
+  char returnval[256];
+  serialport_read_until(fd, returnval, 'Q', 256, 10000);
+  char *str;
+  char delim = ',';
+  res.base = atoi(strtok_r(returnval, &delim, &str));
+  res.shoulder = atoi(strtok_r(returnval, &delim, &str));
+  res.shoulder1 = atoi(strtok_r(returnval, &delim, &str));
+  res.elbow = atoi(strtok_r(returnval, &delim, &str));
+  res.elbow1 = atoi(strtok_r(returnval, &delim, &str));
+  res.wrist = atoi(strtok_r(returnval, &delim, &str));
+  res.wrot = atoi(strtok_r(returnval, &delim, &str));
+  res.grip = atoi(strtok_r(returnval, &delim, &str));
+  return true;
+}
+
 bool Arm_Controller::armMove(controllers::armMove::Request &req,
           controllers::armMove::Response &res)
 {
@@ -36,12 +62,12 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
   int i;
   float* inarr = (float*)malloc(sizeof(float)*6);
 
-  char *portname = (char*)malloc(sizeof(char) * 40);
+  char *portname = (char*)malloc(sizeof(char) * 15);
   strcpy(portname, "/dev/ttyUSB0");
   ROS_INFO("copy success\n");
   fd = serialport_init(portname, 9600);
   ROS_INFO("open success!\n");
-  char* startseq = (char*)malloc(sizeof(char) * 15);
+  char* startseq = (char*)malloc(sizeof(char) * 17);
   sprintf(startseq, "STARTSEQ%dENDSEQ", s);
   serialport_write(fd, startseq);
   char returnval[256];
@@ -130,6 +156,7 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "arm_controller");
   Arm_Controller armC;
   ros::ServiceServer tester = armC.n.advertiseService("plan2ArmMove", &Arm_Controller::armMove, &armC);
+  ros::ServiceServer angletester = armC.n.advertiseService("anglerecv", &Arm_Controller::anglesGet, &armC);
   ros::spin();
 
   return 0;
