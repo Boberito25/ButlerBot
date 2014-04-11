@@ -7,6 +7,7 @@ FILE(REMOVE_RECURSE
   "../src/controllers/srv/_BasicArmPlan.py"
   "../src/controllers/srv/_armMove.py"
   "../src/controllers/srv/_TestService.py"
+  "../src/controllers/srv/_armAngles.py"
 )
 
 # Per-language clean rules from dependency scanning.

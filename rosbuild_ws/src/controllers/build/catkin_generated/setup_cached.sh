@@ -16,4 +16,4 @@ export PATH="/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/build/deve
 export PKG_CONFIG_PATH="/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/build/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PYTHONPATH="/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/build/devel/lib/python2.7/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/build/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers:/opt/ros/groovy/share:/opt/ros/groovy/stacks"
+export ROS_PACKAGE_PATH="/home/vsunder/Documents/ButlerBot/rosbuild_ws/src/controllers:/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers:/opt/ros/groovy/share:/opt/ros/groovy/stacks"

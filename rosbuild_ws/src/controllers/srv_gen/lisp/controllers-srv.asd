@@ -10,4 +10,6 @@
     (:file "_package_armMove" :depends-on ("_package"))
     (:file "TestService" :depends-on ("_package_TestService"))
     (:file "_package_TestService" :depends-on ("_package"))
+    (:file "armAngles" :depends-on ("_package_armAngles"))
+    (:file "_package_armAngles" :depends-on ("_package"))
   ))

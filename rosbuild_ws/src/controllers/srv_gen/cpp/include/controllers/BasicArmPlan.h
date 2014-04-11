@@ -26,24 +26,31 @@ struct BasicArmPlanRequest_ {
   typedef BasicArmPlanRequest_<ContainerAllocator> Type;
 
   BasicArmPlanRequest_()
-  : theta1(0.0)
+  : theta0(0.0)
+  , theta1(0.0)
   , theta2(0.0)
   , theta3(0.0)
   , x(0.0)
+  , y(0.0)
   , z(0.0)
   , alpha(0.0)
   {
   }
 
   BasicArmPlanRequest_(const ContainerAllocator& _alloc)
-  : theta1(0.0)
+  : theta0(0.0)
+  , theta1(0.0)
   , theta2(0.0)
   , theta3(0.0)
   , x(0.0)
+  , y(0.0)
   , z(0.0)
   , alpha(0.0)
   {
   }
+
+  typedef double _theta0_type;
+  double theta0;
 
   typedef double _theta1_type;
   double theta1;
@@ -56,6 +63,9 @@ struct BasicArmPlanRequest_ {
 
   typedef double _x_type;
   double x;
+
+  typedef double _y_type;
+  double y;
 
   typedef double _z_type;
   double z;
@@ -80,18 +90,23 @@ struct BasicArmPlanResponse_ {
   typedef BasicArmPlanResponse_<ContainerAllocator> Type;
 
   BasicArmPlanResponse_()
-  : theta1s()
+  : theta0s()
+  , theta1s()
   , theta2s()
   , theta3s()
   {
   }
 
   BasicArmPlanResponse_(const ContainerAllocator& _alloc)
-  : theta1s(_alloc)
+  : theta0s(_alloc)
+  , theta1s(_alloc)
   , theta2s(_alloc)
   , theta3s(_alloc)
   {
   }
+
+  typedef std::vector<double, typename ContainerAllocator::template rebind<double>::other >  _theta0s_type;
+  std::vector<double, typename ContainerAllocator::template rebind<double>::other >  theta0s;
 
   typedef std::vector<double, typename ContainerAllocator::template rebind<double>::other >  _theta1s_type;
   std::vector<double, typename ContainerAllocator::template rebind<double>::other >  theta1s;
@@ -136,12 +151,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::controllers::BasicArmPlanRequest_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "5714612bf873ad4a1c889384990d0476";
+    return "a9e438f4373793bc76143bd190869f5f";
   }
 
   static const char* value(const  ::controllers::BasicArmPlanRequest_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0x5714612bf873ad4aULL;
-  static const uint64_t static_value2 = 0x1c889384990d0476ULL;
+  static const uint64_t static_value1 = 0xa9e438f4373793bcULL;
+  static const uint64_t static_value2 = 0x76143bd190869f5fULL;
 };
 
 template<class ContainerAllocator>
@@ -158,10 +173,12 @@ template<class ContainerAllocator>
 struct Definition< ::controllers::BasicArmPlanRequest_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "float64 theta1\n\
+    return "float64 theta0\n\
+float64 theta1\n\
 float64 theta2\n\
 float64 theta3\n\
 float64 x\n\
+float64 y\n\
 float64 z\n\
 float64 alpha\n\
 \n\
@@ -186,12 +203,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::controllers::BasicArmPlanResponse_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "18e3a90f77e24c0cbc4e00ff30645cc1";
+    return "c4856a6d99985c1840acf83ef0ee42d0";
   }
 
   static const char* value(const  ::controllers::BasicArmPlanResponse_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0x18e3a90f77e24c0cULL;
-  static const uint64_t static_value2 = 0xbc4e00ff30645cc1ULL;
+  static const uint64_t static_value1 = 0xc4856a6d99985c18ULL;
+  static const uint64_t static_value2 = 0x40acf83ef0ee42d0ULL;
 };
 
 template<class ContainerAllocator>
@@ -208,7 +225,8 @@ template<class ContainerAllocator>
 struct Definition< ::controllers::BasicArmPlanResponse_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "float64[] theta1s\n\
+    return "float64[] theta0s\n\
+float64[] theta1s\n\
 float64[] theta2s\n\
 float64[] theta3s\n\
 \n\
@@ -231,10 +249,12 @@ template<class ContainerAllocator> struct Serializer< ::controllers::BasicArmPla
 {
   template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
   {
+    stream.next(m.theta0);
     stream.next(m.theta1);
     stream.next(m.theta2);
     stream.next(m.theta3);
     stream.next(m.x);
+    stream.next(m.y);
     stream.next(m.z);
     stream.next(m.alpha);
   }
@@ -254,6 +274,7 @@ template<class ContainerAllocator> struct Serializer< ::controllers::BasicArmPla
 {
   template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
   {
+    stream.next(m.theta0s);
     stream.next(m.theta1s);
     stream.next(m.theta2s);
     stream.next(m.theta3s);
@@ -272,7 +293,7 @@ template<>
 struct MD5Sum<controllers::BasicArmPlan> {
   static const char* value() 
   {
-    return "340894115f5d0366af9c1996a18fa68b";
+    return "6eab4c1dc1d1346d061f4b0cb119419d";
   }
 
   static const char* value(const controllers::BasicArmPlan&) { return value(); } 
@@ -292,7 +313,7 @@ template<class ContainerAllocator>
 struct MD5Sum<controllers::BasicArmPlanRequest_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "340894115f5d0366af9c1996a18fa68b";
+    return "6eab4c1dc1d1346d061f4b0cb119419d";
   }
 
   static const char* value(const controllers::BasicArmPlanRequest_<ContainerAllocator> &) { return value(); } 
@@ -312,7 +333,7 @@ template<class ContainerAllocator>
 struct MD5Sum<controllers::BasicArmPlanResponse_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "340894115f5d0366af9c1996a18fa68b";
+    return "6eab4c1dc1d1346d061f4b0cb119419d";
   }
 
   static const char* value(const controllers::BasicArmPlanResponse_<ContainerAllocator> &) { return value(); } 

@@ -8,6 +8,7 @@ CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o
  ../include/arm_controller/arduino-serial-lib.h
  ../include/arm_controller/arm_controller.h
  ../include/controller.h
+ ../srv_gen/cpp/include/controllers/armAngles.h
  ../srv_gen/cpp/include/controllers/armMove.h
  /home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/src/arm_controller/arm_controller.cpp
  /opt/ros/groovy/include/XmlRpcDecl.h

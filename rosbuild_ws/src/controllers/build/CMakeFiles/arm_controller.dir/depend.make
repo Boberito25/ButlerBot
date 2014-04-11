@@ -7,6 +7,7 @@ CMakeFiles/arm_controller.dir/src/arm_controller/arduino-serial-lib.cpp.o: ../sr
 CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o: ../include/arm_controller/arduino-serial-lib.h
 CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o: ../include/arm_controller/arm_controller.h
 CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o: ../include/controller.h
+CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o: ../srv_gen/cpp/include/controllers/armAngles.h
 CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o: ../srv_gen/cpp/include/controllers/armMove.h
 CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o: ../src/arm_controller/arm_controller.cpp
 CMakeFiles/arm_controller.dir/src/arm_controller/arm_controller.cpp.o: /opt/ros/groovy/include/XmlRpcDecl.h

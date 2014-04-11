@@ -1,14 +1,17 @@
 # Hashes of file build rules.
 93eb29acd9e965419d489c7e88142187 ../src/controllers/srv/_BasicArmPlan.py
 20b00f86cc74a8396c3bfee819182bf4 ../src/controllers/srv/_TestService.py
-705538f3e8be67f24c58856e29eb6f31 ../src/controllers/srv/__init__.py
+66f04d3ac8718943ab8daf7b82532eed ../src/controllers/srv/__init__.py
+5df892a58c75f6080e3a6b71709727b2 ../src/controllers/srv/_armAngles.py
 ab584242988cf16c0f9b2db6b4bbe252 ../src/controllers/srv/_armMove.py
 2ed07ac5933c8a36430c80710f858a9a ../srv_gen/cpp/include/controllers/BasicArmPlan.h
 3e091b977ad5eb84ff4eae6eb24975e8 ../srv_gen/cpp/include/controllers/TestService.h
+c5ee83f6daab2148f85404596eac2991 ../srv_gen/cpp/include/controllers/armAngles.h
 2eac12e2e7a49ec358651b54bcd9912d ../srv_gen/cpp/include/controllers/armMove.h
 6fab53bf4c4d13877dd61a1ad4667db0 ../srv_gen/lisp/BasicArmMove.lisp
 4d697a5af6b431ebb0ef3b5499e9358a ../srv_gen/lisp/BasicArmPlan.lisp
 278ed94a2585d6199bfbf98e47ac9f0a ../srv_gen/lisp/TestService.lisp
+13802f24c75f0847945da134cabe69f0 ../srv_gen/lisp/armAngles.lisp
 d4f1fa578f4c3c471c8cabe9baa44bae ../srv_gen/lisp/armMove.lisp
 a016cc474be96c621919cd49d83a686b CMakeFiles/ROSBUILD_genmsg_cpp
 a016cc474be96c621919cd49d83a686b CMakeFiles/ROSBUILD_genmsg_lisp

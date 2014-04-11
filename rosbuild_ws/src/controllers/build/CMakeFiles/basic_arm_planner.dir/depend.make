@@ -9,6 +9,10 @@ CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: 
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: ../include/basic_arm_planner/basic_arm_planner.h
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: ../include/basic_arm_planner/forward_kinematics.h
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: ../include/controller.h
+<<<<<<< HEAD
+=======
+CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: ../srv_gen/cpp/include/controllers/BasicArmPlan.h
+>>>>>>> eb611db54821b4996da5e8e56e12fe8d8ea27f21
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: ../src/basic_arm_planner/basic_arm_planner.cpp
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: /opt/ros/groovy/include/XmlRpcDecl.h
 CMakeFiles/basic_arm_planner.dir/src/basic_arm_planner/basic_arm_planner.cpp.o: /opt/ros/groovy/include/XmlRpcValue.h

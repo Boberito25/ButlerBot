@@ -7,7 +7,12 @@
 ;//! \htmlinclude BasicArmPlan-request.msg.html
 
 (cl:defclass <BasicArmPlan-request> (roslisp-msg-protocol:ros-message)
-  ((theta1
+  ((theta0
+    :reader theta0
+    :initarg :theta0
+    :type cl:float
+    :initform 0.0)
+   (theta1
     :reader theta1
     :initarg :theta1
     :type cl:float
@@ -25,6 +30,11 @@
    (x
     :reader x
     :initarg :x
+    :type cl:float
+    :initform 0.0)
+   (y
+    :reader y
+    :initarg :y
     :type cl:float
     :initform 0.0)
    (z
@@ -47,6 +57,11 @@
   (cl:unless (cl:typep m 'BasicArmPlan-request)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name controllers-srv:<BasicArmPlan-request> is deprecated: use controllers-srv:BasicArmPlan-request instead.")))
 
+(cl:ensure-generic-function 'theta0-val :lambda-list '(m))
+(cl:defmethod theta0-val ((m <BasicArmPlan-request>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader controllers-srv:theta0-val is deprecated.  Use controllers-srv:theta0 instead.")
+  (theta0 m))
+
 (cl:ensure-generic-function 'theta1-val :lambda-list '(m))
 (cl:defmethod theta1-val ((m <BasicArmPlan-request>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader controllers-srv:theta1-val is deprecated.  Use controllers-srv:theta1 instead.")
@@ -67,6 +82,11 @@
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader controllers-srv:x-val is deprecated.  Use controllers-srv:x instead.")
   (x m))
 
+(cl:ensure-generic-function 'y-val :lambda-list '(m))
+(cl:defmethod y-val ((m <BasicArmPlan-request>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader controllers-srv:y-val is deprecated.  Use controllers-srv:y instead.")
+  (y m))
+
 (cl:ensure-generic-function 'z-val :lambda-list '(m))
 (cl:defmethod z-val ((m <BasicArmPlan-request>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader controllers-srv:z-val is deprecated.  Use controllers-srv:z instead.")
@@ -78,6 +98,15 @@
   (alpha m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <BasicArmPlan-request>) ostream)
   "Serializes a message object of type '<BasicArmPlan-request>"
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'theta0))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'theta1))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
@@ -114,6 +143,15 @@
     (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'y))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'z))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
@@ -135,6 +173,16 @@
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <BasicArmPlan-request>) istream)
   "Deserializes a message object of type '<BasicArmPlan-request>"
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'theta0) (roslisp-utils:decode-double-float-bits bits)))
     (cl:let ((bits 0))
       (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
@@ -184,6 +232,16 @@
       (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'y) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'z) (roslisp-utils:decode-double-float-bits bits)))
     (cl:let ((bits 0))
       (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
@@ -205,18 +263,20 @@
   "controllers/BasicArmPlanRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BasicArmPlan-request>)))
   "Returns md5sum for a message object of type '<BasicArmPlan-request>"
-  "340894115f5d0366af9c1996a18fa68b")
+  "6eab4c1dc1d1346d061f4b0cb119419d")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BasicArmPlan-request)))
   "Returns md5sum for a message object of type 'BasicArmPlan-request"
-  "340894115f5d0366af9c1996a18fa68b")
+  "6eab4c1dc1d1346d061f4b0cb119419d")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BasicArmPlan-request>)))
   "Returns full string definition for message of type '<BasicArmPlan-request>"
-  (cl:format cl:nil "float64 theta1~%float64 theta2~%float64 theta3~%float64 x~%float64 z~%float64 alpha~%~%~%"))
+  (cl:format cl:nil "float64 theta0~%float64 theta1~%float64 theta2~%float64 theta3~%float64 x~%float64 y~%float64 z~%float64 alpha~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BasicArmPlan-request)))
   "Returns full string definition for message of type 'BasicArmPlan-request"
-  (cl:format cl:nil "float64 theta1~%float64 theta2~%float64 theta3~%float64 x~%float64 z~%float64 alpha~%~%~%"))
+  (cl:format cl:nil "float64 theta0~%float64 theta1~%float64 theta2~%float64 theta3~%float64 x~%float64 y~%float64 z~%float64 alpha~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BasicArmPlan-request>))
   (cl:+ 0
+     8
+     8
      8
      8
      8
@@ -227,17 +287,24 @@
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <BasicArmPlan-request>))
   "Converts a ROS message object to a list"
   (cl:list 'BasicArmPlan-request
+    (cl:cons ':theta0 (theta0 msg))
     (cl:cons ':theta1 (theta1 msg))
     (cl:cons ':theta2 (theta2 msg))
     (cl:cons ':theta3 (theta3 msg))
     (cl:cons ':x (x msg))
+    (cl:cons ':y (y msg))
     (cl:cons ':z (z msg))
     (cl:cons ':alpha (alpha msg))
 ))
 ;//! \htmlinclude BasicArmPlan-response.msg.html
 
 (cl:defclass <BasicArmPlan-response> (roslisp-msg-protocol:ros-message)
-  ((theta1s
+  ((theta0s
+    :reader theta0s
+    :initarg :theta0s
+    :type (cl:vector cl:float)
+   :initform (cl:make-array 0 :element-type 'cl:float :initial-element 0.0))
+   (theta1s
     :reader theta1s
     :initarg :theta1s
     :type (cl:vector cl:float)
@@ -262,6 +329,11 @@
   (cl:unless (cl:typep m 'BasicArmPlan-response)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name controllers-srv:<BasicArmPlan-response> is deprecated: use controllers-srv:BasicArmPlan-response instead.")))
 
+(cl:ensure-generic-function 'theta0s-val :lambda-list '(m))
+(cl:defmethod theta0s-val ((m <BasicArmPlan-response>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader controllers-srv:theta0s-val is deprecated.  Use controllers-srv:theta0s instead.")
+  (theta0s m))
+
 (cl:ensure-generic-function 'theta1s-val :lambda-list '(m))
 (cl:defmethod theta1s-val ((m <BasicArmPlan-response>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader controllers-srv:theta1s-val is deprecated.  Use controllers-srv:theta1s instead.")
@@ -278,6 +350,21 @@
   (theta3s m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <BasicArmPlan-response>) ostream)
   "Serializes a message object of type '<BasicArmPlan-response>"
+  (cl:let ((__ros_arr_len (cl:length (cl:slot-value msg 'theta0s))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_arr_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (ele) (cl:let ((bits (roslisp-utils:encode-double-float-bits ele)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream)))
+   (cl:slot-value msg 'theta0s))
   (cl:let ((__ros_arr_len (cl:length (cl:slot-value msg 'theta1s))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_arr_len) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_arr_len) ostream)
@@ -326,6 +413,24 @@
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <BasicArmPlan-response>) istream)
   "Deserializes a message object of type '<BasicArmPlan-response>"
+  (cl:let ((__ros_arr_len 0))
+    (cl:setf (cl:ldb (cl:byte 8 0) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 8) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 16) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 24) __ros_arr_len) (cl:read-byte istream))
+  (cl:setf (cl:slot-value msg 'theta0s) (cl:make-array __ros_arr_len))
+  (cl:let ((vals (cl:slot-value msg 'theta0s)))
+    (cl:dotimes (i __ros_arr_len)
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:aref vals i) (roslisp-utils:decode-double-float-bits bits))))))
   (cl:let ((__ros_arr_len 0))
     (cl:setf (cl:ldb (cl:byte 8 0) __ros_arr_len) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 8) __ros_arr_len) (cl:read-byte istream))
@@ -390,18 +495,19 @@
   "controllers/BasicArmPlanResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BasicArmPlan-response>)))
   "Returns md5sum for a message object of type '<BasicArmPlan-response>"
-  "340894115f5d0366af9c1996a18fa68b")
+  "6eab4c1dc1d1346d061f4b0cb119419d")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BasicArmPlan-response)))
   "Returns md5sum for a message object of type 'BasicArmPlan-response"
-  "340894115f5d0366af9c1996a18fa68b")
+  "6eab4c1dc1d1346d061f4b0cb119419d")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BasicArmPlan-response>)))
   "Returns full string definition for message of type '<BasicArmPlan-response>"
-  (cl:format cl:nil "float64[] theta1s~%float64[] theta2s~%float64[] theta3s~%~%~%~%"))
+  (cl:format cl:nil "float64[] theta0s~%float64[] theta1s~%float64[] theta2s~%float64[] theta3s~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BasicArmPlan-response)))
   "Returns full string definition for message of type 'BasicArmPlan-response"
-  (cl:format cl:nil "float64[] theta1s~%float64[] theta2s~%float64[] theta3s~%~%~%~%"))
+  (cl:format cl:nil "float64[] theta0s~%float64[] theta1s~%float64[] theta2s~%float64[] theta3s~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BasicArmPlan-response>))
   (cl:+ 0
+     4 (cl:reduce #'cl:+ (cl:slot-value msg 'theta0s) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 8)))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'theta1s) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 8)))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'theta2s) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 8)))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'theta3s) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 8)))
@@ -409,6 +515,7 @@
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <BasicArmPlan-response>))
   "Converts a ROS message object to a list"
   (cl:list 'BasicArmPlan-response
+    (cl:cons ':theta0s (theta0s msg))
     (cl:cons ':theta1s (theta1s msg))
     (cl:cons ':theta2s (theta2s msg))
     (cl:cons ':theta3s (theta3s msg))

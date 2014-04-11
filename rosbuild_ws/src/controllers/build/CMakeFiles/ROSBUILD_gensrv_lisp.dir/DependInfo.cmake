@@ -8,6 +8,7 @@ SET(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/_package.lisp" "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/BasicArmPlan.lisp"
   "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/_package_BasicArmPlan.lisp" "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/BasicArmPlan.lisp"
   "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/_package_TestService.lisp" "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/TestService.lisp"
+  "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/_package_armAngles.lisp" "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/armAngles.lisp"
   "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/_package_armMove.lisp" "/home/pwei/Desktop/ButlerBot/rosbuild_ws/src/controllers/srv_gen/lisp/armMove.lisp"
   )
 
