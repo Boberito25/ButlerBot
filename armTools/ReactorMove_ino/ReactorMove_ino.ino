@@ -243,25 +243,38 @@ void readAngles() {
   /*unsigned long starttime, stoptime;
   starttime = millis();*/
   int i = 0;
+  message = "";
   while(Serial.available()) {
       //Start reading the stream
       //Serial.println("before read");
       incomingChar=Serial.read();
       message.concat(incomingChar); //Concatanate the received characters to the string message
-      /*if(message.endsWith(Startseq)) {
+      if(message.endsWith(Startseq)) {
+        message = "";
         incomingChar=Serial.read();
-        message.concat(incomingChar);
         Serial.println(message);
-        //Check for the SOP Header and strip it off once the received string is larger than the SOP header
+        while(!message.endsWith(Endseq)) {
+          incomingChar=Serial.read();
+          message.concat(incomingChar);
+        }
+      message = message.substring(0,message.length()-Endseq.length());
+        int s = message.toInt();
+        while(!message.endsWith(SOPHeader)) {
+          incomingChar=Serial.read();
+          message.concat(incomingChar);
+        }
+              //Check for the SOP Header and strip it off once the received string is larger than the SOP header
         if(message.endsWith(SOPHeader)) {
           message = "";
           while(Serial.available()) { //Start receiving once data is available on the serial link
             incomingChar=Serial.read();
             message.concat(incomingChar);
             if(message.endsWith(EOPTail)) {
-              message = message.substring(0,message.length()-Endseq.length());
-              parseMove(message, i);
-              i++;
+              while(i < s) {
+                message = message.substring(0,message.length()-EOPTail.length());
+                parseMove(i);
+                i++;
+              }
               break;
             }
           }
@@ -269,7 +282,7 @@ void readAngles() {
             break;
           }
         }
-      }*/
+      }
       if (message.endsWith(getangles)) {
         message = "";
         int id = 1;
@@ -314,10 +327,9 @@ void readAngles() {
 }
   
   
-void parseMove(String m, int counter) {
+void parseMove(int counter) {
+  
   int Base, Shoulder, Shoulder1, Elbow, Elbow1, Wrist, Wrot, grip;
-  char message[256];
-  m.toCharArray(message, 256);
   char *str;
   char* delim = ",";
   Base = atoi(strtok_r(message, delim, &str));
