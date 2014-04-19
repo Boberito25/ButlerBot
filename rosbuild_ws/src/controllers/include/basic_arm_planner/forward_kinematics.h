@@ -29,10 +29,16 @@ struct pstate_comp {
 
 void fk(double* x, double* z, double* alpha,
 		int t0, int t1, int t2, int numticks);
+void ikUp(double x, double z, double alpha,
+		int *t0, int *t1, int *t2, int numticks);
+void ikDown(double x, double z, double alpha,
+		int *t0, int *t1, int *t2, int numticks);
+
+
 // Eigen::Matrix4d DH(double alpha, double a, double d, double theta);
 // Eigen::Matrix<double,3,5> jacobian(int t0, int t1,int t2,int t3, int t4,int numticks);
 double tick_to_radians(int i, int numticks);
-
+int radian_to_ticks (double theta, int numticks);
 
 /* Allocators */
 
