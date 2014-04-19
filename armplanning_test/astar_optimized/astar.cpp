@@ -18,7 +18,7 @@
 #define TORQUE_RATE 8
 #define TORQUE_KINETIC 9
 Astar::Astar(){
-	dist_threshold = 30;
+	dist_threshold = 9;
 	int n_ticks = 100;
 	numticks = n_ticks;
 	n_ticks = numticks;

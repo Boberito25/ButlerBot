@@ -2,7 +2,6 @@
 # generated from catkin/cmake/templates/setup.zsh.in
 
 CATKIN_SHELL=zsh
-_CATKIN_SETUP_DIR=$(cd "`dirname "$0"`" && pwd)
 emulate sh # emulate POSIX
-. "$_CATKIN_SETUP_DIR/setup.sh"
+. "/home/vsunder/ButlerBot/rosbuild_ws/src/controllers/build/devel/setup.sh"
 emulate zsh # back to zsh mode

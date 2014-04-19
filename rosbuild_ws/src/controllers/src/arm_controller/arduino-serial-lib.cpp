@@ -6,6 +6,7 @@
 
 #include "arm_controller/arduino-serial-lib.h"
 
+#include "ros/ros.h"
 #include <stdio.h>    // Standard input/output definitions 
 #include <unistd.h>   // UNIX standard function definitions 
 #include <fcntl.h>    // File control definitions 
