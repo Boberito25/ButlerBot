@@ -112,7 +112,7 @@ int serialport_write(int fd, const char* str)
     int len = strlen(str);
     int n = write(fd, str, len);
     if( n!=len ) {
-        perror("serialport_write: couldn't write whole string\n");
+        ROS_INFO("serialport_write: couldn't write whole string\n");
         return -1;
     }
     return 0;
@@ -136,6 +136,8 @@ int serialport_read_until(int fd, char* buf, char until, int buf_max, int timeou
 #endif
         buf[i] = b[0]; 
         i++;
+	int val = (int)b[0];
+	ROS_INFO("%i\n", val);
     } while( b[0] != until && i < buf_max && timeout>0 );
 
     buf[i] = 0;  // null terminate the string

@@ -25,22 +25,37 @@ char *formatMessage(int base, int shoulder, int shoulder1, int elbow, int elbow1
 bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers::armAngles::Response &res) {
   int fd;
   char *portname = (char*)malloc(sizeof(char) * 15);
-  strcpy(portname, "/dev/ttyUSB1");
+  strcpy(portname, "/dev/ttyUSB0");
   ROS_INFO("copy success\n");
   fd = serialport_init(portname, 9600);
   ROS_INFO("open success!\n");
   char* end = (char*)malloc(sizeof(char) * 10);
+  char b[1];
+  b[0] = '0';
+  while (b[0] != 'X') {
+          read(fd, b, 1);
+	  serialport_write(fd, "X");
+          ros::Duration(1.0).sleep();
+          ROS_INFO("Char %d\n", (int)*b);
+  }
   sprintf(end, "GETANG");
   serialport_write(fd, end);
+
   char returnval[256];
+  ros::Duration(1.0).sleep();
+  ROS_INFO("%d\n", fd);
   ROS_INFO("before read\n");
   char e = 'Q';
   serialport_read_until(fd, returnval, e, 256, 1000000);
+/*  while(1) {
+  std::cout<<read(fd, returnval, 1);
+}*/
   char *str;
   char delim = ',';
-  ROS_INFO(returnval);
+  //ROS_INFO(returnval);
   ROS_INFO("done\n");
-  res.base = atoi(strtok_r(returnval, &delim, &str));
+  strtok_r(returnval, &delim, &str);
+  res.base = atoi(strtok_r(NULL, &delim, &str));
   res.shoulder = atoi(strtok_r(NULL, &delim, &str));
   res.shoulder1 = atoi(strtok_r(NULL, &delim, &str));
   res.elbow = atoi(strtok_r(NULL, &delim, &str));
@@ -48,6 +63,7 @@ bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers
   res.wrist = atoi(strtok_r(NULL, &delim, &str));
   res.wrot = atoi(strtok_r(NULL, &delim, &str));
   res.grip = atoi(strtok_r(NULL, &e, &str));
+	serialport_close(fd);
   return true;
 }
 
@@ -102,6 +118,7 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
   free(startseq);
   free(end);
   res.success = true;
+serialport_close(fd);
   return true;
 }
 

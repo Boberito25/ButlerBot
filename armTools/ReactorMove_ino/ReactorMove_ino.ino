@@ -2,6 +2,7 @@
 #include <BioloidController.h>
 #include "poses.h"
 
+
 #define BASE_MIN    0
 #define BASE_MAX    1023
 
@@ -44,11 +45,14 @@ prog_uint16_t path[2000];
 int id;
 int pos;
 int pos2;
+int conn;
 boolean IDCheck;
 boolean RunCheck;
 
 void setup(){
-     Serial.begin(9600);
+
+
+     
    delay (100);   
 /*   Serial.println("###########################\n");    
    Serial.println("Serial Communication Established.\n");   
@@ -65,6 +69,7 @@ void setup(){
    //initialize variables 
    id = 1;
    pos = 0;
+   conn = 0;
    IDCheck = 1;
    RunCheck = 0;
   //open serial port
@@ -87,12 +92,22 @@ void setup(){
   RelaxServos();
   doPose(512, 512, 512, 512, 512, 512); 
   RunCheck = 1;
-  delay(10);
+  Serial.begin(9600);
+
+  
 }
 
 void loop(){
   // read the sensor:
     //int inByte = Serial.read();
+    char c = 0;
+    char in = 'X';
+    while (!conn) {
+      if ((c = Serial.read()) == 'X') {
+          Serial.print("X");
+          conn = 1;
+      }
+    }
     int no;
     int angle;
     /*
@@ -160,14 +175,14 @@ void doPose(int Base, int Shoulder, int Elbow, int Wrist, int Wrot, int grip) {
   starttime = millis();
   setNextPose(Base, Shoulder, Elbow, Wrist, Wrot, grip);
   stoptime = millis();
-  Serial.println("time setNextPose = ");
-  Serial.println(stoptime - starttime);
+  //Serial.println("time setNextPose = ");
+  //Serial.println(stoptime - starttime);
   starttime = millis();
   Move();
   stoptime = millis();
-  Serial.println("time Move = ");
-  Serial.println(stoptime - starttime);
-  Serial.println("Hello:End");
+  //Serial.println("time Move = ");
+  //Serial.println(stoptime - starttime);
+  //Serial.println("Hello:End");
 }
 
 int SetAngle(int no, int angle) {
@@ -243,13 +258,14 @@ void readAngles() {
   /*unsigned long starttime, stoptime;
   starttime = millis();*/
   int i = 0;
-  message = "";
+  //message = "";
   while(Serial.available()) {
       //Start reading the stream
       //Serial.println("before read");
-      incomingChar=Serial.read();
+      incomingChar = Serial.read();
       message.concat(incomingChar); //Concatanate the received characters to the string message
-      if(message.endsWith(Startseq)) {
+      Serial.print(message);
+      /*if(message.endsWith(Startseq)) {
         message = "";
         incomingChar=Serial.read();
         Serial.println(message);
@@ -282,11 +298,12 @@ void readAngles() {
             break;
           }
         }
-      }
+      }*/
+      //Serial.print("Q");
       if (message.endsWith(getangles)) {
         message = "";
         int id = 1;
-        //Serial.print("begin");
+        Serial.print(",");
         while (id <= SERVOCOUNT) {
           pos =  ax12GetRegister(id, 36, 2);
           Serial.print(pos);
@@ -329,7 +346,7 @@ void readAngles() {
   
 void parseMove(int counter) {
   
-  int Base, Shoulder, Shoulder1, Elbow, Elbow1, Wrist, Wrot, grip;
+  /*int Base, Shoulder, Shoulder1, Elbow, Elbow1, Wrist, Wrot, grip;
   char *str;
   char* delim = ",";
   Base = atoi(strtok_r(message, delim, &str));
@@ -346,7 +363,7 @@ void parseMove(int counter) {
   path[counter * 6 + 2] = Elbow;
   path[counter * 6 + 3] = Wrist;
   path[counter * 6 + 4] = Wrot;
-  path[counter * 6 + 5] = grip;
+  path[counter * 6 + 5] = grip;*/
   //doPose(Base, Shoulder, Elbow, Wrist, Wrot, grip);
   /*Serial.println(Base);
   Serial.println(Shoulder);
@@ -363,10 +380,10 @@ void Move(){
 
     //bioloid.loadPose(Center);   // load the pose from FLASH, into the nextPose buffer
     bioloid.readPose();            // read in current servo positions to the curPose buffer
-    Serial.println("Moving servos to centered position");  
+    //Serial.println("Moving servos to centered position");  
     for (int i = 1; i <= SERVOCOUNT; i++) {
-        Serial.println(bioloid.getCurPose(i));
-        Serial.println(bioloid.getNextPose(i));
+        //Serial.println(bioloid.getCurPose(i));
+        //Serial.println(bioloid.getNextPose(i));
     }
     bioloid.interpolateSetup(50); // setup for interpolation from current->next over 1/2 a second
     while(bioloid.interpolating > 0){  // do this while we have not reached our new pose
@@ -376,16 +393,16 @@ void Move(){
 }
 
 void MoveTest(){
-  Serial.println("###########################");
-  Serial.println("Initializing Movement Sign Test");  
-  Serial.println("###########################");
+  //Serial.println("###########################");
+  //Serial.println("Initializing Movement Sign Test");  
+  //Serial.println("###########################");
   delay(10);  
   id = 1;
   pos = pos2 = 512;
  
 // Base Servo Test
 
-  Serial.println("Moving Servo ID: 1");
+  //Serial.println("Moving Servo ID: 1");
   
   while(pos >= 312){  
   SetPosition(1, pos);
