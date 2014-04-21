@@ -228,5 +228,5 @@ bool Astar::will_continue(State* current){
   bool hitT2 = current->id[0] == target2[0] &&
                current->id[1] == target2[1] &&
                current->id[2] == target2[2];
-  return hitT1 || hitT2;
+  return !(hitT1 || hitT2);
 }
