@@ -86,11 +86,19 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
   strcpy(portname, "/dev/ttyUSB0");
   ROS_INFO("copy success\n");
   fd = serialport_init(portname, 9600);
+  char b[1];
+  b[0] = '0';
+  while (b[0] != 'X') {
+          read(fd, b, 1);
+	  serialport_write(fd, "X");
+          ros::Duration(1.0).sleep();
+          ROS_INFO("Char %d\n", (int)*b);
+  }
   ROS_INFO("open success!\n");
   char* startseq = (char*)malloc(sizeof(char) * 17);
   sprintf(startseq, "STARTSEQ%dENDSEQ", s);
   serialport_write(fd, startseq);
-  char returnval[256];
+  //char returnval[256];
 
   int *outarr;
   for (i = 0; i < s; i++) {
@@ -106,9 +114,6 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
     ROS_INFO("copy success\n");
     serialport_write(fd, teststr);
     ROS_INFO("write success!\n");
-    serialport_read_until(fd, returnval, ':', 256, 10000);
-    ROS_INFO("read success!\n");
-    ROS_INFO("%s\n", returnval);
     free(teststr);
   }
   char* end = (char*)malloc(sizeof(char) * 10);
