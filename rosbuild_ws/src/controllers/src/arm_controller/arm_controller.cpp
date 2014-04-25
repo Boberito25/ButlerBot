@@ -13,6 +13,7 @@
 
 #define PI M_PI
 Arm_Controller::Arm_Controller() {}
+
 void Arm_Controller::run()
 {}
 
@@ -64,6 +65,8 @@ bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers
   res.wrot = atoi(strtok_r(NULL, &delim, &str));
   res.grip = atoi(strtok_r(NULL, &e, &str));
 	serialport_close(fd);
+  free(portname);
+  free(end);
   return true;
 }
 
@@ -115,6 +118,7 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
     serialport_write(fd, teststr);
     ROS_INFO("write success!\n");
     free(teststr);
+    free(outarr);
   }
   char* end = (char*)malloc(sizeof(char) * 10);
   sprintf(end, "ARRDONE");
@@ -122,8 +126,9 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
   free(portname);
   free(startseq);
   free(end);
+  free(inarr);
   res.success = true;
-serialport_close(fd);
+  serialport_close(fd);
   return true;
 }
 
