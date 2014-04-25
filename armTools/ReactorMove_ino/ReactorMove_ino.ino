@@ -31,7 +31,7 @@ void readAngles();
 void Move();
 void MoveTest();
 void RelaxServos();
-void parseMove(String m, int counter);
+void parseMove(int counter, int* path);
 
 char incomingChar;
 String message,SOPHeader,EOPTail,endChars;
@@ -41,7 +41,6 @@ BioloidController bioloid = BioloidController(1000000);
 
 const int SERVOCOUNT = 8;
 prog_uint16_t currPose[SERVOCOUNT+1];
-prog_uint16_t path[2000];
 int id;
 int pos;
 int pos2;
@@ -50,8 +49,10 @@ boolean IDCheck;
 boolean RunCheck;
 
 void setup() {
+  
    delay (100);   
-/*   Serial.println("###########################\n");    
+   Serial.begin(9600);
+   /*   Serial.println("###########################\n");    
    Serial.println("Serial Communication Established.\n");   
    Serial.println("###########################"); */
    SOPHeader = "Start:";
@@ -89,7 +90,7 @@ void setup() {
   RelaxServos();
   doPose(512, 512, 512, 512, 512, 512); 
   RunCheck = 1;
-  Serial.begin(9600);
+
 
   
 }
@@ -261,18 +262,23 @@ void readAngles() {
       //Serial.println("before read");
       incomingChar = Serial.read();
       message.concat(incomingChar); //Concatanate the received characters to the string message
-      Serial.print(message);
       if(message.endsWith(Startseq)) {
-        message = "";
-        incomingChar=Serial.read();
-        Serial.println(message);
-        while(!message.endsWith(Endseq)) {
-          incomingChar=Serial.read();
-          message.concat(incomingChar);
+        message = String("");
+        while(1) {
+          if (Serial.available()) {
+            incomingChar=Serial.read();
+            message.concat(incomingChar);
+          }
+          if (message.endsWith(Endseq)) {
+            break;
+          }
         }
         message = message.substring(0,message.length()-Endseq.length());
         int s = message.toInt();
+        int *path = (int*)malloc(sizeof(int) * s * 6);
+        Serial.println(s);
         while(Serial.available()) {
+          Serial.print(message);
           incomingChar = Serial.read();
           message.concat(incomingChar);
           if (message.endsWith(SOPHeader)) {
@@ -280,27 +286,30 @@ void readAngles() {
             while(Serial.available()) { //Start receiving once data is available on the serial link
               incomingChar=Serial.read();
               message.concat(incomingChar);
-            }
-          }
-        }
-      }/*if(message.endsWith(EOPTail)) {
+              if(message.endsWith(EOPTail)) {
                 message = message.substring(0,message.length()-EOPTail.length());
-                parseMove(i);
+                parseMove(i, path);
                 i++;
               }
               break;
             }
           }
         }
-      }*//*
+      }
           if (message.endsWith(Eof)) {
             for (int j = 0; j < i; j++) {
-              doPose(path[j*6], path[j*6+1], path[j*6+2], path[j*6+3], path[j*6+4], path[j*6+5]);
+              Serial.println(path[j*6]);
+              Serial.println(path[j*6+1]);
+              Serial.println(path[j*6+2]);
+              Serial.println(path[j*6+3]);
+              Serial.println(path[j*6+4]);
+              Serial.println(path[j*6+5]);
+              //doPose(path[j*6], path[j*6+1], path[j*6+2], path[j*6+3], path[j*6+4], path[j*6+5]);
             }
             return;
           }
         }
-      }*/
+      }
       //Serial.print("Q");
       if (message.endsWith(getangles)) {
         message = "";
@@ -347,7 +356,7 @@ void readAngles() {
 }
   
   
-void parseMove(int counter) {
+void parseMove(int counter, int *path) {
   
   int Base, Shoulder, Shoulder1, Elbow, Elbow1, Wrist, Wrot, grip;
   char *str;
@@ -533,3 +542,4 @@ void RelaxServos(){
   }
 }
     
+
