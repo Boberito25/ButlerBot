@@ -137,7 +137,7 @@ int serialport_read_until(int fd, char* buf, char until, int buf_max, int timeou
         buf[i] = b[0]; 
         i++;
 	int val = (int)b[0];
-	ROS_INFO("%i\n", val);
+	ROS_INFO("%c\n", b[0]);
     } while( b[0] != until && i < buf_max && timeout>0 );
 
     buf[i] = 0;  // null terminate the string

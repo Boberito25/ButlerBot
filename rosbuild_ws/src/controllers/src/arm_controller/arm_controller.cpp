@@ -37,7 +37,7 @@ bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers
           read(fd, b, 1);
 	  serialport_write(fd, "X");
           ros::Duration(1.0).sleep();
-          ROS_INFO("Char %d\n", (int)*b);
+          ROS_INFO("Char %s\n", b);
   }
   sprintf(end, "GETANG");
   serialport_write(fd, end);
@@ -53,7 +53,7 @@ bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers
 }*/
   char *str;
   char delim = ',';
-  //ROS_INFO(returnval);
+  ROS_INFO(returnval);
   ROS_INFO("done\n");
   strtok_r(returnval, &delim, &str);
   res.base = atoi(strtok_r(NULL, &delim, &str));
@@ -63,7 +63,7 @@ bool Arm_Controller::anglesGet(controllers::armAngles::Request &req, controllers
   res.elbow1 = atoi(strtok_r(NULL, &delim, &str));
   res.wrist = atoi(strtok_r(NULL, &delim, &str));
   res.wrot = atoi(strtok_r(NULL, &delim, &str));
-  res.grip = atoi(strtok_r(NULL, &e, &str));
+  res.grip = atoi(strtok_r(NULL, &delim, &str));
 	serialport_close(fd);
   free(portname);
   free(end);
@@ -100,6 +100,7 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
   ROS_INFO("open success!\n");
   char* startseq = (char*)malloc(sizeof(char) * 17);
   sprintf(startseq, "STARTSEQ%dENDSEQ", s);
+//  ROS_INFO("Hello world%s\n", startseq);
   serialport_write(fd, startseq);
   //char returnval[256];
 
@@ -115,6 +116,7 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
 
     char* teststr = formatMessage(outarr[0], outarr[1], outarr[1], outarr[2], outarr[2], outarr[3], outarr[4], outarr[5]);
     ROS_INFO("copy success\n");
+//    ROS_INFO("%s\n", teststr);
     serialport_write(fd, teststr);
     ROS_INFO("write success!\n");
     free(teststr);
@@ -122,11 +124,9 @@ bool Arm_Controller::armMove(controllers::armMove::Request &req,
   }
   char* end = (char*)malloc(sizeof(char) * 10);
   sprintf(end, "ARRDONE");
+  ROS_INFO("%s\n", end);
   serialport_write(fd, end);
   free(portname);
-  free(startseq);
-  free(end);
-  free(inarr);
   res.success = true;
   serialport_close(fd);
   return true;
@@ -152,14 +152,14 @@ int* Arm_Controller::rad2ticks(float* inarr) {
     wrot = wrot - (wrot/(2*PI))*2*PI;
     grip = grip - (grip/(2*PI))*2*PI;
 
-    outarr[0] = static_cast<int>(base*512/PI);
+/*    outarr[0] = static_cast<int>(base*512/PI);
     outarr[1] = static_cast<int>(shoulder*512/PI);
     outarr[2] = static_cast<int>(elbow*512/PI);
     outarr[3] = static_cast<int>(wrist*512/PI);
     outarr[4] = static_cast<int>(wrot*512/PI);
-    outarr[5] = static_cast<int>(grip*512/PI);
+    outarr[5] = static_cast<int>(grip*512/PI);*/
 
-    if (outarr[0] < minclamp) outarr[0] = minclamp;
+    /*if (outarr[0] < minclamp) outarr[0] = minclamp;
     if (outarr[0] > maxclamp) outarr[0] = maxclamp;
     if (outarr[1] < minclamp) outarr[1] = minclamp;
     if (outarr[1] > maxclamp) outarr[1] = maxclamp;
@@ -170,7 +170,13 @@ int* Arm_Controller::rad2ticks(float* inarr) {
     if (outarr[4] < minclamp) outarr[4] = minclamp;
     if (outarr[4] > maxclamp) outarr[4] = maxclamp;
     if (outarr[5] < minclamp) outarr[5] = minclamp;
-    if (outarr[5] > maxclamp) outarr[5] = maxclamp;
+    if (outarr[5] > maxclamp) outarr[5] = maxclamp;*/
+    outarr[0] = inarr[0];
+    outarr[1] = inarr[1];
+    outarr[2] = inarr[2];
+    outarr[3] = inarr[3];
+    outarr[4] = inarr[4];
+    outarr[5] = inarr[5];
 
     return outarr;
 }
