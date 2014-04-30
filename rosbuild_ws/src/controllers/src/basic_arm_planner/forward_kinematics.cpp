@@ -31,9 +31,9 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k,int numticks)
 
 //Compute the Inverse Kinematics of the arm
 //  Currently with no check that target is in the workspace
-void ikUp(double x,double z, double alpha, int* i, int j*, int k*,int numticks)
+void ikUp(double x,double z, double alpha, int* i, int* j, int* k, int numticks)
 {
-  double thresh = 0.00001
+  double thresh = 0.00001;
 
   double l1 = 150.0;
   double l2 = 150.0;
@@ -69,9 +69,9 @@ void ikUp(double x,double z, double alpha, int* i, int j*, int k*,int numticks)
 
 //Compute the Inverse Kinematics of the arm
 //  Currently with no check that target is in the workspace
-void ikDown(double x,double z,double alpha,int* i, int j*, int k*,int numticks)
+void ikDown(double x,double z,double alpha, int* i, int* j, int* k,int numticks)
 {
-  double thresh = 0.00001
+  double thresh = 0.00001;
 
   double l1 = 150.0;
   double l2 = 150.0;
@@ -145,6 +145,6 @@ double tick_to_radians (int i, int numticks){
   return (M_PI/numticks)*(i-(numticks/2 -1));
 }
 
-int radian_to_ticks (double theta, in numticks){
+int radians_to_ticks(double theta, int numticks){
   return (int)(round(theta/M_PI) * numticks + (numticks/2) +1);
 }

@@ -30,8 +30,8 @@ Astar::Astar(){
       }
     }
   }
-  target1 = (double*)malloc(3*size(double));
-  target2 = (double*)malloc(3*size(double));
+  target1 = new int[3];
+  target2 = new int[3];
 }//end constructor
 
 std::vector<PState*> Astar::run(int* start, double* target){
@@ -200,13 +200,13 @@ void Astar::compute_fk(int i, int j, int k){
 
 void Astar::compute_ik(double x,double y,double alpha,int* tUp,int* tDown){
   int i,j,k;
-  ikUp (x,y,alpha,&i,&j,&k);
+  ikUp (x,y,alpha,&i,&j,&k,numticks);
   tUp[0] = i;
   tUp[1] = j;
   tUp[2] = k;
 
-  ikDown (x,y,alpha,&i,&j,&k);
-  tDwon[0] = i;
+  ikDown (x,y,alpha,&i,&j,&k,numticks);
+  tDown[0] = i;
   tDown[1] = j;
   tDown[2] = k;
 
