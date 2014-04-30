@@ -41,18 +41,18 @@ Astar::Astar(){
 		}
 	}
 
-	
+
 }
 
-std::vector<PState*> Astar::run(int* start, double* target){
+std::vector<PState*> Astar::run(int* start, double* target,double targett0){
 	// std::cout << "Running A*\n";
 	// std::cout << "Initializing target\n";
     this->target = target;
-
+    this -> t0 = radian_to_ticks(targett0,numticks);
     // std::cout << "Initialize Start\n";
 	compute_fk(start[0], start[1], start[2]);
 	State* starts = &space[start[0]][start[1]][start[2]];
-	starts->heuristic 
+	starts->heuristic
 		= heuristic(&space[start[0]][start[1]][start[2]]);
 	starts->prev[0] = -1;
 	starts->prev[1] = -1;
@@ -65,32 +65,32 @@ std::vector<PState*> Astar::run(int* start, double* target){
 	pstart->state[0] = start[0];
 	pstart->state[1] = start[1];
 	pstart->state[2] = start[2];
-	
+
 	frontier.push(pstart);
 
 	State* current = starts;
 	PState* tracker = new PState;
 	// std::cout << "Searching For Target\n";
-	
+
 	while(!frontier.empty() && will_continue(current)){
 		/* Get the next priority */
 		PState* pcur = frontier.top();
 		frontier.pop();
-		
+
 		tracker->value = pcur->value;
 		tracker->state[0] = pcur->state[0];
 		tracker->state[1] = pcur->state[1];
 		tracker->state[2] = pcur->state[2];
-		current = 
+		current =
 			&space[pcur->state[0]][pcur->state[1]][pcur->state[2]];
-		
+
 		if(current->visited == false){
 			current->visited = true;
 			expand_frontier(pcur->state[0],pcur->state[1],pcur->state[2]);
 		}
 		delete(pcur);
 	}
-	
+
 	// std::cout << "Search Completed\n";
 	std::vector<PState*> path;
 	State* back_tracker = current;;
@@ -128,27 +128,27 @@ void Astar::expand_frontier(int is, int js, int ks){
 					if(space[is+i][js+j][ks+k].visited){
 						continue;
 					}
-					/* Has the heuristic been calculated */	
+					/* Has the heuristic been calculated */
 
 					if(space[is+i][js+j][ks+k].heuristic < 0){
 						compute_fk(is+i, js+j, ks+k);
 						space[is+i][js+j][ks+k].heuristic
 							= heuristic(&space[is+i][js+j][ks+k]);
 					}
-					double curcost =  (space[is][js][ks].value - 
-						space[is][js][ks].heuristic) + 
-						cost(&space[is][js][ks], 
+					double curcost =  (space[is][js][ks].value -
+						space[is][js][ks].heuristic) +
+						cost(&space[is][js][ks],
 						&space[is+i][js+j][ks+k]);
-						
+
 
 				    /* Check if new value is less than min value */
 					if(space[is+i][js+j][ks+k].value < 0){
-						space[is+i][js+j][ks+k].value = 
+						space[is+i][js+j][ks+k].value =
 							space[is+i][js+j][ks+k].heuristic+curcost;
 						space[is+i][js+j][ks+k].prev[0] = is;
 		                space[is+i][js+j][ks+k].prev[1] = js;
-		                space[is+i][js+j][ks+k].prev[2] = ks;	
-	
+		                space[is+i][js+j][ks+k].prev[2] = ks;
+
 						PState* p = new PState;
 						p->state[0] = is+i;
 						p->state[1] = js+j;
@@ -156,20 +156,20 @@ void Astar::expand_frontier(int is, int js, int ks){
 						p->value = space[is+i][js+j][ks+k].value;
 						frontier.push(p);
 					} else {
-						if(curcost + space[is+i][js+j][ks+k].heuristic 
+						if(curcost + space[is+i][js+j][ks+k].heuristic
 							< space[is+i][js+j][ks+k].value){
-							space[is+i][js+j][ks+k].value = 
+							space[is+i][js+j][ks+k].value =
 								curcost+space[is+i][js+j][ks+k].heuristic;
 							space[is+i][js+j][ks+k].prev[0] = is;
 		                	space[is+i][js+j][ks+k].prev[1] = js;
-		                	space[is+i][js+j][ks+k].prev[2] = ks;	
+		                	space[is+i][js+j][ks+k].prev[2] = ks;
 							PState* p = new PState;
 							p->state[0] = is+i;
 							p->state[1] = js+j;
 							p->state[2] = ks+k;
 							p->value = space[is+i][js+j][ks+k].value;
 							frontier.push(p);
-						} 
+						}
 					}
 				}
 			}
@@ -187,7 +187,7 @@ double Astar::cost(State* s1, State* s2){
 	double t2 = tick_to_radians(s2->id[1],numticks);
 	double t3 = tick_to_radians(s2->id[2],numticks);
 	double c1 = 150*cos(t1)*obj_mass;
-	double c12 = 150*cos(t1+t2)*obj_mass; 
+	double c12 = 150*cos(t1+t2)*obj_mass;
 	double s123 = 116.525*sin(t1+t2+t3)*obj_mass;
 
 	double mag_torque = pow(c1+c12+s123,2)
@@ -199,7 +199,7 @@ double Astar::cost(State* s1, State* s2){
 	double t2 = tick_to_radians(s2->id[1],numticks);
 	double t3 = tick_to_radians(s2->id[2],numticks);
 	double c1 = 150*cos(t1)*obj_mass;
-	double c12 = 150*cos(t1+t2)*obj_mass; 
+	double c12 = 150*cos(t1+t2)*obj_mass;
 	double s123 = 116.525*sin(t1+t2+t3)*obj_mass;
 
 	double mag_torque = pow(c1+c12+s123,2)
@@ -212,15 +212,15 @@ double Astar::cost(State* s1, State* s2){
 	double s2t2 = tick_to_radians(s2->id[1],numticks);
 	double s2t3 = tick_to_radians(s2->id[2],numticks);
 	double s2c1 = 150*cos(s2t1)*obj_mass;
-	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass; 
+	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass;
 	double s2s123 = 116.525*sin(s2t1+s2t2+s2t3)*obj_mass;
 
 	double s1t1 = tick_to_radians(s1->id[0],numticks);
 	double s1t2 = tick_to_radians(s1->id[1],numticks);
 	double s1t3 = tick_to_radians(s1->id[2],numticks);
 	double s1c1 = 150*cos(s1t1)*obj_mass;
-	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass; 
-	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;	
+	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass;
+	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;
 
 	double mag_torque2 = pow(s2c1+s2c12+s2s123,2)
 		+pow(s2c12+s2s123, 2)+pow(s2s123, 2)+.0001;
@@ -245,7 +245,7 @@ double Astar::cost(State* s1, State* s2){
         return dist+ obj_mass*vel.squaredNorm();
 #elif COSTFUNCTION == ENERGY_ANGULAR
     double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
-	
+
 	double alphadist = dist + pow(s1->alpha - s2->alpha,2);
 	double s2t1 = tick_to_radians(s2->id[0],numticks);
 	double s2t2 = tick_to_radians(s2->id[1],numticks);
@@ -259,7 +259,7 @@ double Astar::cost(State* s1, State* s2){
 
 #elif COSTFUNCTION == ENERGY_KINETIC
 	double dist = pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2);
-	
+
 	double alphadist = dist + pow(s1->alpha - s2->alpha,2);
 	double s2t1 = tick_to_radians(s2->id[0],numticks);
 	double s2t2 = tick_to_radians(s2->id[1],numticks);
@@ -275,20 +275,20 @@ double Astar::cost(State* s1, State* s2){
 	Eigen::Vector3d vel = J*thetadot;
     return alphadist+ obj_mass*vel.squaredNorm()+ obj_mass*dist*pow(angular_vel,2);
 #elif COSTFUNCTION == TORQUE_RATE
-    
+
 	double s2t1 = tick_to_radians(s2->id[0],numticks);
 	double s2t2 = tick_to_radians(s2->id[1],numticks);
 	double s2t3 = tick_to_radians(s2->id[2],numticks);
 	double s2c1 = 150*cos(s2t1)*obj_mass;
-	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass; 
+	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass;
 	double s2s123 = 116.525*sin(s2t1+s2t2+s2t3)*obj_mass;
 
 	double s1t1 = tick_to_radians(s1->id[0],numticks);
 	double s1t2 = tick_to_radians(s1->id[1],numticks);
 	double s1t3 = tick_to_radians(s1->id[2],numticks);
 	double s1c1 = 150*cos(s1t1)*obj_mass;
-	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass; 
-	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;	
+	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass;
+	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;
 
 	double mag_torque2 = pow(s2c1+s2c12+s2s123,2)
 		+pow(s2c12+s2s123, 2)+pow(s2s123, 2)+.0001;
@@ -302,15 +302,15 @@ double Astar::cost(State* s1, State* s2){
 	double s2t2 = tick_to_radians(s2->id[1],numticks);
 	double s2t3 = tick_to_radians(s2->id[2],numticks);
 	double s2c1 = 150*cos(s2t1)*obj_mass;
-	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass; 
+	double s2c12 = 150*cos(s2t1+s2t2)*obj_mass;
 	double s2s123 = 116.525*sin(s2t1+s2t2+s2t3)*obj_mass;
 
 	double s1t1 = tick_to_radians(s1->id[0],numticks);
 	double s1t2 = tick_to_radians(s1->id[1],numticks);
 	double s1t3 = tick_to_radians(s1->id[2],numticks);
 	double s1c1 = 150*cos(s1t1)*obj_mass;
-	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass; 
-	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;	
+	double s1c12 = 150*cos(s1t1+s1t2)*obj_mass;
+	double s1s123 = 116.525*sin(s1t1+s1t2+s1t3)*obj_mass;
 
 	double mag_torque2 = pow(s2c1+s2c12+s2s123,2)
 		+pow(s2c12+s2s123, 2)+pow(s2s123, 2)+.0001;
@@ -326,7 +326,7 @@ double Astar::cost(State* s1, State* s2){
 	Eigen::Vector3d vel = J*thetadot;
 	return abs(mag_torque2-mag_torque1)/time_step+obj_mass*vel.squaredNorm();
 
-#else 
+#else
 	return pow(s1->x - s2->x,2)+pow(s1->z - s2->z,2)
 		+pow(s1->alpha - s2->alpha,2);
 
@@ -348,7 +348,7 @@ void Astar::compute_fk(int i, int j, int k){
 	double x;
 	double z;
 	double alpha;
-	fk(&x, &z, &alpha, i, j, k,numticks);
+	fk(&x, &z, &alpha,t0, i, j, k,numticks);
 	space[i][j][k].x  = x;
 	space[i][j][k].z = z;
 	space[i][j][k].alpha = alpha;
@@ -363,7 +363,7 @@ bool Astar::inbounds(int i, int j, int k){
 }
 
 bool Astar::will_continue(State* current){
-#if COSTFUNCTION == NOALPHA || COSTFUNCTION == WRENCH_NOALPHA 
+#if COSTFUNCTION == NOALPHA || COSTFUNCTION == WRENCH_NOALPHA
 	double dist = pow(current->x-target[0], 2) + pow(current->z-target[1], 2);
 	return dist > dist_threshold;
 #elif COSTFUNCTION == TORQUE_RATE || COSTFUNCTION == TORQUE_KINETIC
@@ -373,7 +373,7 @@ bool Astar::will_continue(State* current){
 	double dist = pow(current->x-target[0], 2) + pow(current->z-target[1], 2);
 	double angle = current->alpha;
 	return !(dist < dist_threshold && (fabs(angle-target[2]) < angle_threshold
-		|| (fabs(angle+2*M_PI-target[2]) < angle_threshold) 
+		|| (fabs(angle+2*M_PI-target[2]) < angle_threshold)
 		|| (fabs(angle-2*M_PI-target[2]) < angle_threshold )));
 #endif
 

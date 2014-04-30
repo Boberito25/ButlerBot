@@ -6,7 +6,7 @@
 #include <utility>
 #include <math.h>
 //perform the forward kinematics of the robot to figure out where you are
-void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
+void fk (double* x, double* z, double* alpha, int i, int j, int k,int numticks)
 {
   double theta0 = tick_to_radians((int)(floor(numticks/2)-1),numticks);
   double theta1 = tick_to_radians(i,numticks)+M_PI/2;
@@ -25,9 +25,85 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 
   *x = c0*(150*(c1+c12) + 116.525*s123);
   *z = 150*(s12+s1) - 116.525*c123 + 26.5;
- 
+
   *alpha = theta1-M_PI/2 + theta2-M_PI/2 + theta3-M_PI/2;
 }//end forward_kinematics
+
+//Compute the Inverse Kinematics of the arm
+//  Currently with no check that target is in the workspace
+void ikUp(double x,double z, double alpha, int* i, int j*, int k*,int numticks)
+{
+  double thresh = 0.00001
+
+  double l1 = 150.0;
+  double l2 = 150.0;
+  double l3 = 116.525;
+
+  //find end of third joint
+  double xhat = x - l3 * cos (alpha);
+  double zhat = z - l3 * sin (alpha);
+
+  // compute theta 2
+  double t2 = 2*atan2(sqrt( (l1+l2)*(l1+l2) - xhat*xhat - zhat*zhat),
+                        sqrt( xhat*xhat + zhat*zhat - ((l1+l2)*(l1+l2))));
+
+  //compute theta 1
+  double s2 = sin(t2);
+  double c2 = cos(t2);
+  double a = l1 + l2*c2;
+  double b = l2*s2;
+  double detA = a*a + b*b;
+  //detA is never zero since both a/b can't be zero together
+  double c1 = (a*xhat + b*zhat) / detA;
+  double s1 = (-b*xhat + a*zhat) / detA;
+  double t1 = atan2(s1,c1);
+
+  //compute t3
+  double t3 = alpha - t1 - t2;
+
+  //convert to closest grid location,
+  *i = radians_to_ticks(t1,numticks);
+  *j = radians_to_ticks(t2,numticks);
+  *k = radians_to_ticks(t3,numticks);
+}
+
+//Compute the Inverse Kinematics of the arm
+//  Currently with no check that target is in the workspace
+void ikDown(double x,double z,double alpha,int* i, int j*, int k*,int numticks)
+{
+  double thresh = 0.00001
+
+  double l1 = 150.0;
+  double l2 = 150.0;
+  double l3 = 116.525;
+
+  //find end of third joint
+  double xhat = x - l3 * cos (alpha);
+  double zhat = z - l3 * sin (alpha);
+
+  // compute theta 2
+  double t2 = -2*atan2(sqrt( (l1+l2)*(l1+l2) - xhat*xhat - zhat*zhat),
+                        sqrt( xhat*xhat + zhat*zhat - ((l1+l2)*(l1+l2))));
+
+  //compute theta 1
+  double s2 = sin(t2);
+  double c2 = cos(t2);
+  double a = l1 + l2*c2;
+  double b = l2*s2;
+  double detA = a*a + b*b;
+  //detA is never zero since both a/b can't be zero together
+  double c1 = (a*xhat + b*zhat) / detA;
+  double s1 = (-b*xhat + a*zhat) / detA;
+  double t1 = atan2(s1,c1);
+
+  //compute t3
+  double t3 = alpha - t1 - t2;
+
+  //convert to closest grid location,
+  *i = radians_to_ticks(t1,numticks);
+  *j = radians_to_ticks(t2,numticks);
+  *k = radians_to_ticks(t3,numticks);
+}
 
 /*Eigen::Matrix4d DH(double alpha,double a,double d,double theta)
 {
@@ -56,7 +132,7 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
   double s12 = 150*sin(theta1+theta2);
   double c123 = 116.525*cos(theta1+theta2+theta3);
   double s123 = 116.525*sin(theta1+theta2+theta3);
-  
+
   J << -s0*(c1+c12+s123) , c0*(-1*(s1+s12)+c123) , c0*(-1*s12+c123) , c0*c123 , 0,
        -c0*(c1+c12+s123) , s0*(-1*(s1+s12)+c123) , s0*(-1*s12+c123) , s0*c123 , 0,
        0                 , c1+c12+s123           , c12+s123         , s123    , 0;
@@ -65,7 +141,10 @@ void fk (double* x, double* z, double* alpha, int i, int j, int k, int numticks)
 }*/
 
 
-double tick_to_radians(int i, int numticks){
+double tick_to_radians (int i, int numticks){
   return (M_PI/numticks)*(i-(numticks/2 -1));
 }
 
+int radian_to_ticks (double theta, in numticks){
+  return (int)(round(theta/M_PI) * numticks + (numticks/2) +1);
+}
