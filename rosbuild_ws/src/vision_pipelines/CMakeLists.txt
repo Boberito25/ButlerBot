@@ -35,3 +35,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 rosbuild_add_library(piple_lib src/pipes/plane_segmentors.cpp)
 
 rosbuild_add_executable(visualizer src/pcd/pcdVision.cpp)
+
+rosbuild_add_executable(removePlane src/pcd/pcdExtract.cpp src/pipes/plane_extraction.cpp)
+
+rosbuild_add_executable(filter1 src/pcd/pcdFiltered.cpp src/pipes/plane_extraction.cpp src/pipes/remove_outliers.cpp)
