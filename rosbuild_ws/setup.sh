@@ -167,7 +167,7 @@ EOPYTHON`
 unset _ROS_PACKAGE_PATH_ROSINSTALL
 
 # restore ROS_WORKSPACE in case other setup.sh changed/unset it
-export ROS_WORKSPACE=/home/vsunder/ButlerBot/rosbuild_ws
+export ROS_WORKSPACE=/home/peter/ButlerBot/rosbuild_ws
 
 # if setup.sh did not set ROS_ROOT (pre-fuerte)
 if [ -z "${ROS_ROOT}" ]; then

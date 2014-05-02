@@ -79,8 +79,8 @@ float64 alpha
     try:
       _x = self
       buff.write(_struct_8d.pack(_x.theta0, _x.theta1, _x.theta2, _x.theta3, _x.x, _x.y, _x.z, _x.alpha))
-    except struct.error as se: self._check_types(se)
-    except TypeError as te: self._check_types(te)
+    except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
+    except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
   def deserialize(self, str):
     """
@@ -107,8 +107,8 @@ float64 alpha
     try:
       _x = self
       buff.write(_struct_8d.pack(_x.theta0, _x.theta1, _x.theta2, _x.theta3, _x.x, _x.y, _x.z, _x.alpha))
-    except struct.error as se: self._check_types(se)
-    except TypeError as te: self._check_types(te)
+    except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
+    except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
   def deserialize_numpy(self, str, numpy):
     """
@@ -208,8 +208,8 @@ float64[] theta3s
       buff.write(_struct_I.pack(length))
       pattern = '<%sd'%length
       buff.write(struct.pack(pattern, *self.theta3s))
-    except struct.error as se: self._check_types(se)
-    except TypeError as te: self._check_types(te)
+    except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
+    except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
   def deserialize(self, str):
     """
@@ -274,8 +274,8 @@ float64[] theta3s
       buff.write(_struct_I.pack(length))
       pattern = '<%sd'%length
       buff.write(self.theta3s.tostring())
-    except struct.error as se: self._check_types(se)
-    except TypeError as te: self._check_types(te)
+    except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
+    except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
   def deserialize_numpy(self, str, numpy):
     """

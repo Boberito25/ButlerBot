@@ -33,3 +33,5 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #target_link_libraries(example ${PROJECT_NAME})
 
 rosbuild_add_library(piple_lib src/pipes/plane_segmentors.cpp)
+
+rosbuild_add_executable(visualizer src/pcd/pcdVision.cpp)
