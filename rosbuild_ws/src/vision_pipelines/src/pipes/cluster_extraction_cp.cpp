@@ -14,8 +14,40 @@ void cluster_extraction(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, pcl::ModelCoe
 {
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_f(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZ>);
-  *cloud_f = *cloud;
-  
+  // Create the segmentation object
+  pcl::SACSegmentation<pcl::PointXYZ> seg;
+  // Optional
+  seg.setOptimizeCoefficients (true);
+  // Mandatory
+  seg.setModelType (pcl::SACMODEL_PLANE);
+  seg.setMethodType (pcl::SAC_RANSAC);
+  seg.setMaxIterations(1000);
+  seg.setDistanceThreshold (0.01);
+
+  int nr_points = (int)cloud->points.size();
+  while(cloud->points.size() > .3 * nr_points) {
+      seg.setInputCloud (cloud);
+      seg.segment (*inliers, *coefficients);
+      if (inliers->indices.size() == 0) {
+          std::cout << "Could not estimate a planar model"<<std::endl;
+          break;
+      }
+      
+      //Extract planar inliers
+      pcl::ExtractIndices<pcl::PointXYZ> extract;
+      extract.setInputCloud(cloud);
+      extract.setIndices(inliers);
+      extract.setNegative(false);
+
+      //get plane points
+      extract.filter(*cloud_plane);
+//      std::cout <<"PointCloud has "<<cloud_plane->points.size()<<" data points."<<std::endl;
+      
+      //remove planar inliers
+      extract.setNegative(true);
+      extract.filter(*cloud_f);
+      *cloud = *cloud_f;
+  }
   cloud->is_dense = false;
   cloud_f->is_dense = false;
   std::vector<int> i(100);

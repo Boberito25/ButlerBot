@@ -39,3 +39,11 @@ rosbuild_add_executable(visualizer src/pcd/pcdVision.cpp)
 rosbuild_add_executable(removePlane src/pcd/pcdExtract.cpp src/pipes/plane_extraction.cpp)
 
 rosbuild_add_executable(filter1 src/pcd/pcdFiltered.cpp src/pipes/plane_extraction.cpp src/pipes/remove_outliers.cpp)
+
+rosbuild_add_executable(filter2 src/pipelines/pcdFiltered2.cpp src/pipes/plane_extraction.cpp src/pipes/cluster_extraction.cpp src/pipes/remove_outliers.cpp)
+
+#rosbuild_add_executable(edges src/pipelines/edgeDetection.cpp src/pipes/edge_detector.cpp include/vision_pipelines/pipes/organized_edge_detection.h)
+#compiler bug
+
+#rosbuild_add_executable(colorFilter src/pipelines/colorFilter.cpp src/pipes/color_segmentation.cpp)
+#library can't be found
